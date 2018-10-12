@@ -1,0 +1,42 @@
+
+/**
+ * Popupinfo plugin
+ *
+ * @copyright Serge Pustovit (PSNet), 2008 - 2014
+ * @author    Serge Pustovit (PSNet) <light.feel@gmail.com>
+ *
+ * @link      http://psnet.lookformp3.net
+ * @link      http://livestreet.ru/profile/PSNet/
+ * @link      https://catalog.livestreetcms.com/profile/PSNet/
+ * @link      http://livestreetguide.com/developer/PSNet/
+ */
+
+
+--- Для разработчиков ---
+
+В плагине присутствуют хуки для вставки ваших кнопок и других элементов расширяющих функционал плагина.
+На скриншоте pi_scr_hooks_place.png цифрами указаны места расположения хуков. Хуки есть как для инфо блога так и для инфо пользователя.
+Соответствующие номерам хуки:
+
+Для инфо о блоге:
+
+1:
+{hook run='pi_blog_info_avatar' oBlog=$oBlog}
+
+2:
+{hook run='pi_blog_info_text' oBlog=$oBlog}
+
+3:
+{hook run='pi_blog_info_wrapper' oBlog=$oBlog}
+
+
+Для инфо о пользователе:
+
+1:
+{hook run='pi_user_info_avatar' oUser=$oUser}
+
+2:
+{hook run='pi_user_info_text' oUser=$oUser}
+
+3:
+{hook run='pi_user_info_wrapper' oUser=$oUser}

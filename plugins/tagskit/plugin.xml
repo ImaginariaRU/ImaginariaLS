@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+	<name>
+		<lang name="default">Tags Kit</lang>
+	</name>
+	<author>
+		<lang name="default">Mzhelskiy Maxim</lang>
+	</author>
+	<homepage>https://catalog.livestreetcms.com/addon/view/423/</homepage>
+	<settings>{tk_admin}</settings>
+	<version>1.0.1</version>
+	<requires>
+		<livestreet>1.0</livestreet>
+		<plugins>
+		</plugins>
+	</requires>
+	<description>
+		<lang name="default">Расширяет функциональность тегов</lang>
+	</description>
+</plugin>

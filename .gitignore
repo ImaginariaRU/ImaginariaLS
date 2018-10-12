@@ -1,0 +1,10 @@
+# folders
+.idea
+logs
+
+# Files
+config/config.local.php
+
+
+ 
+ 

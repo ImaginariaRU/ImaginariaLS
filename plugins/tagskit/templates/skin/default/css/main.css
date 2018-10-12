@@ -1,0 +1,35 @@
+.tk-tags-white {
+	color: #003bb3;
+	border-bottom: 1px dashed #003bb3;
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+.tk-tags-white.active {
+	background-color: #ffc853;
+}
+
+.modal.modal-tk-white-list {
+	background: none repeat scroll 0 0 #E0EFF9;
+	margin-left: -310px;
+	top: 70px;
+	width: 620px;
+}
+
+.modal.modal-tk-white-list .modal-content {
+	padding-top: 10px;
+}
+
+.tk-loader {
+	background: url("../images/loader.gif") no-repeat scroll 50% 50% rgba(0, 0, 0, 0) !important;
+}
+
+#tk-tags-main-select {
+	width: 250px;
+	height: 400px;
+}
+
+#tk-tags-depend-text {
+	width: 250px;
+	height: 350px;
+}

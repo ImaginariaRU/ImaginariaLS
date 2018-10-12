@@ -1,0 +1,94 @@
+.opt-role {
+    background: #fbfbfb; padding: 5px 10px; border: solid 1px #f1f1f1; display: none; width: 97%; border-radius: 5px;
+}
+.role {
+     background: #fbfbfb; padding: 15px 20px; border: solid 1px #f1f1f1; width: 97%; margin: 2px; overflow: hidden; border-radius: 10px;
+}
+.role .name{
+    float: left; font-weight: bold; color: #aaa;
+}
+.role .uf {
+    float: right;
+}
+.role .del-role{
+    color: red; text-decoration: none; font-weight: bold;
+}
+.role .ruser{
+    border: solid 1px #fff; float: left; margin: 2px 4px; padding: 3px 6px; border-radius: 5px; background: #ccc;
+}
+.roler {
+    overflow: hidden; background: none; border: none; margin: 0; padding: 0;
+}
+.roler .role-reg {
+    float: left;
+    width: 100px; height: 100px;
+    border: solid 1px #aaa;
+    margin: 3px; padding: 5px;
+    cursor: pointer;
+    filter: alpha(opacity=30);
+    opacity: 0.3;
+    position: relative;
+}
+.roler .role-reg .av_role{
+    position: absolute; top: 6px; left: 6px; z-index: -9;
+}
+.roler .role-reg:hover, .roler .role-reg.active{
+    filter: alpha(opacity=100);
+    opacity: 1;
+}
+.roler .role-reg .name{
+    text-align: center; font-weight: bold; font-size: 14px;
+}
+.roler .role-reg .text{
+    font-size: 10px; color: #aaa; text-align: center; line-height: 14px;
+}
+
+.info li.edit a{
+    color: green;
+}
+.info li.save, .info li.cancel{
+    display: none;
+}
+.info li.save a{
+    color: blue;
+}
+.info li.cancel a{
+    color: red;
+}
+
+.ls-avalar {
+    margin: 0 auto;
+    width: 100%; border-bottom: soid 1px #ccc; background-color: #ffcc00; color: red; overflow: hidden; padding: 0 0; font-style: 10px
+}
+.ls-avalar .cont{
+    padding: 5px 10px;
+}
+.ls-avalar a {
+    color: red;
+}
+.ls-avalar .exit{
+    float: right;
+}
+.info_edit{
+    font-size: 9px; font-style: italic; text-align: right; margin-top: -10px; color: #aaa;
+}
+.user-profile {
+    position: relative;
+}
+ul.list_user_role {
+    overflow: hidden;
+}
+ul.list_user_role li {
+    float: left; font-size: 10px; text-align: center; margin: 3px; width: 48px; height: 65px;
+}
+ul.list_user_role li a{
+    font-size: 10px; text-align: center; text-align: center; display: block; width: 48px; overflow: hidden;
+}
+.block.role_block h2.title_role{
+    height: 24px; line-height: 18px;
+}
+.block.role_block h2.title_role img{
+    margin-right:5px;
+}
+
+.topic-content header ul li{list-style: none;}
