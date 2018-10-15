@@ -92,7 +92,10 @@ ls.toolbar.up = (function ($) {
 
 	this.goUp = function() {
 		ls.toolbar.topic.reset();
-		$.scrollTo(0, 500);
+		// $.scrollTo(0, 500);
+
+		window.scrollTo({ top: 0, behavior: "smooth"});
+
 		return false;
 	};
 
