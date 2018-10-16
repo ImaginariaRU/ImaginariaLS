@@ -27,6 +27,8 @@ chdir(dirname(__FILE__));
 require_once("./config/loader.php");
 require_once(Config::Get('path.root.engine')."/classes/Engine.class.php");
 
+require_once 'vendor/autoload.php';
+
 $oProfiler=ProfilerSimple::getInstance(Config::Get('path.root.server').'/logs/'.Config::Get('sys.logs.profiler_file'),Config::Get('sys.logs.profiler'));
 $iTimeId=$oProfiler->Start('full_time');
 
