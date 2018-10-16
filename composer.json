@@ -1,0 +1,6 @@
+{
+    "require": {
+        "longman/telegram-bot": "^0.54.0",
+        "google/recaptcha": "^1.2"
+    }
+}
