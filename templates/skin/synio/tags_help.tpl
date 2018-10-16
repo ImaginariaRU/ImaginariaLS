@@ -15,7 +15,7 @@
 			{$aLang.tags_help_special_cut_name}
 		</div>
 		<div class="help-item">
-			<h4><a href="#" class="link-dashed js-tags-help-link" data-insert="&lt;video&gt;&lt;/video&gt;">&lt;video&gt;http://...&lt;/video&gt;</a></h4>
+			<h4><a href="#" class="link-dashed js-tags-help-link" data-insert="&lt;video&gt;&lt;/video&gt;">&lt;video&gt;https://...&lt;/video&gt;</a></h4>
 			{$aLang.tags_help_special_video}
 		</div>
 		<div class="help-item">
@@ -38,7 +38,7 @@
 			{$aLang.tags_help_standart_img}
 		</div>
 		<div class="help-item">
-			<h4><a href="#" class="link-dashed js-tags-help-link" data-insert="&lt;a href=&quot;&quot;&gt;&lt;/a&gt;">&lt;a href="http://..."&gt;{$aLang.tags_help_standart_a_example_href}&lt;/a&gt;</a></h4>
+			<h4><a href="#" class="link-dashed js-tags-help-link" data-insert="&lt;a href=&quot;&quot;&gt;&lt;/a&gt;">&lt;a href="https://..."&gt;{$aLang.tags_help_standart_a_example_href}&lt;/a&gt;</a></h4>
 			{$aLang.tags_help_standart_a}
 		</div>
 		<div class="help-item">

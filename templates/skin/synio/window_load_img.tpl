@@ -38,7 +38,7 @@
 		
 		<form method="POST" action="" enctype="multipart/form-data" id="block_upload_img_content_link" onsubmit="return false;" style="display: none;" class="tab-content js-block-upload-img-content" data-type="link">
 			<p><label for="img_file">{$aLang.uploadimg_url}:</label>
-			<input type="text" name="img_url" id="img_url" value="http://" class="input-text input-width-full" /></p>
+			<input type="text" name="img_url" id="img_url" value="https://" class="input-text input-width-full" /></p>
 
 			<p>
 				<label for="form-image-url-align">{$aLang.uploadimg_align}:</label>
