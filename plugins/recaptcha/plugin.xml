@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+    <name>
+        <lang name="default">Recaptcha_v2</lang>
+        <lang name="russian">Recaptcha_v2</lang>
+    </name>
+    <author>
+        <lang name="default">Karel Wintersky</lang>
+        <lang name="russian">Karel Wintersky</lang>
+    </author>
+    <version>5.0.0</version>
+    <requires>
+        <livestreet>1.0.3</livestreet>
+        <plugins>
+        </plugins>
+    </requires>
+    <description>
+        <lang name="default">Replaces the standard captcha for reCAPTCHA v2</lang>
+        <lang name="russian">Заменяет стандартную капчу на reCAPTCHA v2</lang>
+    </description>
+</plugin>
