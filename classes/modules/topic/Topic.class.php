@@ -596,6 +596,32 @@ class ModuleTopic extends Module {
 
 		return $this->GetTopicsByFilter($aFilter,$iPage,$iPerPage);
 	}
+
+    /**
+     * аналог функции GetTopicsGood() из Topics.class.php но с другими критериями отбора
+     *
+     * @param $iPage
+     * @param $iPerPage
+     * @param bool $bAddAccessible
+     * @return array
+     */
+    public function getTopicsForRSS($iPage,$iPerPage) {
+        $aFilter=array(
+            'blog_type' => array(
+                'personal',
+                'open'
+            ),
+            'topic_publish' => 1,
+            'topic_rating'  => array(
+                'value' => Config::Get('module.rss.sufficient_rating'),
+                'type'  => 'top',
+                'publish_index'  => 1,
+            )
+        );
+
+        return $this->GetTopicsByFilter($aFilter,$iPage,$iPerPage);
+    }
+
 	/**
 	 * Получает список новых топиков, ограничение новизны по дате из конфига
 	 *

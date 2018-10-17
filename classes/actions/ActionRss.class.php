@@ -55,14 +55,17 @@ class ActionRss extends Action {
 		/**
 		 * Получаем топики
 		 */
-		$aResult=$this->Topic_GetTopicsGood(1,Config::Get('module.topic.per_page')*2,false);
+		// $aResult=$this->Topic_GetTopicsGood(1, Config::Get('module.topic.per_page')*2,false);
+
+        $aResult = $this->Topic_getTopicsForRSS(1, Config::Get('module.topic.per_page')*2);
+
 		$aTopics=$aResult['collection'];
 		/**
 		 * Формируем данные канала RSS
 		 */
 		$aChannel['title']=Config::Get('view.name');
 		$aChannel['link']=Config::Get('path.root.web');
-		$aChannel['description']=Config::Get('view.name').' / RSS channel';
+		// $aChannel['description']=Config::Get('view.name').' / RSS channel';
 		$aChannel['language']='ru';
 		$aChannel['managingEditor']=Config::Get('general.rss_editor_mail');
 		$aChannel['generator']=Config::Get('view.name');
@@ -74,7 +77,7 @@ class ActionRss extends Action {
 			$item['title']=$oTopic->getTitle();
 			$item['guid']=$oTopic->getUrl();
 			$item['link']=$oTopic->getUrl();
-			$item['description']=$this->getTopicText($oTopic);
+			// $item['description']=$this->getTopicText($oTopic);
 			$item['pubDate']=$oTopic->getDateAdd();
 			$item['author']=$oTopic->getUser()->getLogin();
 			$item['category']=htmlspecialchars($oTopic->getTags());
@@ -374,5 +377,6 @@ class ActionRss extends Action {
 		}
 		return $sText;
 	}
+
 }
 ?>
