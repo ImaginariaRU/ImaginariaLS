@@ -102,8 +102,8 @@ class PluginAceadminpanel_ActionAdmin_Event extends PluginAceadminpanel_Inherit_
     {
         $this->aConfig = array(
             'reserverd_urls' => array('admin'),
-            'votes_per_page' => 15,
-            'items_per_page' => 15,
+            'votes_per_page' => Config::Get('plugin.aceadminpanel.votes_per_page'),
+            'items_per_page' => Config::Get('plugin.aceadminpanel.items_per_page'),
             'vote_value' => 10,
             'edit_footer_text' => '<div style="border-top:1px solid #CCC;color:#F99;text-align:right;font-size:0.9em;">Edited by admin at [@date]</div>',
             'path_themes' => Config::Get('path.root.server') . '/templates/skin',
@@ -119,14 +119,6 @@ class PluginAceadminpanel_ActionAdmin_Event extends PluginAceadminpanel_Inherit_
         $this->aConfig['edit_footer_text'] = $this->PluginAceadminpanel_Admin_GetValue('param_edit_footer', $this->aConfig['edit_footer_text']);
         $this->aConfig['vote_value'] = $this->PluginAceadminpanel_Admin_GetValue('param_vote_value', $this->aConfig['vote_value']);
 
-        //$this->bParamSiteClosed=defined('adm_SITE_CLOSED')?ADMIN_SITE_CLOSED:false;
-        //$this->sParamSiteClosedPage=$this->Admin_GetValue('param_site_closed_page', $this->sParamSiteClosedPage);
-        //$this->sParamSiteClosedText=$this->Admin_GetValue('param_site_closed_text', $this->sParamSiteClosedText);
-        //$this->sParamSiteClosedFile=$this->Admin_GetValue('param_site_closed_file', $this->sParamSiteClosedFile);
-
-        //$this->sParamPathThemes=Config::Get('path.root.server').'/templates/skin';
-        //$this->sParamPathLanguages=Config::Get('path.root.server').'/templates/language';
-
         $this->aConfig['check_password'] = $this->PluginAceadminpanel_Admin_GetValue('param_check_password', $this->aConfig['check_password']);
 
         $oLang = $this->Lang_Dictionary();
@@ -141,14 +133,6 @@ class PluginAceadminpanel_ActionAdmin_Event extends PluginAceadminpanel_Inherit_
     public function  __call($sName, $aArgs)
     {
         if (preg_match('/^Event([A-Z]\w+)/', $sName, $matches)) {
-            /*
-            $sAddonId = $this->_CheckAdminAddon($matches[1]);
-            if (isset($this->aAddons[$sAddonId])) {
-                return $this->_CallAdminAddon($sAddonId, $aArgs);
-            } elseif ($this->bAddonsAutoCheck) {
-
-            }
-            */
         } elseif (preg_match('/^Plugin_/', $sName)) {
             $sName = 'PluginAceadminpanel_' . $sName;
         }

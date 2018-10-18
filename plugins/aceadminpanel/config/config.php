@@ -143,6 +143,9 @@ $config['compatible'] = array(
     //'default' => 'compatible',
 );
 
+$config['votes_per_page'] = 15;
+$config['items_per_page'] = 10;
+
 return $config;
 
 // EOF

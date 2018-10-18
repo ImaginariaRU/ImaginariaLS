@@ -158,6 +158,17 @@ class PluginAceadminpanel_ModuleAdmin_MapperAdmin extends Mapper
         return ($sSort);
     }
 
+    /**
+     * Исходные данные для таблицы пользователей в админке: пользователи
+     *
+     * @param $iCount
+     * @param $iCurrPage
+     * @param $iPerPage
+     * @param array $aFilter
+     * @param array $aSort
+     * @return array
+     * @throws Exception
+     */
     public function GetUserList(&$iCount, $iCurrPage, $iPerPage, $aFilter = Array(), $aSort = Array())
     {
         $aReturn = array();
@@ -317,28 +328,25 @@ class PluginAceadminpanel_ModuleAdmin_MapperAdmin extends Mapper
         $sWhere = $this->BuildUserFilter($aFilter);
         $sOrder = $this->BuildUserSort($aSort);
 
+        $table_user = Config::Get('db.table.user');
+        $table_adminban = Config::Get('db.table.adminban');
+        $table_useradmin = Config::Get('db.table.user_administrator');
+        $table_session = Config::Get('db.table.session');
+
         $sql =
-            "SELECT u.user_id AS ARRAY_KEY, " . $sFieldList . "
-            FROM
-                " . Config::Get('db.table.user') . " AS u
-            LEFT JOIN " . Config::Get('db.table.adminban') . " AS ab ON u.user_id=ab.user_id
-            LEFT JOIN " . Config::Get('db.table.user_administrator') . " AS ua ON u.user_id=ua.user_id
-            LEFT JOIN " . Config::Get('db.table.session') . " AS s ON u.user_id=s.user_id
+            "SELECT u.user_id AS ARRAY_KEY, {$sFieldList}
+            FROM {$table_user} AS u
+            LEFT JOIN {$table_adminban} AS ab ON u.user_id=ab.user_id
+            LEFT JOIN {$table_useradmin} AS ua ON u.user_id=ua.user_id
+            LEFT JOIN {$table_session} AS s ON u.user_id=s.user_id
             WHERE (ab.user_id>0) AND (ab.banunlim>0 OR (Now()<ab.banline AND ab.banactive=1)) " .
-                " AND " . $sWhere . "
-            ORDER BY " . $sOrder . "
+                " AND {$sWhere}
+            ORDER BY {$sOrder}
             LIMIT ?d, ?d
             ";
         $aRows = $this->oDb->selectPage($iCount, $sql, ($iCurrPage - 1) * $iPerPage, $iPerPage);
         return $aRows;
-        /*
-        if ($aRows) {
-            foreach ($aRows as $aRow) {
-                $aReturn[$aRow['user_id']] = Engine::GetEntity('User', $aRow);
-            }
-        }
-        return $aReturn;
-        */
+
     }
 
     public function GetBanListIp(&$iCount, $iCurrPage, $iPerPage)
