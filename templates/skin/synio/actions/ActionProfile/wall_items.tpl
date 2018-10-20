@@ -5,9 +5,13 @@
 	<div id="wall-item-{$oWall->getId()}" class="js-wall-item wall-item-wrapper">
 		<div class="wall-item">
 			<a href="{$oWallUser->getUserWebPath()}"><img src="{$oWallUser->getProfileAvatarPath(48)}" alt="avatar" class="avatar" /></a>
-			
+
 			<p class="info">
-				<a href="{$oWallUser->getUserWebPath()}">{$oWallUser->getLogin()}</a> ·
+				<a href="{$oWallUser->getUserWebPath()}">
+
+					{if $oWallUser->getProfileName()}{$oWallUser->getProfileName()}{else}{$oWallUser->getLogin()}{/if}
+
+				</a> ·
 				<time class="date" datetime="{date_format date=$oWall->getDateAdd() format='c'}">{date_format date=$oWall->getDateAdd() hours_back="12" minutes_back="60" now="60" day="day H:i" format="j F Y, H:i"}</time>
 			</p>
 

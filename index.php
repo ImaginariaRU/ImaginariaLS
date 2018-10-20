@@ -20,8 +20,13 @@ ini_set('display_errors', 1);
 header('Content-Type: text/html; charset=utf-8');
 header('X-Powered-By: LiveStreet CMS');
 
-set_include_path(get_include_path().PATH_SEPARATOR.dirname(__FILE__));
-chdir(dirname(__FILE__));
+$LIVESTREET_INSTALL_PATH = getenv( 'LIVESTREET_INSTALL_PATH');
+if (false === $LIVESTREET_INSTALL_PATH) {
+    $LIVESTREET_INSTALL_PATH = dirname(__FILE__);
+}
+
+set_include_path(get_include_path().PATH_SEPARATOR.$LIVESTREET_INSTALL_PATH);
+chdir($LIVESTREET_INSTALL_PATH);
 
 // Получаем объект конфигурации
 require_once("./config/loader.php");

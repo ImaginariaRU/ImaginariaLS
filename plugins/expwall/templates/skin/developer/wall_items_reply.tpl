@@ -3,7 +3,7 @@
 	<div id="wall-reply-item-{$oReplyWall->getId()}" class="js-wall-reply-item wall-item-reply">
 		<a href="{$oReplyUser->getUserWebPath()}"><img src="{$oReplyUser->getProfileAvatarPath(48)}" alt="avatar" class="avatar" /></a>
 		
-		<a href="{$oReplyUser->getUserWebPath()}" class="author">{$oReplyUser->getLogin()}</a> ·
+		<a href="{$oReplyUser->getUserWebPath()}" class="author">{if $oReplyUser->getProfileName()}{$oReplyUser->getProfileName()}{else}{$oReplyUser->getLogin()}{/if}</a> ·
 		<span class="comment-content text">{$oReplyWall->getText()}</span>
 		
 		<ul class="actions">
@@ -14,5 +14,3 @@
 		</ul>
 	</div>
 {/foreach}
-
-[{$oReplyUser->getProfileName()}] {$oReplyUser->getLogin()}
