@@ -13,8 +13,6 @@
 			{hook run='copyright'}
 		</div>
 		
-		Автор шаблона &mdash; <a href="http://deniart.ru">deniart</a>
-		
 		{hook run='footer_end'}
 	</footer>
 

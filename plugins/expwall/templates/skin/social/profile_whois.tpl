@@ -44,5 +44,3 @@
 <a href="#" onclick="return ls.wall.loadNext();" id="wall-button-next" class="stream-get-more"><span class="wall-more-inner">{$aLang.wall_load_more} (<span id="wall-count-next">{$iCountWall-count($aWall)}</span>)</span></a>
 {/if}
 
-
-<a href="http://mf7.me" target="_blank" class="wcopy">Sponsored by mf7.me</a>

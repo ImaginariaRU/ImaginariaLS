@@ -15,7 +15,7 @@
 			Так можно превратить надпись «Читать дальше» в любой текст.
 		</div>
 		<div class="help-item">
-			<h4><a href="#" class="link-dashed js-tags-help-link" data-insert="&lt;video&gt;&lt;/video&gt;">&lt;video&gt;http://...&lt;/video&gt;</a></h4>
+			<h4><a href="#" class="link-dashed js-tags-help-link" data-insert="&lt;video&gt;&lt;/video&gt;">&lt;video&gt;https://...&lt;/video&gt;</a></h4>
 			Добавляет в пост видео со следующих хостингов: YouTube, RuTube, Google video, Vimeo, Я.Видео и Видео@Mail.ru
 			Вставляйте между тегами только прямую ссылку на видеоролик.
 		</div>
@@ -41,7 +41,7 @@
 			Вставка изображения, в атрибуте src нужно указывать полный путь к изображению. Возможно выравнивание картинки атрибутом align.
 		</div>
 		<div class="help-item">
-			<h4><a href="#" class="link-dashed js-tags-help-link" data-insert="&lt;a href=&quot;&quot;&gt;&lt;/a&gt;">&lt;a href="http://..."&gt;Ссылка&lt;/a&gt;</a></h4>
+			<h4><a href="#" class="link-dashed js-tags-help-link" data-insert="&lt;a href=&quot;&quot;&gt;&lt;/a&gt;">&lt;a href="https://..."&gt;Ссылка&lt;/a&gt;</a></h4>
 			Вставка ссылки, в атрибуте href указывается желаемый интернет-адрес или якорь (anchor) для навигации по странице.
 		</div>
 		<div class="help-item">
