@@ -583,4 +583,4 @@ ls.ie = (function ($) {
 
 
 
-(ls.options || {}).debug=0;
+(ls.options || {}).debug=1;

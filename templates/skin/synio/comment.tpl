@@ -23,11 +23,7 @@
 		
 		<div id="comment_content_id_{$oComment->getId()}" class="comment-content">
 			<div class=" text">
-				{if $oComment->getUserId()!=45 or $oUserCurrent}
-					{$oComment->getText()}
-				{else}
-					Коммент спрятан от детей и беременных, залогиньтесь, чтобы увидеть содержимое.
-				{/if}
+				{$oComment->getText()}
 			</div>
 		</div>
 		

@@ -93,8 +93,12 @@ class ModuleWall_EntityWall extends Entity {
 	 */
 	public function isAllowDelete() {
 		if ($oUserCurrent=$this->User_GetUserCurrent()) {
-			$autor=$this->getUser();
-			if (($oUserCurrent->getId()==$this->getWallUserId()&&!$autor->isAdministrator()) or $oUserCurrent->isAdministrator()) {
+			$author=$this->getUser();
+
+			//@todo: непонятная доработка
+			// в оригинале и 1.0.4 : (($oUserCurrent->getId()==$this->getWallUserId()&&!$author->isAdministrator())
+            // в имажинарии - так, как сейчас
+			if (($oUserCurrent->getId()==$this->getWallUserId()&&!$author->isAdministrator()) or $oUserCurrent->isAdministrator()) {
 				return true;
 			}
 		}

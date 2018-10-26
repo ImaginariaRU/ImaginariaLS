@@ -59,9 +59,9 @@
 		
 		{hook run='footer_end'}
 	</footer>
-</div> 
+</div> <!-- /container -->
 
-<!-- /container -->{include file='toolbar.tpl'}
+{include file='toolbar.tpl'}
 
 {hook run='body_end'}
 

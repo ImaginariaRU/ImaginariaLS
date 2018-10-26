@@ -44,7 +44,7 @@
 		<ul class="topic-info">
 			<li class="topic-info-author">
 				<a href="{$oUser->getUserWebPath()}"><img src="{$oUser->getProfileAvatarPath(24)}" alt="avatar" class="avatar" /></a>
-				<a rel="author" href="{$oUser->getUserWebPath()}">{if $oUser->getProfileName()!=""}{$oUser->getProfileName()}{else}{$oUser->getLogin()}{/if}</a>
+				<a rel="author" href="{$oUser->getUserWebPath()}">{$oUser->getLogin()}</a>
 			</li>
 			<li class="topic-info-date">
 				<time datetime="{date_format date=$oTopic->getDateAdd() format='c'}" title="{date_format date=$oTopic->getDateAdd() format='j F Y, H:i'}">

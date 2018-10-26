@@ -205,6 +205,8 @@ class ModuleUser_EntityUser extends Entity {
 		}else{
 			return $this->getLogin();
 		}
+
+		//@todo: переписать на PHP7 синтаксис
 	}
 	/**
 	 * Возвращает пол
@@ -423,9 +425,6 @@ class ModuleUser_EntityUser extends Entity {
 	 * @return string
 	 */
 	public function getUserWebPath() {
-		return Router::GetPath('profile').$this->getLogin().'/';
-	}
-	public function getUserWebPathA() {
 		return Router::GetPath('profile').$this->getLogin().'/';
 	}
 	/**

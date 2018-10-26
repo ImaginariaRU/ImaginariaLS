@@ -30,6 +30,10 @@ chdir($LIVESTREET_INSTALL_PATH);
 
 // Получаем объект конфигурации
 require_once("./config/loader.php");
+
+/**
+ * Заводим двигатель
+ */
 require_once(Config::Get('path.root.engine')."/classes/Engine.class.php");
 
 require_once 'vendor/autoload.php';
@@ -41,4 +45,3 @@ $oRouter=Router::getInstance();
 $oRouter->Exec();
 
 $oProfiler->Stop($iTimeId);
-?>

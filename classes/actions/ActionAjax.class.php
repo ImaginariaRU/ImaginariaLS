@@ -252,6 +252,7 @@ class ActionAjax extends Action {
 		$oTopicCommentVote->setValue($iVal);
 
 		$oComment->setCountVote($oComment->getCountVote()+1);
+
 		if ($this->Vote_AddVote($oTopicCommentVote) and $this->Comment_UpdateComment($oComment)) {
 			$this->Message_AddNoticeSingle($this->Lang_Get('comment_vote_ok'),$this->Lang_Get('attention'));
 			$this->Viewer_AssignAjax('iRating',$oComment->getRating());
@@ -504,6 +505,8 @@ class ActionAjax extends Action {
 			/**
 			 * Добавляем событие в ленту
 			 */
+
+			//@todo: IMKA 2.0 - проверять настройку в конфиге
 			$this->Stream_write($oUserVote->getVoterId(), 'vote_user', $oUser->getId());
 		} else {
 			$this->Message_AddErrorSingle($this->Lang_Get('system_error'),$this->Lang_Get('error'));

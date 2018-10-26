@@ -7,9 +7,9 @@
 	<header class="topic-header">
 		<h1 class="topic-title word-wrap">
 			{if $bTopicList}
-				<a href="{$oTopic->getUrl()}">{if $oTopic->getUserId()!=45 or $oUserCurrent}{$oTopic->getTitle()|escape:'html'}{else}***{/if}</a>
+				<a href="{$oTopic->getUrl()}">{$oTopic->getTitle()|escape:'html'}</a>
 			{else}
-				{if $oTopic->getUserId()!=45 or $oUserCurrent}{$oTopic->getTitle()|escape:'html'}{else}***{/if}
+				{$oTopic->getTitle()|escape:'html'}
 			{/if}
 			
 			{if $oTopic->getPublish() == 0}   

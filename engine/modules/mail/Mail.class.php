@@ -1,4 +1,6 @@
 <?php
+
+//@todo: composer include phpMailer
 /*-------------------------------------------------------
 *
 *   LiveStreet Engine Social Networking

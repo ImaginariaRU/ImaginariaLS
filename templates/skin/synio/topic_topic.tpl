@@ -3,27 +3,24 @@
    
 <div class="topic-content text">
 	{hook run='topic_content_begin' topic=$oTopic bTopicList=$bTopicList}
-	{if $oTopic->getUserId()!=45 or $oUserCurrent}
-		{if $bTopicList}
-			{$oTopic->getTextShort()}
-			
-			{if $oTopic->getTextShort()!=$oTopic->getText()}
-				<br/>
-				<a href="{$oTopic->getUrl()}#cut" title="{$aLang.topic_read_more}">
-					{if $oTopic->getCutText()}
-						{$oTopic->getCutText()}
-					{else}
-						{$aLang.topic_read_more} &rarr;
-					{/if}
-				</a>
-			{/if}
-		{else}
-			{$oTopic->getText()}
-		{/if}
 
+	{if $bTopicList}
+		{$oTopic->getTextShort()}
+
+		{if $oTopic->getTextShort()!=$oTopic->getText()}
+			<br/>
+			<a href="{$oTopic->getUrl()}#cut" title="{$aLang.topic_read_more}">
+				{if $oTopic->getCutText()}
+					{$oTopic->getCutText()}
+				{else}
+					{$aLang.topic_read_more} &rarr;
+				{/if}
+			</a>
+		{/if}
 	{else}
-		Топик спрятан от детей и беременных, залогиньтесь, чтобы увидеть содержимое.
+		{$oTopic->getText()}
 	{/if}
+
 	{hook run='topic_content_end' topic=$oTopic bTopicList=$bTopicList}
 </div> 
 

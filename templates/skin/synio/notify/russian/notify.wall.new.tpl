@@ -1,4 +1,4 @@
-Пользователь <a href="{$oUser->getUserWebPathA()}">{$oUser->getProfileName()}</a> оставил сообщение на <a href="{$oUserWall->getUserWebPath()}wall/">вашей стене</a><br/>
+Пользователь <a href="{$oUser->getUserWebPath()}">{$oUser->getProfileName()}</a> оставил сообщение на <a href="{$oUserWall->getUserWebPath()}wall/">вашей стене</a><br/>
 
 Текст сообщения: <i>{$oWall->getText()}</i>
 

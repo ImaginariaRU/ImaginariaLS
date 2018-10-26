@@ -3,6 +3,9 @@
         "longman/telegram-bot": "^0.54.0",
         "google/recaptcha": "^1.2",
         "monolog/monolog": "^1.23",
-        "mobiledetect/mobiledetectlib": "^2.8"
+        "mobiledetect/mobiledetectlib": "^2.8",
+        "mrclay/jsmin-php": "^2.3",
+        "phpmailer/phpmailer": "^6.0",
+        "cerdic/css-tidy": "^1.6"
     }
 }

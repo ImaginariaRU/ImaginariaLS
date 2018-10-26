@@ -530,9 +530,12 @@ class ModuleTopic_MapperTopic extends Mapper {
 	 * @return string
 	 */
 	protected function buildFilter($aFilter) {
+
+	    $af_topic_date_more = $this->oDb->_performEscape($aFilter['topic_date_more']);
+
 		$sWhere='';
 		if (isset($aFilter['topic_date_more'])) {
-			$sWhere.=" AND t.topic_date_add >  '".mysql_real_escape_string($aFilter['topic_date_more'])."'";
+			$sWhere.=" AND t.topic_date_add >  ".$this->oDb->escape($aFilter['topic_date_more']);
 		}
 		if (isset($aFilter['topic_publish'])) {
 			$sWhere.=" AND t.topic_publish =  ".(int)$aFilter['topic_publish'];
@@ -589,7 +592,18 @@ class ModuleTopic_MapperTopic extends Mapper {
 			if(!is_array($aFilter['topic_type'])) {
 				$aFilter['topic_type']=array($aFilter['topic_type']);
 			}
-			$sWhere.=" AND t.topic_type IN ('".join("','",array_map('mysql_real_escape_string',$aFilter['topic_type']))."')";
+
+            // KW Change 2018-10-14
+            /*
+            $af_topic_type = array_map(function($v) {
+                return $this->oDb->_performEscape($v);
+            }, $aFilter['topic_type']);
+
+            $sWhere .= " AND t.topic_type IN ('" . join("','", $af_topic_type) . "')";
+            */
+
+
+            $sWhere.=" AND t.topic_type IN (".join(",",array_map(array($this->oDb, 'escape'), $aFilter['topic_type'])).")";
 		}
 		return $sWhere;
 	}
@@ -993,16 +1007,20 @@ class ModuleTopic_MapperTopic extends Mapper {
 		return false;
 	}
 	/**
-	 * Пересчитывает счетчики голосований
+	 * Пересчитывает счетчики голосований ЗА ТОПИКИ
 	 *
 	 * @return bool
 	 */
 	public function RecalculateVote() {
+	    $table_topic = Config::Get('db.table.topic');
+	    $table_vote = Config::Get('db.table.vote');
+
+
 		$sql = "
-                UPDATE ".Config::Get('db.table.topic')." t
+                UPDATE {$table_topic} t
                 SET t.topic_count_vote_up = (
                     SELECT count(*)
-                    FROM ".Config::Get('db.table.vote')." v
+                    FROM {$table_vote} v
                     WHERE
                         v.target_id = t.topic_id
                     AND
@@ -1011,7 +1029,7 @@ class ModuleTopic_MapperTopic extends Mapper {
                         v.target_type = 'topic'
                 ), t.topic_count_vote_down = (
                     SELECT count(*)
-                    FROM ".Config::Get('db.table.vote')." v
+                    FROM {$table_vote} v
                     WHERE
                         v.target_id = t.topic_id
                     AND
@@ -1020,7 +1038,7 @@ class ModuleTopic_MapperTopic extends Mapper {
                         v.target_type = 'topic'
                 ), t.topic_count_vote_abstain = (
                     SELECT count(*)
-                    FROM ".Config::Get('db.table.vote')." v
+                    FROM {$table_vote} v
                     WHERE
                         v.target_id = t.topic_id
                     AND
