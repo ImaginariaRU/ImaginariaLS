@@ -20,7 +20,15 @@
 	
 	<link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
-	<link href="{cfg name='path.static.skin'}/images/favicon.ico?v1" rel="shortcut icon" />
+	<link href="/templates/favicon/favicon.ico?v1" rel="shortcut icon" />
+	<link rel="apple-touch-icon" sizes="180x180" href="/templates/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/templates/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/templates/favicon/favicon-16x16.png">
+	<link rel="manifest" href="/templates/favicon/site.webmanifest">
+	<link rel="mask-icon" href="/templates/favicon/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+
 	<link rel="search" type="application/opensearchdescription+xml" href="{router page='search'}opensearch/" title="{cfg name='view.name'}" />
 
 	{if $aHtmlRssAlternate}
