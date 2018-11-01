@@ -150,30 +150,104 @@
 ._reactions{
 	padding: 0 0 0.7em;
 }
-._reactions ._label{
+._reactions ._label_green{
 	display: inline-block;
 	border-radius: 5px;
 	background: #e6ee9c;
 	padding: 0.3em;
-	cursor: dafault;
-	color: #afb42b;
+	cursor: pointer;
+	color: #827717;
 	
-	transition: background: .3s;
+	transition: background .3s;
 }
-._reactions ._label:hover{
+._reactions ._label_green:hover{
+	background: #d4e157;
+}
+._reactions ._label_green:active{
 	background: #cddc39;
 }
-._reactions ._label:active{
-	background: #c0ca33;
-}
-._reactions ._label ._count{
+._reactions ._label_green ._count{
 	display: inline-block;
-	border-radius: 6px;
-	background: #f9fbe7;
+	border-radius: 5px;
+	background: #ffffffab;
 	padding: 0.2em 0.4em;
 }
-._reactions ._label ._vote{
+._reactions ._label_green ._title{
 	display: inline-block;
+}
+
+._reactions ._label_green_alt{
+	display: inline-block;
+	border-radius: 5px;
+	padding: 0.3em;
 	cursor: pointer;
-	text-shadow: 0 -1px 0 #F0F4C3;
+	color: #827717;
+	
+	transition: background .3s;
+}
+._reactions ._label_green_alt:hover{
+	background: #d4e157;
+}
+._reactions ._label_green_alt:active{
+	background: #cddc39;
+}
+._reactions ._label_green_alt ._count{
+	display: inline-block;
+	border-radius: 5px;
+	background: #F0F4C3;
+	padding: 0.2em 0.4em;
+}
+._reactions ._label_green_alt ._title{
+	display: inline-block;
+}
+
+._reactions ._label_red{
+	display: inline-block;
+	border-radius: 5px;
+	background: #ee9c9c;
+	padding: 0.3em;
+	cursor: pointer;
+	color: #821717;
+	
+	transition: background .3s;
+}
+._reactions ._label_red:hover{
+	background: #e15757;
+}
+._reactions ._label_red:active{
+	background: #dc3939;
+}
+._reactions ._label_red ._count{
+	display: inline-block;
+	border-radius: 5px;
+	background: #ffffffab;
+	padding: 0.2em 0.4em;
+}
+._reactions ._label_red ._title{
+	display: inline-block;
+}
+
+._reactions ._label_red_alt{
+	display: inline-block;
+	border-radius: 5px;
+	padding: 0.3em;
+	cursor: pointer;
+	color: #821717;
+	
+	transition: background .3s;
+}
+._reactions ._label_red_alt:hover{
+	background: #e15757;
+}
+._reactions ._label_red_alt:active{
+	background: #dc3939;
+}
+._reactions ._label_red_alt ._count{
+	display: inline-block;
+	border-radius: 5px;
+	background: #FCE4EC;
+	padding: 0.2em 0.4em;
+}
+._reactions ._label_red_alt ._title{
+	display: inline-block;
 }
