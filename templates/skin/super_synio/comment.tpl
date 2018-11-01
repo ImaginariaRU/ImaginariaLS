@@ -30,7 +30,7 @@
 					{date_format date=$oComment->getDate() hours_back="12" minutes_back="60" now="60" day="day H:i" format="j F Y, H:i"}
 				</time>
 			</div>
-			<hr>
+			<hr class='hr'>
 			<div class=" text">
 				{$oComment->getText()}
 			</div>
@@ -39,7 +39,7 @@
 		<ul class='_reactions'>
 			<li class='_label'>
 				<span class="_count" id="vote_total_comment_{$oComment->getId()}">{if $oComment->getRating() > 0}+{/if}{$oComment->getRating()}</span>
-				<span class="_vote" onclick="return ls.vote.vote({$oComment->getId()},this,1,'comment');"></div>
+				<span class="_vote" onclick="return ls.vote.vote({$oComment->getId()},this,1,'comment');">Любо!</div>
 			</li>
 		</ul>
 		<ul class="comment-info">

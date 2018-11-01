@@ -124,7 +124,7 @@
 .comment .comment-content { margin-bottom: 10px; /*border: 1px solid #e7ebed; padding: 9px 10px 10px; border-radius: 3px;*/ position: relative; }
 .comment .comment-content.text { font-size: 13px; }
 .comment .comment-content .comment-date { color: #aaa; }
-.comment .comment-content hr { color: #aaa; }
+.comment .comment-content hr.hr { background: #eee; border: none; height: 1px; }
 .comment .comment-content.text blockquote { background: #fff; border-color: #ccc; padding: 5px 10px; margin-bottom: 5px; }
 /*.comment .comment-content:after { display: block; content: ""; position: absolute; bottom: -12px; left: 10px; width: 0; height: 0; border-width: 6px; border-color: #e7ebed transparent transparent; border-style: solid; }
 .comment .comment-content:before { display: block; content: ""; position: absolute; bottom: -11px; left: 10px; width: 0; height: 0; border-width: 6px; border-color: #fff transparent transparent; border-style: solid; z-index: 10; }*/
@@ -154,12 +154,26 @@
 	display: inline-block;
 	border-radius: 5px;
 	background: #e6ee9c;
+	padding: 0.3em;
+	cursor: dafault;
+	color: #afb42b;
+	
+	transition: background: .3s;
+}
+._reactions ._label:hover{
+	background: #cddc39;
+}
+._reactions ._label:active{
+	background: #c0ca33;
 }
 ._reactions ._label ._count{
 	display: inline-block;
 	border-radius: 6px;
-	background: #e6ee9c;
+	background: #f9fbe7;
+	padding: 0.2em 0.4em;
 }
 ._reactions ._label ._vote{
 	display: inline-block;
+	cursor: pointer;
+	text-shadow: 0 -1px 0 #F0F4C3;
 }
