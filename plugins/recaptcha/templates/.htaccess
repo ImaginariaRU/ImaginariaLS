@@ -1,7 +1,0 @@
-
-Order allow,deny
-Allow from all		
-<Files ~ "\.tpl$">
-    Order allow,deny
-    Deny from all
-</Files>

@@ -1,0 +1,47 @@
+aceadminpanel       module      +
+amazons3
+attachments         local       +
+atuser              local       +
+autocut
+autoopenid
+blacklist           module      +
+bspoiler
+changemail
+configengine        ?
+delayedpost
+editcomment
+expwall
+extentedimage
+filearchive         ?
+follower            ?
+fontsize            ?
+greeting            ?
+httpsdetect
+mistakes            ?
+mobiletpl           ~
+newpublishfrom      ?
+newwebcode          ?
+niceurl
+onlyupvote
+page
+ratingbonus
+recaptcha           module      +
+rememberme
+role                ?
+shistory
+showhidesidebar
+showvotes
+simplerating
+simplesearch
+sktc
+skubs
+stickytopics        -
+tagskit             -
+tagslikefull
+tagspool
+telegramsharetopic  ?
+urlredirect
+username
+userstatus
+usertop             -
+wmessage
