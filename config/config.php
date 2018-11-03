@@ -577,4 +577,3 @@ $config['jevix']=require(dirname(__FILE__).'/jevix.php');
 
 
 return $config;
-?>

@@ -211,5 +211,3 @@ class ModuleRating extends Module
         return $iValue * $iDelta;
     }
 }
-
-?>

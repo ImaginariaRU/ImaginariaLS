@@ -77,5 +77,3 @@ class Smarty_Internal_Compile_Private_Registered_Function extends Smarty_Interna
     }
 
 }
-
-?>

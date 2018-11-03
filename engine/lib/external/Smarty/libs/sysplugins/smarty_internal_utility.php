@@ -824,5 +824,3 @@ class Smarty_Internal_Utility {
     }
 
 }
-
-?>

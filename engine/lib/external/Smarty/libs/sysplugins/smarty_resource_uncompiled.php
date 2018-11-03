@@ -40,5 +40,3 @@ abstract class Smarty_Resource_Uncompiled extends Smarty_Resource {
     }
 
 }
-
-?>

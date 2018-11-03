@@ -167,7 +167,7 @@ if ($http_accept === 'text/html') {
 		<?php echo $lang[$l][0]; echo $css->version; ?>)
 	</title>
 	<link rel="stylesheet" href="cssparse.css" type="text/css" />
-	<script type="text/javascript"><!--/*--><![CDATA[/*><!-- */
+	<script type="text/javascript"><!--/*--><![CDATA[/*><!--*/
 	function enable_disable_preserve() {
 		var inputs =   new Array('sort_sel', 'sort_de', 'optimise_shorthands', 'merge_selectors', 'none');
 		var inputs_v = new Array( true,       true,      true,                  true,              false);

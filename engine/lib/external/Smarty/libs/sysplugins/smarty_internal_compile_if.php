@@ -203,5 +203,3 @@ class Smarty_Internal_Compile_Ifclose extends Smarty_Internal_CompileBase {
     }
 
 }
-
-?>

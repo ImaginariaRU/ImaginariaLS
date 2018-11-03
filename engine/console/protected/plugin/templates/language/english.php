@@ -6,4 +6,3 @@ return array(
     'name' => 'text',
 );
 
-?>

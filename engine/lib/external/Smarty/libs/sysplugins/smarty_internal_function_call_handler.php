@@ -52,4 +52,3 @@ class Smarty_Internal_Function_Call_Handler {
 
 }
 
-?>

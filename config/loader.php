@@ -26,12 +26,16 @@ define('LS_VERSION','1.0.1');
 require_once(dirname(dirname(__FILE__))."/engine/lib/internal/ConfigSimple/Config.class.php");
 Config::LoadFromFile(dirname(__FILE__).'/config.php');
 
-$fGetConfig = create_function('$sPath', '$config=array(); return include $sPath;');
+$fGetConfig = function ($sPath) {
+    $config = [];
+    return include_once $sPath;
+};
 
 /**
  * Загружает конфиги модулей вида /config/modules/[module_name]/config.php
  */
 $sDirConfig=Config::get('path.root.server').'/config/modules/';
+
 if ($hDirConfig = opendir($sDirConfig)) {
 	while (false !== ($sDirModule = readdir($hDirConfig))) {
 		if ($sDirModule !='.' and $sDirModule !='..' and is_dir($sDirConfig.$sDirModule)) {
@@ -175,4 +179,3 @@ if($aPluginsList=@file($sPluginsListFile)) {
 	}
 }
 
-?>

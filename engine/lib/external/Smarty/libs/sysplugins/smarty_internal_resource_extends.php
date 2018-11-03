@@ -153,5 +153,3 @@ class Smarty_Internal_Resource_Extends extends Smarty_Resource {
     }
 
 }
-
-?>

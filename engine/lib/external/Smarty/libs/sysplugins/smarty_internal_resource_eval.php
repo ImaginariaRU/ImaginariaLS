@@ -90,5 +90,3 @@ class Smarty_Internal_Resource_Eval extends Smarty_Resource_Recompiled {
     }
 
 }
-
-?>

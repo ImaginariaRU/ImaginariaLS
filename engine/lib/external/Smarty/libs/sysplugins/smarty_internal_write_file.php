@@ -66,5 +66,3 @@ class Smarty_Internal_Write_File {
     }
 
 }
-
-?>

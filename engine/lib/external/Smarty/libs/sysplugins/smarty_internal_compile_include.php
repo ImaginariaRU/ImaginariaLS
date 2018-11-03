@@ -211,5 +211,3 @@ class Smarty_Internal_Compile_Include extends Smarty_Internal_CompileBase {
     }
 
 }
-
-?>

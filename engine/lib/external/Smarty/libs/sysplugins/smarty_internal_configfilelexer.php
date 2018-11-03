@@ -619,4 +619,3 @@ class Smarty_Internal_Configfilelexer
 
 
 }
-?>

@@ -455,5 +455,3 @@ class Smarty_Security {
     }
 
 }
-
-?>

@@ -172,5 +172,3 @@ abstract class Smarty_Internal_CompileBase {
     }
 
 }
-
-?>

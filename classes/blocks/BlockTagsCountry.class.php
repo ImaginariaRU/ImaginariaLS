@@ -21,23 +21,25 @@
  * @package blocks
  * @since 1.0
  */
-class BlockTagsCountry extends Block {
-	/**
-	 * Запуск обработки
-	 */
-	public function Exec() {
-		/**
-		 * Получаем страны
-		 */
-		$aCountries=$this->Geo_GetGroupCountriesByTargetType('user',20);
-		/**
-		 * Формируем облако тегов
-		 */
-		$this->Tools_MakeCloud($aCountries);
-		/**
-		 * Выводим в шаблон
-		 */
-		$this->Viewer_Assign("aCountryList",$aCountries);
-	}
+class BlockTagsCountry extends Block
+{
+    /**
+     * Запуск обработки
+     */
+    public function Exec()
+    {
+        /**
+         * Получаем страны
+         */
+        $aCountries = $this->Geo_GetGroupCountriesByTargetType('user', 20);
+        /**
+         * Формируем облако тегов
+         */
+        $this->Tools_MakeCloud($aCountries);
+        /**
+         * Выводим в шаблон
+         */
+        $this->Viewer_Assign("aCountryList", $aCountries);
+    }
 }
-?>
+

@@ -92,11 +92,11 @@ ls.toolbar.up = (function ($) {
 
 	this.goUp = function() {
 		ls.toolbar.topic.reset();
-		// $.scrollTo(0, 500);
+		$.scrollTo(0, 500);
+
         // KW: изменение сделано до того, как я нашел обновленный плагин
 		// $.scrollTo и проблемы, связанные у него с хромом
-
-		window.scrollTo({ top: 0, behavior: "smooth"});
+		// window.scrollTo({ top: 0, behavior: "smooth"});
 
 		return false;
 	};

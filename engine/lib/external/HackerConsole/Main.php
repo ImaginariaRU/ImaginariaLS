@@ -306,4 +306,3 @@ class Debug_HackerConsole_Main
  * Last created console.
  */
 $GLOBALS['Debug_HackerConsole_Main_LAST'] = null;
-?>

@@ -80,4 +80,3 @@ class PluginExample extends Plugin {
         //$this->Viewer_AddMenu('blog',Plugin::GetTemplatePath(__CLASS__).'menu.blog.tpl'); // например, задаем свой вид меню
     }
 }
-?>

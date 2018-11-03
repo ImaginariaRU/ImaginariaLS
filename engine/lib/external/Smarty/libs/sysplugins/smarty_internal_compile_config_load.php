@@ -81,5 +81,3 @@ class Smarty_Internal_Compile_Config_Load extends Smarty_Internal_CompileBase {
     }
 
 }
-
-?>

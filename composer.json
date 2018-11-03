@@ -1,6 +1,6 @@
 {
     "require": {
         "google/recaptcha": "^1.2",
-        "monolog/monolog": "^1.23",
+        "monolog/monolog": "^1.23"
     }
 }

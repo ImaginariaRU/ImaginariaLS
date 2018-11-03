@@ -67,6 +67,42 @@ class ActionSettings extends Action
     }
 
     /**
+     * Выполняется при завершении работы экшена
+     *
+     */
+    public function EventShutdown()
+    {
+        $iCountTopicFavourite = $this->Topic_GetCountTopicsFavouriteByUserId($this->oUserCurrent->getId());
+        $iCountTopicUser = $this->Topic_GetCountTopicsPersonalByUser($this->oUserCurrent->getId(), 1);
+        $iCountCommentUser = $this->Comment_GetCountCommentsByUserId($this->oUserCurrent->getId(), 'topic');
+        $iCountCommentFavourite = $this->Comment_GetCountCommentsFavouriteByUserId($this->oUserCurrent->getId());
+        $iCountNoteUser = $this->User_GetCountUserNotesByUserId($this->oUserCurrent->getId());
+
+        $this->Viewer_Assign('oUserProfile', $this->oUserCurrent);
+        $this->Viewer_Assign('iCountWallUser', $this->Wall_GetCountWall(array('wall_user_id' => $this->oUserCurrent->getId(), 'pid' => null)));
+        /**
+         * Общее число публикация и избранного
+         */
+        $this->Viewer_Assign('iCountCreated', $iCountNoteUser + $iCountTopicUser + $iCountCommentUser);
+        $this->Viewer_Assign('iCountFavourite', $iCountCommentFavourite + $iCountTopicFavourite);
+        $this->Viewer_Assign('iCountFriendsUser', $this->User_GetCountUsersFriend($this->oUserCurrent->getId()));
+
+        /**
+         * Загружаем в шаблон необходимые переменные
+         */
+        $this->Viewer_Assign('sMenuItemSelect', $this->sMenuItemSelect);
+        $this->Viewer_Assign('sMenuSubItemSelect', $this->sMenuSubItemSelect);
+
+        $this->Hook_Run('action_shutdown_settings');
+    }
+
+
+    /**********************************************************************************
+     ************************ РЕАЛИЗАЦИЯ ЭКШЕНА ***************************************
+     **********************************************************************************
+     */
+
+    /**
      * Регистрация евентов
      */
     protected function RegisterEvent()
@@ -84,12 +120,6 @@ class ActionSettings extends Action
         $this->AddEvent('tuning', 'EventTuning');
         $this->AddEvent('account', 'EventAccount');
     }
-
-
-    /**********************************************************************************
-     ************************ РЕАЛИЗАЦИЯ ЭКШЕНА ***************************************
-     **********************************************************************************
-     */
 
     /**
      * Загрузка временной картинки фото для последущего ресайза
@@ -723,36 +753,4 @@ class ActionSettings extends Action
         }
 
     }
-
-    /**
-     * Выполняется при завершении работы экшена
-     *
-     */
-    public function EventShutdown()
-    {
-        $iCountTopicFavourite = $this->Topic_GetCountTopicsFavouriteByUserId($this->oUserCurrent->getId());
-        $iCountTopicUser = $this->Topic_GetCountTopicsPersonalByUser($this->oUserCurrent->getId(), 1);
-        $iCountCommentUser = $this->Comment_GetCountCommentsByUserId($this->oUserCurrent->getId(), 'topic');
-        $iCountCommentFavourite = $this->Comment_GetCountCommentsFavouriteByUserId($this->oUserCurrent->getId());
-        $iCountNoteUser = $this->User_GetCountUserNotesByUserId($this->oUserCurrent->getId());
-
-        $this->Viewer_Assign('oUserProfile', $this->oUserCurrent);
-        $this->Viewer_Assign('iCountWallUser', $this->Wall_GetCountWall(array('wall_user_id' => $this->oUserCurrent->getId(), 'pid' => null)));
-        /**
-         * Общее число публикация и избранного
-         */
-        $this->Viewer_Assign('iCountCreated', $iCountNoteUser + $iCountTopicUser + $iCountCommentUser);
-        $this->Viewer_Assign('iCountFavourite', $iCountCommentFavourite + $iCountTopicFavourite);
-        $this->Viewer_Assign('iCountFriendsUser', $this->User_GetCountUsersFriend($this->oUserCurrent->getId()));
-
-        /**
-         * Загружаем в шаблон необходимые переменные
-         */
-        $this->Viewer_Assign('sMenuItemSelect', $this->sMenuItemSelect);
-        $this->Viewer_Assign('sMenuSubItemSelect', $this->sMenuSubItemSelect);
-
-        $this->Hook_Run('action_shutdown_settings');
-    }
 }
-
-?>

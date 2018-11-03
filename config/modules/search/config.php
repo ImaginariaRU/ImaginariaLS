@@ -23,4 +23,3 @@ $config['sphinx']['host'] = 'localhost';
 $config['sphinx']['port'] = '3312';
 
 return $config;
-?>

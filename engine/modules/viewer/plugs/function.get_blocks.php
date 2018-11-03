@@ -18,19 +18,18 @@
 /**
  * Загружает в переменную список блоков
  *
- * @param unknown_type $params
- * @param unknown_type $smarty
- * @return unknown
+ * @param array $params
+ * @param object $smarty
+ * @return mixed
  */
 function smarty_function_get_blocks($params, &$smarty)
 {
-	if (!array_key_exists('assign', $params)) {
-		trigger_error("get_blocks: missing 'assign' parameter",E_USER_WARNING);
-        return;
+    if (!array_key_exists('assign', $params)) {
+        trigger_error("get_blocks: missing 'assign' parameter", E_USER_WARNING);
+        return '';
     }
 
-	$smarty->assign($params['assign'], Engine::getInstance()->Viewer_GetBlocks(true));
-	return '';
+    $smarty->assign($params['assign'], Engine::getInstance()->Viewer_GetBlocks(true));
+    return '';
 }
 
-?>

@@ -428,4 +428,3 @@ class ModuleImage extends Module {
 		return $sText;
 	}
 }
-?>
