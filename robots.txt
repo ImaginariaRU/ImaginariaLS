@@ -1,0 +1,53 @@
+User-agent: *
+Crawl-delay: 1
+Disallow: /attachments/
+
+User-agent: Yandex
+Crawl-delay: 1
+
+User-agent: YandexImages
+Crawl-delay: 1
+Clean-param: PHPSESSID index.php
+
+User-agent: googlebot-mobile
+Disallow: /
+
+User-agent: msnbot
+Disallow: /
+
+User-agent: psbot
+Disallow: /
+
+User-agent: crawl
+Disallow: /
+
+User-agent: robot
+Disallow: /
+
+User-agent: bot*
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: / 
+
+User-agent: SemrushBot-SA
+Disallow: / 
+
+User-agent: YandexBot
+Crawl-delay: 1
+Disallow: /
+
+User-agent: SputnikBot*
+Disallow: /
+
+User-agent: Googlebot*
+Disallow: /
+
+User-agent: *bot*
+Disallow: /
+
+User-agent: MegaIndex
+Disallow: /

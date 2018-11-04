@@ -1,0 +1,11 @@
+/* Wombat's edition */
+
+/* Hide vote-down element for comments */
+.vote-down {
+    display: none;
+}
+
+/* add left border for all comments */
+div.comment-wrapper, section.comment {
+    border-left: 1px dashed #e0e0e0;
+}
