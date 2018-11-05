@@ -20,6 +20,17 @@ composer install
 cp /srv/Imaginaria.Config/config.local.php /path/to/config/config.local.php
 cp /srv/Imaginaria.Config/plugins.dat /path/to/plugins/plugins.dat
 
+Update
+======
+
+
+Обновляем субмодули:
+
+git submodule update --remote
+
+https://stackoverflow.com/questions/47470271/what-does-remote-actually-do-in-git-submodule-update-remote
+
+
 
 
 

@@ -1208,4 +1208,3 @@ return array(
 		'14' => '[UTC + 14] Line Island Time'
 	)
 );
-?>
