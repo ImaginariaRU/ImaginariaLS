@@ -23,10 +23,10 @@ cp /srv/Imaginaria.Config/plugins.dat /path/to/plugins/plugins.dat
 Update
 ======
 
-
-Обновляем субмодули:
-
+git pull
+git submodule init
 git submodule update --remote
+composer install
 
 https://stackoverflow.com/questions/47470271/what-does-remote-actually-do-in-git-submodule-update-remote
 
