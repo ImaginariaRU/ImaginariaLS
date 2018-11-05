@@ -97,3 +97,9 @@
 [submodule "plugins/userstatus"]
 	path = plugins/userstatus
 	url = https://github.com/ImaginariaLS/ls_userstatus.git
+[submodule "templates/skin/developer"]
+	path = templates/skin/developer
+	url = https://github.com/ImaginariaLS/theme_developer.git
+[submodule "templates/skin/synio"]
+	path = templates/skin/synio
+	url = https://github.com/ImaginariaLS/theme_synio.git
