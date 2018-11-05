@@ -22,24 +22,39 @@
 		<a href="{$oUser->getUserWebPath()}"><img src="{$oUser->getProfileAvatarPath(48)}" alt="avatar" class="comment-avatar" /></a>
 		
 		<div id="comment_content_id_{$oComment->getId()}" class="comment-content">
-			<div class="comment-author {if $iAuthorId == $oUser->getId()}comment-topic-author{/if}" title="{if $iAuthorId == $oUser->getId() and $sAuthorNotice}{$sAuthorNotice}{/if}">
-				<a href="{$oUser->getUserWebPath()}">{$oUser->getLogin()}</a>
-			</div>
-			<div class="comment-date">
-				<time datetime="{date_format date=$oComment->getDate() format='c'}" title="{date_format date=$oComment->getDate() format="j F Y, H:i"}">
-					{date_format date=$oComment->getDate() hours_back="12" minutes_back="60" now="60" day="day H:i" format="j F Y, H:i"}
-				</time>
-			</div>
-			<hr>
+			<ul class="comment-info">
+				<li class="comment-author {if $iAuthorId == $oUser->getId()}comment-topic-author{/if}" title="{if $iAuthorId == $oUser->getId() and $sAuthorNotice}{$sAuthorNotice}{/if}">
+					<a href="{$oUser->getUserWebPath()}">{$oUser->getLogin()}</a>
+				</li>
+				<li class="comment-date">
+					<time datetime="{date_format date=$oComment->getDate() format='c'}" title="{date_format date=$oComment->getDate() format="j F Y, H:i"}">
+						{date_format date=$oComment->getDate() hours_back="12" minutes_back="60" now="60" day="day H:i" format="j F Y, H:i"}
+					</time>
+				</li>
+			</ul>
+			<hr class='hr'>
 			<div class=" text">
 				{$oComment->getText()}
 			</div>
 		</div>
 		
 		<ul class='_reactions'>
-			<li class='_label'>
+			<li class='_label_green'  onclick="return ls.vote.vote({$oComment->getId()},this,1,'comment');">
 				<span class="_count" id="vote_total_comment_{$oComment->getId()}">{if $oComment->getRating() > 0}+{/if}{$oComment->getRating()}</span>
-				<span class="_vote" onclick="return ls.vote.vote({$oComment->getId()},this,1,'comment');"></div>
+				<span class="_title">Любо!</span>
+			</li>
+			<li class='_label_red'  onclick="return ls.vote.vote({$oComment->getId()},this,1,'comment');">
+				<span class="_count" id="vote_total_comment_{$oComment->getId()}">{if $oComment->getRating() > 0}+{/if}{$oComment->getRating()}</span>
+				<span class="_title">Ужас!</span>
+			</li>
+			
+			<li class='_label_green_alt'  onclick="return ls.vote.vote({$oComment->getId()},this,1,'comment');">
+				<span class="_count" id="vote_total_comment_{$oComment->getId()}">{if $oComment->getRating() > 0}+{/if}{$oComment->getRating()}</span>
+				<span class="_title">Любо!</span>
+			</li>
+			<li class='_label_red_alt'  onclick="return ls.vote.vote({$oComment->getId()},this,1,'comment');">
+				<span class="_count" id="vote_total_comment_{$oComment->getId()}">{if $oComment->getRating() > 0}+{/if}{$oComment->getRating()}</span>
+				<span class="_title">Ужас!</span>
 			</li>
 		</ul>
 		<ul class="comment-info">
