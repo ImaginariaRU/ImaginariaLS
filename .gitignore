@@ -1,6 +1,8 @@
 # folders
 .idea
 vendor
+templates/cache
+templates/compiled
 
 # Files
 config/config.local.php
