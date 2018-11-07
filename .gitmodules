@@ -103,3 +103,6 @@
 [submodule "templates/skin/synio"]
 	path = templates/skin/synio
 	url = https://github.com/ImaginariaLS/theme_synio.git
+[submodule "templates/skin/super_synio"]
+	path = templates/skin/super_synio
+	url = https://github.com/ImaginariaLS/theme_super_synio.git
