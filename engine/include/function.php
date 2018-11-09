@@ -553,3 +553,17 @@ function func_convert_entity_to_array(Entity $oEntity, $aMethods = null, $sPrefi
     }
     return $aEntity;
 }
+
+if (!function_exists('dd')) {
+
+    /**
+     * Dump and die
+     * @param $args
+     */
+    function dd($args)
+    {
+        echo '<pre>';
+        var_dump($args);
+        die;
+    }
+}

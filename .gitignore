@@ -3,6 +3,7 @@
 vendor
 templates/cache
 templates/compiled
+tmp
 
 # Files
 config/config.local.php

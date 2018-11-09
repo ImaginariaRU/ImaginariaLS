@@ -142,29 +142,119 @@ class ModuleText extends Module
         /**
          * youtube.com
          */
-        $sText = preg_replace('/<video>http:\/\/(?:www\.|)youtube\.com\/watch\?v=([a-zA-Z0-9_\-]+)(&.+)?<\/video>/Ui', '<iframe width="560" height="315" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>', $sText);
+        $y_video_pattern = "/<video>(?:https?:\/\/)?(?:(?:www\.))?(?:youtube\.com\/\S*(?:(?:\/e(?:mbed))?\/|watch\?(?:\S*?&?v\=))|youtu\.be\/)([a-zA-Z0-9_-]{6,11})(?:\?(?:t|start)=((?:[0-9]{1,10}[hms]?){1,4}))?<\/video>/i";
+        preg_match($y_video_pattern, $sText, $output_array);
+
+        if (count($output_array) == 2) {
+            $y_tpl = '<iframe width="560" height="310" src="//www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>';
+            $sText = preg_replace($y_video_pattern, $y_tpl, $sText);
+        } elseif (count($output_array) == 3 ) {
+            $y_tpl = '<iframe width="560" height="310" src="//www.youtube.com/embed/$1?start=$2" frameborder="0" allowfullscreen></iframe>';
+            $sText = preg_replace($y_video_pattern, $y_tpl, $sText);
+        }
+
         /**
          * vimeo.com
          */
-        $sText = preg_replace('/<video>http:\/\/(?:www\.|)vimeo\.com\/(\d+).*<\/video>/i', '<iframe src="http://player.vimeo.com/video/$1" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>', $sText);
+        $v_video_pattern = '/<video>(?:https?:\/\/)?(?:www\.)?vimeo\.com\/(\d+).*<\/video>/i';
+        $v_tpl = '<iframe src="//player.vimeo.com/video/$1" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
+        $sText = preg_replace($v_video_pattern, $v_tpl, $sText);
+
+        /**
+         * dailymotion.com
+         */
+        $d_video_pattern = "/(<video>)(?:https?:\/\/)?(?:www\.)?dailymotion.com\/video\/(\w+)(?:_.*?)?(<\/video>)/ui";
+        $d_video_pattern_short = "/(<video>)(?:https?:\/\/)?(?:www\.)?dai.ly\/(\w+)(?:_.*?)?(<\/video>)/ui";
+        $d_tpl = '<iframe frameborder="0" width="560" height="315" src="//www.dailymotion.com/embed/video/$2" allowfullscreen></iframe>';
+        $sText = preg_replace($d_video_pattern, $d_tpl, $sText);
+        $sText = preg_replace($d_video_pattern_short, $d_tpl, $sText);
+
+        /**
+         * coub.com
+         */
+        $c_video_pattern = "/(<video>)(?:https?:\/\/)?(?:www\.)?coub.com\/view\/(\w+)(<\/video>)/ui";
+        $c_tpl = '<iframe src="//coub.com/embed/$2?muted=false&autostart=false&originalSize=false&hideTopBar=true&noSiteButtons=true&startWithHD=false" allowfullscreen="true" frameborder="0" width="400" height="400"></iframe>';
+        $sText = preg_replace($c_video_pattern, $c_tpl, $sText);
+
         /**
          * rutube.ru
          */
-        $sText = preg_replace('/<video>http:\/\/(?:www\.|)rutube\.ru\/tracks\/(\d+)\.html.*<\/video>/Ui', '<OBJECT width="470" height="353"><PARAM name="movie" value="http://video.rutube.ru/$1"></PARAM><PARAM name="wmode" value="window"></PARAM><PARAM name="allowFullScreen" value="true"></PARAM><EMBED src="http://video.rutube.ru/$1" type="application/x-shockwave-flash" wmode="window" width="470" height="353" allowFullScreen="true" ></EMBED></OBJECT>', $sText);
+        $r_video_pattern = "/(<video>)(?:https?:\/\/)?(?:www\.)?rutube.ru\/video\/(\w+)\/?(<\/video>)/ui";
+        $r_tpl = '<iframe src="//rutube.ru/video/embed/$2" allowfullscreen="true" frameborder="0" width="560" height="315"></iframe>';
+        $sText = preg_replace($r_video_pattern, $r_tpl, $sText);
+
+        /**
+         * gfycat.com
+         */
+        $g_video_pattern = "/(<video>)(?:https?:\/\/)?(?:www\.)?gfycat.com\/(?:[\w\d-_\/]+\/)?([\w\d-_]+)(\?[\w\d-_\/=%&]*)?(<\/video>)/ui";
+        $g_tpl = '<iframe src="//gfycat.com/ifr/$2$3" allowfullscreen="true" frameborder="0" width="560" height="315"></iframe>';
+        $sText = preg_replace($g_video_pattern, $g_tpl, $sText);
+
+        /**
+         * vault.mle.party (PeerTube)
+         */
+        $vault99_video_pattern = "/(<video>)(?:https?:\/\/)?(?:www\.)?vault.mle.party\/videos\/\w+\/([\w\d-_]+)\/?(\?[\w\d-_\/=%&]*)?(<\/video>)/ui";
+        $vault99_tpl = '<iframe src="//vault.mle.party/videos/embed/$2" allowfullscreen="true" frameborder="0" width="560" height="315"></iframe>';
+        $sText = preg_replace($vault99_video_pattern, $vault99_tpl, $sText);
+
         /**
          * video.yandex.ru
          */
-        $sText = preg_replace('/<video>http:\/\/video\.yandex\.ru\/users\/([a-zA-Z0-9_\-]+)\/view\/(\d+).*<\/video>/i', '<object width="467" height="345"><param name="video" value="http://video.yandex.ru/users/$1/view/$2/get-object-by-url/redirect"></param><param name="allowFullScreen" value="true"></param><param name="scale" value="noscale"></param><embed src="http://video.yandex.ru/users/$1/view/$2/get-object-by-url/redirect" type="application/x-shockwave-flash" width="467" height="345" allowFullScreen="true" scale="noscale" ></embed></object>', $sText);
+        $video_yandex_pattern = '/<video>https?:\/\/video\.yandex\.ru\/users\/([a-zA-Z0-9_\-]+)\/view\/(\d+).*<\/video>/i';
+        $video_yandex_tpl = '<object width="467" height="345">' .
+                            '<param name="video" value="http://video.yandex.ru/users/$1/view/$2/get-object-by-url/redirect"></param>' .
+                            '<param name="allowFullScreen" value="true"></param>' .
+                            '<param name="scale" value="noscale"></param>' .
+                            '<embed src="http://video.yandex.ru/users/$1/view/$2/get-object-by-url/redirect" type="application/x-shockwave-flash" width="467" height="345" allowFullScreen="true" scale="noscale" ></embed>' .
+                            '</object>';
+        $sText = preg_replace($video_yandex_pattern, $video_yandex_tpl, $sText);
+
         return $sText;
     }
 
     /**
-     * Парсит текст, применя все парсеры
+     * Парсинг дайсов в тексте
      *
-     * @param string $sText Исходный текст
+     * TODO: Переписать, взято из табуна
+     *
+     * @param string $sText
      * @return string
      */
-    public function Parser($sText)
+    private function DiceParser($sText)
+    {
+        $border = Config::Get('plugin.dice.border');
+        $delim = Config::Get('plugin.dice.delim');
+        $max_x = Config::Get('plugin.dice.max_x');
+        $max_y = Config::Get('plugin.dice.max_y');
+        if (stristr($sText, $border)) {
+            preg_match_all('/' . $border . '[0-9]{1,3}' . $delim . '[0-9]{1,3}' . $border . '/', $sText, $matches, PREG_SET_ORDER);
+            foreach ($matches as $match) {
+                preg_match_all('/[0-9]{1,3}/', $match[0], $array, PREG_SET_ORDER);
+                if ($array[0][0] > 0 && $array[0][0] <= $max_x && $array[1][0] > 0 && $array[1][0] <= $max_y) {
+                    $dices = null;
+
+                    for ($i = 1; $i <= $array[0][0]; $i++, $dices[] = rand(1, $array[1][0])) {}
+
+                    $str[] = '<span class="dice"><span class="blue">' . $array[0][0] . $delim . $array[1][0] . '</span>: <span class="green">[' . implode(' + ', $dices) . ']</span> | <span class="red">[' . array_sum($dices) . ']</span></span>';
+                }
+            }
+            foreach ($str as $s) $sText = preg_replace('/' . $border . '[0-9]{1,3}' . $delim . '[0-9]{1,3}' . $border . '/', $s, $sText, 1);
+        }
+        return $sText;
+    }
+
+    /**
+     * Парсит текст, применяя все парсеры
+     *
+     * @param string $sText Исходный текст
+     * @param int $actionType Тип релевантного парсера
+     * @return string
+     */
+    const ACT_CREATE = 1;
+    const ACT_FIX    = 2;
+    const ACT_UPDATE = 3;
+
+    public function Parser($sText, $actionType = -1)
     {
         if (!is_string($sText)) {
             return '';
@@ -173,6 +263,12 @@ class ModuleText extends Module
         $sResult = $this->JevixParser($sResult);
         $sResult = $this->VideoParser($sResult);
         $sResult = $this->CodeSourceParser($sResult);
+
+        if($actionType === $this::ACT_CREATE || $actionType === $this::ACT_UPDATE) {
+            // Don't parce dices for edited comments
+            $sResult=$this->DiceParser($sResult);
+        }
+
         return $sResult;
     }
 
