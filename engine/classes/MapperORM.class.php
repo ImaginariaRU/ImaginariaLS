@@ -33,7 +33,7 @@ class MapperORM extends Mapper
     {
         $sTableName = self::GetTableName($oEntity);
 
-        $sql = "INSERT INTO " . $sTableName . " SET ?a ";
+        $sql = "INSERT INTO {$sTableName} SET ?a ";
         return $this->oDb->query($sql, $oEntity->_getData());
     }
 
@@ -90,7 +90,13 @@ class MapperORM extends Mapper
      */
     public function UpdateEntity($oEntity)
     {
+        $oDb = $this->oDb;
+
         $sTableName = self::GetTableName($oEntity);
+
+        $function_escape = function ($k, $v) use ($oDb) {
+            return "{$oDb->escape($k,true)} = {$oDb->escape($v)}";
+        };
 
         if ($aPrimaryKey = $oEntity->_getPrimaryKey()) {
             // Возможен составной ключ
@@ -99,18 +105,21 @@ class MapperORM extends Mapper
             }
             $sWhere = ' 1 = 1 ';
             foreach ($aPrimaryKey as $sField) {
-                $sWhere .= ' and ' . $this->oDb->escape($sField, true) . " = " . $this->oDb->escape($oEntity->_getDataOne($sField));
+                $sWhere .= " AND {$oDb->escape($sField, true)} = {$oDb->escape($oEntity->_getDataOne($sField))}";
             }
-            $sql = "UPDATE " . $sTableName . " SET ?a WHERE {$sWhere}";
-            return $this->oDb->query($sql, $oEntity->_getData());
+            $sql = "UPDATE {$sTableName} SET ?a WHERE {$sWhere}";
+
+            return $oDb->query($sql, $oEntity->_getData());
+
         } else {
             $aOriginalData = $oEntity->_getOriginalData();
-            $sWhere = implode(' AND ', array_map(create_function(
-                '$k,$v,$oDb',
-                'return "{$oDb->escape($k,true)} = {$oDb->escape($v)}";'
-            ), array_keys($aOriginalData), array_values($aOriginalData), array_fill(0, count($aOriginalData), $this->oDb)));
-            $sql = "UPDATE " . $sTableName . " SET ?a WHERE 1=1 AND " . $sWhere;
-            return $this->oDb->query($sql, $oEntity->_getData());
+            $sWhere = implode(' AND ', array_map(
+                $function_escape,
+                array_keys($aOriginalData),
+                array_values($aOriginalData) ));
+
+            $sql = "UPDATE {$sTableName} SET ?a WHERE 1=1 AND " . $sWhere;
+            return $oDb->query($sql, $oEntity->_getData());
         }
     }
 
@@ -122,26 +131,36 @@ class MapperORM extends Mapper
      */
     public function DeleteEntity($oEntity)
     {
+        $oDb = $this->oDb;
+
         $sTableName = self::GetTableName($oEntity);
+
+        $function_escape = function ($k, $v) use ($oDb) {
+            return "{$oDb->escape($k,true)} = {$oDb->escape($v)}";
+        };
 
         if ($aPrimaryKey = $oEntity->_getPrimaryKey()) {
             // Возможен составной ключ
             if (!is_array($aPrimaryKey)) {
                 $aPrimaryKey = array($aPrimaryKey);
             }
+
             $sWhere = ' 1 = 1 ';
             foreach ($aPrimaryKey as $sField) {
-                $sWhere .= ' and ' . $this->oDb->escape($sField, true) . " = " . $this->oDb->escape($oEntity->_getDataOne($sField));
+                $sWhere .= " AND {$oDb->escape($sField, true)} = {$oDb->escape($oEntity->_getDataOne($sField))}";
             }
-            $sql = "DELETE FROM " . $sTableName . " WHERE {$sWhere}";
+            $sql = "DELETE FROM {$sTableName} WHERE {$sWhere}";
             return $this->oDb->query($sql);
         } else {
             $aOriginalData = $oEntity->_getOriginalData();
-            $sWhere = implode(' AND ', array_map(create_function(
-                '$k,$v,$oDb',
-                'return "{$oDb->escape($k,true)} = {$oDb->escape($v)}";'
-            ), array_keys($aOriginalData), array_values($aOriginalData), array_fill(0, count($aOriginalData), $this->oDb)));
-            $sql = "DELETE FROM " . $sTableName . " WHERE 1=1 AND " . $sWhere;
+            $sWhere = implode(' AND ', array_map(
+                $function_escape,
+                array_keys($aOriginalData),
+                array_values($aOriginalData)
+                )
+            );
+            $sql = "DELETE FROM {$sTableName} WHERE 1=1 AND " . $sWhere;
+
             return $this->oDb->query($sql);
         }
     }
@@ -198,9 +217,9 @@ class MapperORM extends Mapper
                 $sConditionCurrent = strtolower($aK[1]);
             }
             if (strtolower($sConditionCurrent) == 'in') {
-                $sFilterFields .= " and {$sFieldCurrent} {$sConditionCurrent} ( ?a ) ";
+                $sFilterFields .= " AND {$sFieldCurrent} {$sConditionCurrent} ( ?a ) ";
             } else {
-                $sFilterFields .= " and {$sFieldCurrent} {$sConditionCurrent} ? ";
+                $sFilterFields .= " AND {$sFieldCurrent} {$sConditionCurrent} ? ";
             }
         }
         if (isset($aFilter['#where']) and is_array($aFilter['#where'])) {
@@ -228,7 +247,7 @@ class MapperORM extends Mapper
         list($aFilterFields, $sFilterFields) = $this->BuildFilter($aFilter, $oEntitySample);
         list($sOrder, $sLimit, $sGroup) = $this->BuildFilterMore($aFilter, $oEntitySample);
 
-        $sql = "SELECT * FROM " . $sTableName . " WHERE 1=1 {$sFilterFields} {$sGroup} {$sOrder} {$sLimit} ";
+        $sql = "SELECT * FROM {$sTableName} WHERE 1=1 {$sFilterFields} {$sGroup} {$sOrder} {$sLimit} ";
         $aQueryParams = array_merge(array($sql), array_values($aFilterFields));
         $aItems = array();
         if ($aRows = call_user_func_array(array($this->oDb, 'select'), $aQueryParams)) {
@@ -409,7 +428,7 @@ class MapperORM extends Mapper
     public function ShowColumnsFromTable($sTableName)
     {
         if (false === ($aItems = Engine::getInstance()->Cache_GetLife("columns_table_{$sTableName}"))) {
-            $sql = "SHOW COLUMNS FROM " . $sTableName;
+            $sql = "SHOW COLUMNS FROM {$sTableName}";
             $aItems = array();
             if ($aRows = $this->oDb->select($sql)) {
                 foreach ($aRows as $aRow) {
@@ -445,7 +464,7 @@ class MapperORM extends Mapper
     public function ShowPrimaryIndexFromTable($sTableName)
     {
         if (false === ($aItems = Engine::getInstance()->Cache_GetLife("index_table_{$sTableName}"))) {
-            $sql = "SHOW INDEX FROM " . $sTableName;
+            $sql = "SHOW INDEX FROM {$sTableName}";
             $aItems = array();
             if ($aRows = $this->oDb->select($sql)) {
                 foreach ($aRows as $aRow) {
@@ -488,14 +507,16 @@ class MapperORM extends Mapper
      */
     public function updateManyToManySet($sDbTableAlias, $sEntityKey, $iEntityId, $sRelationKey, $aInsertSet, $aDeleteSet)
     {
+        $table_alias = Config::Get($sDbTableAlias);
+
         if (!Config::Get($sDbTableAlias)) return false;
         if (count($aDeleteSet)) {
-            $sql = 'DELETE FROM ' . Config::Get($sDbTableAlias) . ' WHERE ?# = ?d AND ?# IN (?a)';
+            $sql = "DELETE FROM {$table_alias} WHERE ?# = ?d AND ?# IN (?a)";
             $this->oDb->query($sql, $sEntityKey, $iEntityId, $sRelationKey, $aDeleteSet);
         }
 
         if (count($aInsertSet)) {
-            $sql = 'INSERT INTO ' . Config::Get($sDbTableAlias) . ' (?#,?#) VALUES ';
+            $sql = "INSERT INTO {$table_alias} (?#,?#) VALUES ";
             $aParams = array();
             foreach ($aInsertSet as $iId) {
                 $sql .= '(?d, ?d), ';
@@ -521,7 +542,10 @@ class MapperORM extends Mapper
     public function deleteManyToManySet($sDbTableAlias, $sEntityKey, $iEntityId)
     {
         if (!Config::Get($sDbTableAlias)) return false;
-        $sql = 'DELETE FROM ' . Config::Get($sDbTableAlias) . ' WHERE ?# = ?d';
+
+        $table_alias = Config::Get($sDbTableAlias);
+
+        $sql = "DELETE FROM {$table_alias} WHERE ?# = ?d";
         $this->oDb->query($sql, $sEntityKey, $iEntityId);
         return true;
     }

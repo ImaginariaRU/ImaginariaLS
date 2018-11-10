@@ -181,13 +181,20 @@ function smarty_function_html_select_date($params, $template)
     if (isset($params['time']) && is_array($params['time'])) {
         if (isset($params['time'][$prefix . 'Year'])) {
             // $_REQUEST[$field_array] given
-            foreach (array('Y' => 'Year',  'm' => 'Month', 'd' => 'Day') as $_elementKey => $_elementName) {
+
+            foreach (array(
+                 'Y' => 'Year',
+                 'm' => 'Month',
+                 'd' => 'Day'
+                     ) as $_elementKey => $_elementName) {
+
                 $_variableName = '_' . strtolower($_elementName);
+
                 $$_variableName = isset($params['time'][$prefix . $_elementName])
                     ? $params['time'][$prefix . $_elementName]
                     : date($_elementKey);
             }
-            $time = mktime(0, 0, 0, $_month, $_day, $_year);
+            $time = mktime(0, 0, 0, $_month, $_day, $_year); //@KW 2018-11-10 UNUSED EVERYWHERE LATER
         } elseif (isset($params['time'][$field_array][$prefix . 'Year'])) {
             // $_REQUEST given
             foreach (array('Y' => 'Year',  'm' => 'Month', 'd' => 'Day') as $_elementKey => $_elementName) {
@@ -196,7 +203,7 @@ function smarty_function_html_select_date($params, $template)
                     ? $params['time'][$field_array][$prefix . $_elementName]
                     : date($_elementKey);
             }
-            $time = mktime(0, 0, 0, $_month, $_day, $_year);
+            $time = mktime(0, 0, 0, $_month, $_day, $_year); //@KW 2018-11-10 UNUSED EVERYWHERE LATER
         } else {
             // no date found, use NOW
             list($_year, $_month, $_day) = $time = explode('-', date('Y-m-d'));
@@ -219,9 +226,9 @@ function smarty_function_html_select_date($params, $template)
         if ($t === null) {
             $$key = (int)$_current_year;
         } else if ($t[0] == '+') {
-            $$key = (int)($_current_year + trim(substr($t, 1)));
+            $$key = (int)($_current_year + (int)trim(substr($t, 1)));
         } else if ($t[0] == '-') {
-            $$key = (int)($_current_year - trim(substr($t, 1)));
+            $$key = (int)($_current_year - (int)trim(substr($t, 1)));
         } else {
             $$key = (int)$$key;
         }

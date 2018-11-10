@@ -31,7 +31,7 @@ return [
                     'h4', 'h5', 'h6',
                     'hr', 'pre', 'code',
                     'object', 'param', 'embed', 'iframe', 'video',
-                    'blockquote',
+                    'blockquote', 'div',
                     'table', 'tbody', 'th', 'tr', 'td',
                 ],
             ],
