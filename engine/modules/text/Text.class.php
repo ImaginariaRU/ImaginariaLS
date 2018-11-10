@@ -141,73 +141,98 @@ class ModuleText extends Module
     {
         /**
          * youtube.com
+         * http://livestreet.ru/blog/tips_and_tricks/18041.html#comment295519
+         * http://livestreet.ru/blog/tips_and_tricks/18041.html
+         *
          */
-        $y_video_pattern = "/<video>(?:https?:\/\/)?(?:(?:www\.))?(?:youtube\.com\/\S*(?:(?:\/e(?:mbed))?\/|watch\?(?:\S*?&?v\=))|youtu\.be\/)([a-zA-Z0-9_-]{6,11})(?:\?(?:t|start)=((?:[0-9]{1,10}[hms]?){1,4}))?<\/video>/i";
-        preg_match($y_video_pattern, $sText, $output_array);
+        $pattern_youtube = "/<video>(?:https?:\/\/)?(?:(?:www\.))?(?:youtube\.com\/\S*(?:(?:\/e(?:mbed))?\/|watch\?(?:\S*?&?v\=))|youtu\.be\/)([a-zA-Z0-9_-]{6,11})(?:\?(?:t|start)=((?:[0-9]{1,10}[hms]?){1,4}))?<\/video>/i";
+        preg_match($pattern_youtube, $sText, $output_array);
 
         if (count($output_array) == 2) {
-            $y_tpl = '<iframe width="560" height="310" src="//www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>';
-            $sText = preg_replace($y_video_pattern, $y_tpl, $sText);
+            $template_youtube = '<iframe width="560" height="310" src="//www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>';
+            $sText = preg_replace($pattern_youtube, $template_youtube, $sText);
         } elseif (count($output_array) == 3 ) {
-            $y_tpl = '<iframe width="560" height="310" src="//www.youtube.com/embed/$1?start=$2" frameborder="0" allowfullscreen></iframe>';
-            $sText = preg_replace($y_video_pattern, $y_tpl, $sText);
+            $template_youtube = '<iframe width="560" height="310" src="//www.youtube.com/embed/$1?start=$2" frameborder="0" allowfullscreen></iframe>';
+            $sText = preg_replace($pattern_youtube, $template_youtube, $sText);
         }
 
         /**
          * vimeo.com
          */
-        $v_video_pattern = '/<video>(?:https?:\/\/)?(?:www\.)?vimeo\.com\/(\d+).*<\/video>/i';
-        $v_tpl = '<iframe src="//player.vimeo.com/video/$1" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
-        $sText = preg_replace($v_video_pattern, $v_tpl, $sText);
+        $pattern_vimeo = '/<video>(?:https?:\/\/)?(?:www\.)?vimeo\.com\/(\d+).*<\/video>/i';
+        $template_vimeo = '<iframe src="//player.vimeo.com/video/$1" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
+        $sText = preg_replace($pattern_vimeo, $template_vimeo, $sText);
 
         /**
          * dailymotion.com
          */
-        $d_video_pattern = "/(<video>)(?:https?:\/\/)?(?:www\.)?dailymotion.com\/video\/(\w+)(?:_.*?)?(<\/video>)/ui";
-        $d_video_pattern_short = "/(<video>)(?:https?:\/\/)?(?:www\.)?dai.ly\/(\w+)(?:_.*?)?(<\/video>)/ui";
-        $d_tpl = '<iframe frameborder="0" width="560" height="315" src="//www.dailymotion.com/embed/video/$2" allowfullscreen></iframe>';
-        $sText = preg_replace($d_video_pattern, $d_tpl, $sText);
-        $sText = preg_replace($d_video_pattern_short, $d_tpl, $sText);
+        $pattern_dailymotion = "/(<video>)(?:https?:\/\/)?(?:www\.)?dailymotion.com\/video\/(\w+)(?:_.*?)?(<\/video>)/ui";
+        $pattern_dailymotion_short = "/(<video>)(?:https?:\/\/)?(?:www\.)?dai.ly\/(\w+)(?:_.*?)?(<\/video>)/ui";
+        $template_dailymotion = '<iframe frameborder="0" width="560" height="315" src="//www.dailymotion.com/embed/video/$2" allowfullscreen></iframe>';
+        $sText = preg_replace($pattern_dailymotion, $template_dailymotion, $sText);
+        $sText = preg_replace($pattern_dailymotion_short, $template_dailymotion, $sText);
 
         /**
          * coub.com
          */
-        $c_video_pattern = "/(<video>)(?:https?:\/\/)?(?:www\.)?coub.com\/view\/(\w+)(<\/video>)/ui";
-        $c_tpl = '<iframe src="//coub.com/embed/$2?muted=false&autostart=false&originalSize=false&hideTopBar=true&noSiteButtons=true&startWithHD=false" allowfullscreen="true" frameborder="0" width="400" height="400"></iframe>';
-        $sText = preg_replace($c_video_pattern, $c_tpl, $sText);
+        $pattern_coub = "/(<video>)(?:https?:\/\/)?(?:www\.)?coub.com\/view\/(\w+)(<\/video>)/ui";
+        $template_coub = '<iframe src="//coub.com/embed/$2?muted=false&autostart=false&originalSize=false&hideTopBar=true&noSiteButtons=true&startWithHD=false" allowfullscreen="true" frameborder="0" width="400" height="400"></iframe>';
+        $sText = preg_replace($pattern_coub, $template_coub, $sText);
 
         /**
          * rutube.ru
          */
-        $r_video_pattern = "/(<video>)(?:https?:\/\/)?(?:www\.)?rutube.ru\/video\/(\w+)\/?(<\/video>)/ui";
-        $r_tpl = '<iframe src="//rutube.ru/video/embed/$2" allowfullscreen="true" frameborder="0" width="560" height="315"></iframe>';
-        $sText = preg_replace($r_video_pattern, $r_tpl, $sText);
+        $pattern_rutube = "/(<video>)(?:https?:\/\/)?(?:www\.)?rutube.ru\/video\/(\w+)\/?(<\/video>)/ui";
+        $template_rutube = '<iframe src="//rutube.ru/video/embed/$2" allowfullscreen="true" frameborder="0" width="560" height="315"></iframe>';
+        $sText = preg_replace($pattern_rutube, $template_rutube, $sText);
 
         /**
          * gfycat.com
          */
-        $g_video_pattern = "/(<video>)(?:https?:\/\/)?(?:www\.)?gfycat.com\/(?:[\w\d-_\/]+\/)?([\w\d-_]+)(\?[\w\d-_\/=%&]*)?(<\/video>)/ui";
-        $g_tpl = '<iframe src="//gfycat.com/ifr/$2$3" allowfullscreen="true" frameborder="0" width="560" height="315"></iframe>';
-        $sText = preg_replace($g_video_pattern, $g_tpl, $sText);
+        $pattern_gfycat = "/(<video>)(?:https?:\/\/)?(?:www\.)?gfycat.com\/(?:[\w\d-_\/]+\/)?([\w\d-_]+)(\?[\w\d-_\/=%&]*)?(<\/video>)/ui";
+        $template_gfycat = '<iframe src="//gfycat.com/ifr/$2$3" allowfullscreen="true" frameborder="0" width="560" height="315"></iframe>';
+        $sText = preg_replace($pattern_gfycat, $template_gfycat, $sText);
 
         /**
          * vault.mle.party (PeerTube)
          */
-        $vault99_video_pattern = "/(<video>)(?:https?:\/\/)?(?:www\.)?vault.mle.party\/videos\/\w+\/([\w\d-_]+)\/?(\?[\w\d-_\/=%&]*)?(<\/video>)/ui";
-        $vault99_tpl = '<iframe src="//vault.mle.party/videos/embed/$2" allowfullscreen="true" frameborder="0" width="560" height="315"></iframe>';
-        $sText = preg_replace($vault99_video_pattern, $vault99_tpl, $sText);
+        $pattern_PeerTube = "/(<video>)(?:https?:\/\/)?(?:www\.)?vault.mle.party\/videos\/\w+\/([\w\d-_]+)\/?(\?[\w\d-_\/=%&]*)?(<\/video>)/ui";
+        $template_PeerTube = '<iframe src="//vault.mle.party/videos/embed/$2" allowfullscreen="true" frameborder="0" width="560" height="315"></iframe>';
+        $sText = preg_replace($pattern_PeerTube, $template_PeerTube, $sText);
 
         /**
          * video.yandex.ru
          */
-        $video_yandex_pattern = '/<video>https?:\/\/video\.yandex\.ru\/users\/([a-zA-Z0-9_\-]+)\/view\/(\d+).*<\/video>/i';
-        $video_yandex_tpl = '<object width="467" height="345">' .
+        $pattern_yandex_video = '/<video>https?:\/\/video\.yandex\.ru\/users\/([a-zA-Z0-9_\-]+)\/view\/(\d+).*<\/video>/i';
+        $template_yandex_video = '<object width="467" height="345">' .
                             '<param name="video" value="http://video.yandex.ru/users/$1/view/$2/get-object-by-url/redirect"></param>' .
                             '<param name="allowFullScreen" value="true"></param>' .
                             '<param name="scale" value="noscale"></param>' .
                             '<embed src="http://video.yandex.ru/users/$1/view/$2/get-object-by-url/redirect" type="application/x-shockwave-flash" width="467" height="345" allowFullScreen="true" scale="noscale" ></embed>' .
                             '</object>';
-        $sText = preg_replace($video_yandex_pattern, $video_yandex_tpl, $sText);
+        $sText = preg_replace($pattern_yandex_video, $template_yandex_video, $sText);
+
+        /**
+         * vk.com video
+         */
+        $pattern_vk_video = '/<video>http(?:s|):\/\/(?:www\.|)vk\.com\/video([\d]+)_([\d]+)<\/video>/Ui';
+
+        if (preg_match($pattern_vk_video, $sText)) {
+
+            preg_match_all($pattern_vk_video, $sText, $sTextMatches);
+
+            for ($i = 0; $i < count($sTextMatches[1]); $i++) {
+
+                $html = file_get_contents('http://vk.com/video' . $sTextMatches[1][$i] . '_' . $sTextMatches[2][$i]);
+
+                preg_match('/\\\"hash2\\\":\\\"([a-f0-9]+)\\\"/Ui', $html, $matches);
+
+                $sText = preg_replace(
+                    '/<video>(?:http(?:s|):|)(?:\/\/|)(?:www\.|)vk\.com\/video' . $sTextMatches[1][$i] . '_' . $sTextMatches[2][$i] . '(?:\?[\s\S]+|)<\/video>/Ui',
+                    '<iframe src="http://vk.com/video_ext.php?oid=' . $sTextMatches[1][$i] . '&id=' . $sTextMatches[2][$i] . '&hash=' . $matches[1] . '" width="560" height="315" frameborder="0"></iframe>',
+                    $sText);
+            }
+        }
 
         return $sText;
     }
