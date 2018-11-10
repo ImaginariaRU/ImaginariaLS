@@ -35,15 +35,6 @@ $config['view']['img_max_size_url'] = 500;    // максимальный раз
 $config['seo']['description_words_count'] = 20;               // количество слов из топика для вывода в метатег description
 
 /**
- * Настройка основных блоков
- */
-$config['block']['stream']['row'] = 10;                       // сколько записей выводить в блоке "Прямой эфир"
-$config['block']['stream']['show_tip'] = true;                // выводить или нет всплывающие сообщения в блоке "Прямой эфир"
-$config['block']['blogs']['row']  = 10;                       // сколько записей выводить в блоке "Блоги"
-$config['block']['tags']['tags_count'] = 50;                  // сколько тегов выводить в блоке "теги"
-$config['block']['tags']['personal_tags_count'] = 20;         // сколько тегов пользователя выводить в блоке "теги"
-
-/**
  * Настройка пагинации
  */
 $config['pagination']['pages']['count'] = 4;                  // количество ссылок на другие страницы в пагинации
@@ -410,6 +401,16 @@ $config['router']['page']['subscribe']     = 'ActionSubscribe';
 $config['router']['config']['action_default']   = 'index';
 $config['router']['config']['action_not_found'] = 'error';
 
+
+/**
+ * Настройка основных блоков
+ */
+$config['block']['stream']['row'] = 10;                       // сколько записей выводить в блоке "Прямой эфир"
+$config['block']['stream']['show_tip'] = true;                // выводить или нет всплывающие сообщения в блоке "Прямой эфир"
+$config['block']['blogs']['row']  = 10;                       // сколько записей выводить в блоке "Блоги"
+$config['block']['tags']['tags_count'] = 50;                  // сколько тегов выводить в блоке "теги"
+$config['block']['tags']['personal_tags_count'] = 20;         // сколько тегов пользователя выводить в блоке "теги"
+
 /**
  * Настройки вывода блоков
  */
@@ -436,22 +437,27 @@ $config['block']['rule_topic_type'] = array(
 	),
 	'blocks'  => array( 'right' => array('blocks/block.blogInfo.tpl') ),
 );
+
 $config['block']['rule_people'] = array(
 	'action'  => array( 'people' ),
 	'blocks'  => array( 'right' => array('actions/ActionPeople/sidebar.tpl') ),
 );
+
 $config['block']['rule_personal_blog'] = array(
 	'action'  => array( 'personal_blog' ),
 	'blocks'  => array( 'right' => array('stream','tags') ),
 );
+
 $config['block']['rule_profile'] = array(
 	'action'  => array( 'profile', 'talk', 'settings' ),
 	'blocks'  => array( 'right' => array('actions/ActionProfile/sidebar.tpl') ),
 );
+
 $config['block']['rule_tag'] = array(
 	'action'  => array( 'tag' ),
 	'blocks'  => array( 'right' => array('tags','stream') ),
 );
+
 $config['block']['rule_blogs'] = array(
 	'action'  => array( 'blogs' ),
 	'blocks'  => array( 'right' => array('stream') ),
@@ -465,6 +471,7 @@ $config['block']['userfeedBlogs'] = array(
                     )
                 )
 );
+
 $config['block']['userfeedUsers'] = array(
 	'action'  => array('feed'),
 	'blocks'  => array(
@@ -473,6 +480,7 @@ $config['block']['userfeedUsers'] = array(
                     )
                 )
 );
+
 $config['block']['rule_blog_info'] = array(
 	'action'  => array(
 			'blog' => array('{topic}')
@@ -483,6 +491,8 @@ $config['block']['rule_blog_info'] = array(
 	'clear' => false,
 );
 
+
+/* ================================================================== */
 
 $config['head']['default']['js']  = array(
 	"___path.root.engine_lib___/external/html5shiv.js" => array('browser'=>'lt IE 9'),
@@ -575,5 +585,21 @@ date_default_timezone_set('Europe/Moscow'); // See http://php.net/manual/en/time
  */
 $config['jevix']=require(dirname(__FILE__).'/jevix.php');
 
+// Include configs
+if (false) {
+    foreach (glob("config/parts.d/*") as $file) {
+        $name = explode('.', str_replace('config/parts.d/', '', $file));
+        array_pop($name); // Remove extension
+
+        $conf = &$config;
+        foreach($name as $pk)
+        {
+            $conf = &$conf[$pk];
+        }
+
+        $conf = require($file);
+        unset($conf);
+    }
+}
 
 return $config;
