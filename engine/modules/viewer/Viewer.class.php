@@ -15,11 +15,16 @@
 ---------------------------------------------------------
 */
 
-//@todo: KW: load via composer
+require_once(Config::Get('path.root.engine') . '/lib/external/Smarty/libs/Smarty.class.php'); // 3.1.8
 
-require_once(Config::Get('path.root.engine') . '/lib/external/Smarty/libs/Smarty.class.php');
-require_once(Config::Get('path.root.engine') . '/lib/external/CSSTidy/class.csstidy.php');
-require_once(Config::Get('path.root.engine') . '/lib/external/JSMin-1.1.1/jsmin.php');
+//@todo: new Smarty not compatible with smarty used in LS 1.0.3
+
+// require_once(Config::Get('path.root.engine') . '/lib/external/CSSTidy/class.csstidy.php');
+// require_once(Config::Get('path.root.engine') . '/lib/external/JSMin-1.1.1/jsmin.php');
+
+use JSMin\JSMin;
+
+//@composer: CSSTidy does not have namespace and can be used without additional declarations
 
 /**
  * Модуль обработки шаблонов используя шаблонизатор Smarty
@@ -1080,15 +1085,22 @@ class ModuleViewer extends Module
         /**
          * Получаем список блоков
          */
+        $function_get_block_js = function ($sJs) {
+            return isset($sJs["block"]) ? $sJs["block"] : null;
+        };
+        $function_get_block_css = function ($sCss) {
+            return isset($sCss["block"]) ? $sCss["block"] : null;
+        };
+
         $aBlocks['js'] = array_unique(
             array_map(
-                create_function('$sJs', 'return isset($sJs["block"]) ? $sJs["block"] : null;'),
+                $function_get_block_js,
                 $this->aFilesParams['js']
             )
         );
         $aBlocks['css'] = array_unique(
             array_map(
-                create_function('$sCss', 'return isset($sCss["block"]) ? $sCss["block"] : null;'),
+                $function_get_block_css,
                 $this->aFilesParams['css']
             )
         );
@@ -1098,6 +1110,16 @@ class ModuleViewer extends Module
          */
         $aHeadFiles = array('js' => array(), 'css' => array());
 
+        $function_check_key_browser_exists = function ($aParams) {
+            return array_key_exists("browser", (array)$aParams);
+        };
+        $function_check_key_merge_exists = function ($aParams) {
+            return
+                array_key_exists("merge", (array)$aParams)
+                and
+                !$aParams["merge"];
+        };
+
         foreach (array('js', 'css') as $sType) {
             /**
              * Отдельно выделяем файлы, для которых указано отображение,
@@ -1105,10 +1127,7 @@ class ModuleViewer extends Module
              */
             $aFilesHack = array_filter(
                 $this->aFilesParams[$sType],
-                create_function(
-                    '$aParams',
-                    'return array_key_exists("browser",(array)$aParams);'
-                )
+                $function_check_key_browser_exists
             );
             $aFilesHack = array_intersect(array_keys($aFilesHack), $aResult[$sType]);
             /**
@@ -1122,10 +1141,7 @@ class ModuleViewer extends Module
              */
             $aFilesNoMerge = array_filter(
                 $this->aFilesParams[$sType],
-                create_function(
-                    '$aParams',
-                    'return array_key_exists("merge",(array)$aParams) and !$aParams["merge"];'
-                )
+                $function_check_key_merge_exists
             );
             $aFilesNoMerge = array_intersect(array_keys($aFilesNoMerge), $aResult[$sType]);
             $aResult[$sType] = array_diff($aResult[$sType], $aFilesNoMerge);
@@ -1139,7 +1155,14 @@ class ModuleViewer extends Module
                     /**
                      * Выбираем все файлы, входящие в данный блок
                      */
-                    $aFiles = array_filter($this->aFilesParams[$sType], create_function('$aParams', 'return (isset($aParams)&&($aParams["block"]=="' . $sBlock . '"));'));
+
+                    $aFiles = array_filter(
+                        $this->aFilesParams[$sType],
+                        function ($aParams) use ($sBlock) {
+                            return (isset($aParams) && ($aParams['block'] == "{$sBlock}" ));
+                        }
+                    );
+
                     $aFiles = array_intersect(array_keys($aFiles), $aResult[$sType]);
                     if ($aFiles && count($aFiles)) {
                         $aHeadFiles[$sType][] = $this->Compress($aFiles, $sType);
