@@ -3,6 +3,7 @@
         "google/recaptcha": "^1.2",
         "monolog/monolog": "^1.23",
         "mrclay/jsmin-php": "^2.3",
-        "cerdic/css-tidy": "^1.6"
+        "cerdic/css-tidy": "^1.6",
+        "xxtea/xxtea": "^1.0"
     }
 }
