@@ -202,6 +202,9 @@ ls.comments = (function ($) {
         var url = aRouter['ajax'] + 'comment/delete/';
         var params = {idComment: commentId};
 
+        // дополнительная проверка перед удалением комментария (см https://github.com/ImaginariaRU/dear-imaginaria/issues/9 )
+        if (!confirm('Удалить/восстановить комментарий?')) return false;
+
         ls.hook.marker('toggleBefore');
         ls.ajax(url, params, function (result) {
             if (!result) {
