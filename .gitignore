@@ -6,6 +6,7 @@ templates/compiled
 tmp
 
 # Files
+composer.lock
 config/config.local.php
 
 
