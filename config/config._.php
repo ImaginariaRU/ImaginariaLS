@@ -49,11 +49,18 @@ $config['module']['ls']['use_counter'] = false;	            // Использо�
 /**
  * Переопределение настроек кэширования
  */
-$config['sys']['cache']['use']          = false;                                        // использовать кеширование или нет
-$config['sys']['cache']['dir']          = '___path.root.server___/.cache/filecache/';
-$config['path']['smarty']['compiled']   = '___path.root.server___/.cache/compiled';     // Smarty compiled template parts
-$config['path']['smarty']['cache']      = '___path.root.server___/.cache/assets';       // (скрипты и CSS)
+$config['sys']['cache']['tmpfs_cache']  = true;     // использовать ли кэш в tmpfs
 
+if ($config['sys']['cache']['tmpfs_cache']) {
+    $config['sys']['cache']['use']          = false;               // использовать кеширование файлов или нет
+    $config['sys']['cache']['dir']          = '___path.root.server___/.cache/filecache';
+    $config['path']['smarty']['compiled']   = '___path.root.server___/.cache/compiled'; // Smarty compiled template parts
+    $config['path']['smarty']['cache']      = '___path.root.server___/.cache/assets'; // (скрипты и CSS)
+}
+
+/**
+ * Настройки создания RSS-ленты
+ */
 $config['module']['rss']['sufficient_rating'] = 3; // необходимый и достаточный рейтинг для попадания топика в RSS-ленту
 
 // CONFIG for TELEGRAM
@@ -75,5 +82,12 @@ $config['recaptcha'] = [
     'private_key'   =>  ''
 ];
 
+// Validate cache paths
+if (array_key_exists('tmpfs_cache', $config['sys']['cache']) && $config['sys']['cache']['tmpfs_cache']) {
+    $sys_cache_dir = str_replace('___path.root.server___', $config['path']['root']['server'], $config['sys']['cache']['dir']);
+    if (!is_dir($sys_cache_dir)) {
+        mkdir($sys_cache_dir, 0777, true);
+    }
+}
 
 return $config;
