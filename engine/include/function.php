@@ -560,10 +560,12 @@ if (!function_exists('dd')) {
      * Dump and die
      * @param $args
      */
-    function dd($args)
+    function dd(...$args)
     {
         echo '<pre>';
-        var_dump($args);
+        foreach ($args as $a) {
+            var_dump($a);
+        }
         die;
     }
 }
