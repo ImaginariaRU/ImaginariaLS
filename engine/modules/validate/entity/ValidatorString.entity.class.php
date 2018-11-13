@@ -87,13 +87,25 @@ class ModuleValidate_EntityValidatorString extends ModuleValidate_EntityValidato
         $iLength = mb_strlen($sValue, 'UTF-8');
 
         if ($this->min !== null && $iLength < $this->min) {
-            return $this->getMessage($this->Lang_Get('validate_string_too_short', null, false), 'msgTooShort', array('min' => $this->min));
+            return $this->getMessage(
+                $this->Lang_Get('validate_string_too_short', null, false),
+                'msgTooShort',
+                array('min' => $this->min, 'now' => $iLength)
+            );
         }
         if ($this->max !== null && $iLength > $this->max) {
-            return $this->getMessage($this->Lang_Get('validate_string_too_long', null, false), 'msgTooLong', array('max' => $this->max));
+            return $this->getMessage(
+                $this->Lang_Get('validate_string_too_long', null, false),
+                'msgTooLong',
+                array('max' => $this->max, 'now' => $iLength)
+            );
         }
         if ($this->is !== null && $iLength !== $this->is) {
-            return $this->getMessage($this->Lang_Get('validate_string_no_lenght', null, false), 'msg', array('length' => $this->is));
+            return $this->getMessage(
+                $this->Lang_Get('validate_string_no_lenght', null, false),
+                'msg',
+                array('length' => $this->is)
+            );
         }
         return true;
     }

@@ -1023,8 +1023,8 @@ return array(
 	/**
 	 * Валидация данных
 	 */
-	'validate_string_too_long' => 'Поле %%field%% слишком длинное (максимально допустимо %%max%% символов)',
-	'validate_string_too_short' => 'Поле %%field%% слишком короткое (минимально допустимо %%min%% символов)',
+	'validate_string_too_long' => 'Поле %%field%% слишком длинное (максимально допустимо %%max%% символов, сейчас %%now%% символов)',
+	'validate_string_too_short' => 'Поле %%field%% слишком короткое (минимально допустимо %%min%% символов, сейчас %%now%% символов)',
 	'validate_string_no_lenght' => 'Поле %%field%% неверной длины (необходимо %%length%% символов)',
 	'validate_email_not_valid' => 'Поле %%field%% не соответствует формату email адреса',
 	'validate_number_must_integer' => 'Поле %%field%% должно быть целым числом',
