@@ -63,6 +63,14 @@ if ($config['sys']['cache']['tmpfs_cache']) {
  */
 $config['module']['rss']['sufficient_rating'] = 3; // необходимый и достаточный рейтинг для попадания топика в RSS-ленту
 
+/**
+ * Переопределим приоритеты запуска хуков
+ * Чем выше число, тем больше приоритет -> обработчик хука выполнится раньше остальных
+ */
+// пример:
+// $config['plugin']['page']['hook_priority']['template_main_menu_item'] = 2;
+// $config['plugin']['expwall']['hook_priority']['template_main_menu_item'] = -10;
+
 // CONFIG for TELEGRAM
 $config['telegram'] = [
     'api_key'   =>  '',
@@ -83,10 +91,25 @@ $config['recaptcha'] = [
 ];
 
 // Validate cache paths
-if (array_key_exists('tmpfs_cache', $config['sys']['cache']) && $config['sys']['cache']['tmpfs_cache']) {
+if (
+    array_key_exists('tmpfs_cache', $config['sys']['cache'])
+    &&
+    $config['sys']['cache']['tmpfs_cache']
+) {
+
     $sys_cache_dir = str_replace('___path.root.server___', $config['path']['root']['server'], $config['sys']['cache']['dir']);
     if (!is_dir($sys_cache_dir)) {
         mkdir($sys_cache_dir, 0777, true);
+    }
+
+    $path_smarty_compiled = str_replace('___path.root.server___', $config['path']['root']['server'], $config['path']['smarty']['compiled']);
+    if (!is_dir($path_smarty_compiled)) {
+        mkdir($path_smarty_compiled, 0777, true);
+    }
+
+    $path_smarty_cache = str_replace('___path.root.server___', $config['path']['root']['server'], $config['path']['smarty']['cache']);
+    if (!is_dir($path_smarty_cache)) {
+        mkdir($path_smarty_cache, 0777, true);
     }
 }
 
