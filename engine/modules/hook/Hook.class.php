@@ -89,6 +89,17 @@ class ModuleHook extends Module
      * )
      */
     protected $aHooks = array();
+
+    /**
+     * Содержит упрощенный список хуков
+     * [
+     * type, class, callback, priority
+     * ]
+     *
+     *
+     * @var array
+     */
+    protected $logHooks = [];
     /**
      * Список объектов обработки хукков, для их кешировани
      *
@@ -123,6 +134,43 @@ class ModuleHook extends Module
             return false;
         }
         $this->aHooks[$sName][] = array('type' => $sType, 'callback' => $sCallBack, 'params' => $aParams, 'priority' => (int)$iPriority);
+
+        $this->logHooks[] = [
+            'name'      =>  $sName,
+            'type'      =>  $sType,
+            'class'     =>  $aParams['sClassName'] ?? '',
+            'callback'  =>  $sCallBack,
+            'priority'  =>  (int)$iPriority
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function logHooks()
+    {
+        $list = [];
+        $list[] = [
+            'name'      =>  'Hook name',
+            'plugin'    =>  'Plugin',
+            'class'     =>  'Class',
+            'method'    =>  'Callback method',
+            'priority'  =>  'Priority'
+        ];
+
+        foreach ($this->logHooks as $hook_name => $hook_params) {
+            $out = null;
+            preg_match('/Plugin([\w]+)_Hook/', $hook_params['class'] , $out);
+
+            $list[] = [
+                'plugin'    =>  $out[1] ?? '',
+                'name'      =>  $hook_params['name'],
+                'class'     =>  $hook_params['class'] ?? '',
+                'method'    =>  $hook_params['callback'],
+                'priority'  =>  $hook_params['priority']
+            ];
+        }
+        return $list;
     }
 
     /**
@@ -281,14 +329,15 @@ class ModuleHook extends Module
                 break;
             }
         }
+
         return $result;
     }
 
     /**
-     * Запускает обработчик хука в зависимости от туипа обработчика
+     * Запускает обработчик хука в зависимости от типа обработчика
      *
      * @param array $aHook Данные хука
-     * @param array $aVars Параметры переданные в хук
+     * @param array $aVars Параметры, переданные в хук
      * @return mixed|null
      */
     protected function RunType($aHook, &$aVars)

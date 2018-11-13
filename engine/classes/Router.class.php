@@ -328,14 +328,15 @@ class Router extends LsObject
     /**
      * Запускает весь процесс :)
      *
+     * @param bool $debug
      */
-    public function Exec()
+    public function Exec($debug = false)
     {
         $this->ParseUrl();
         $this->DefineActionClass(); // Для возможности ДО инициализации модулей определить какой action/event запрошен
         $this->oEngine = Engine::getInstance();
         $this->oEngine->Init();
-        $this->ExecAction();
+        $this->ExecAction($debug);
         $this->Shutdown(false);
     }
 
@@ -433,8 +434,9 @@ class Router extends LsObject
      * Запускает на выполнение экшен
      * Может запускаться рекурсивно если в одном экшене стоит переадресация на другой
      *
+     * @param bool $debug
      */
-    public function ExecAction()
+    public function ExecAction($debug = false)
     {
         $this->DefineActionClass();
         /**
@@ -491,6 +493,29 @@ class Router extends LsObject
             if ($res === 'next') {
                 $this->ExecAction();
             }
+        }
+
+        //@todo: Warning, hardcode
+        if ($debug) {
+            if (!$this->User_IsAuthorization() or !$oUserCurrent = $this->User_GetUserCurrent() or !$oUserCurrent->isAdministrator()) {
+                die('Hacking attempt!');
+            }
+
+            $table = $this->Hook_logHooks();
+
+            echo '<table border="1">' . PHP_EOL;
+            echo '<tr><th>';
+            $th = array_shift($table);
+            echo implode('</th><th>', $th);
+            echo '</th></tr>' . PHP_EOL;
+
+            while ($tr = array_shift($table)) {
+                echo '<tr><td>';
+                echo implode('</td><td>', $tr);
+                echo '</td></tr>' . PHP_EOL;
+            }
+            echo '</table>';
+            die;
         }
     }
 

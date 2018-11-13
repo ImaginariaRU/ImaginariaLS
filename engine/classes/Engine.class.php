@@ -429,8 +429,9 @@ class Engine extends LsObject
     /**
      * Инициализация ядра движка
      *
+     * @param bool $debug
      */
-    public function Init()
+    public function Init($debug = false)
     {
         /**
          * Загружаем плагины
@@ -440,6 +441,7 @@ class Engine extends LsObject
          * Инициализируем хуки
          */
         $this->InitHooks();
+
         /**
          * Загружаем модули автозагрузки
          */
