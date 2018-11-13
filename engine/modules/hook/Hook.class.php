@@ -145,31 +145,47 @@ class ModuleHook extends Module
     }
 
     /**
+     * @param mixed $sort_order
      * @return array
      */
-    public function logHooks()
+    public function getHooksList($sort_order = false)
     {
         $list = [];
-        $list[] = [
-            'name'      =>  'Hook name',
+        $list_header = [
+            'name'      =>  'Name (of hook)',
             'plugin'    =>  'Plugin',
             'class'     =>  'Class',
             'method'    =>  'Callback method',
             'priority'  =>  'Priority'
         ];
 
+        // prepare list
         foreach ($this->logHooks as $hook_name => $hook_params) {
             $out = null;
             preg_match('/Plugin([\w]+)_Hook/', $hook_params['class'] , $out);
 
             $list[] = [
-                'plugin'    =>  $out[1] ?? '',
                 'name'      =>  $hook_params['name'],
+                'plugin'    =>  $out[1] ?? '',
                 'class'     =>  $hook_params['class'] ?? '',
                 'method'    =>  $hook_params['callback'],
                 'priority'  =>  $hook_params['priority']
             ];
         }
+
+        //validate sort_order
+        $sort_order = in_array($sort_order, ['plugin', 'name', 'class', 'priority']) ? $sort_order : false;
+
+        // sort with
+        if ($sort_order) {
+            usort($list, function($a, $b) use ($sort_order){
+                return $a[ $sort_order ] <=> $b[ $sort_order ];
+            });
+        }
+
+        array_unshift($list, ["Sort order: `{$sort_order}`"]);
+        array_unshift($list, $list_header);
+
         return $list;
     }
 

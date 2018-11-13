@@ -501,16 +501,20 @@ class Router extends LsObject
                 die('Hacking attempt!');
             }
 
-            $table = $this->Hook_logHooks();
+            //Call: /engine/modules/hook/Hook.class.php
+            $table = $this->Hook_getHooksList($_GET['order'] ?? false);
 
+            echo 'Valid sort order are: \'plugin\', \'name\', \'class\', \'priority\'' . PHP_EOL;
             echo '<table border="1">' . PHP_EOL;
+
             echo '<tr><th>';
             $th = array_shift($table);
             echo implode('</th><th>', $th);
             echo '</th></tr>' . PHP_EOL;
+            $th_count = count($th);
 
             while ($tr = array_shift($table)) {
-                echo '<tr><td>';
+                echo '<tr><td'. (count($tr) === 1 ? ' align="center" colspan="' . $th_count . '"' : '')   .'>';
                 echo implode('</td><td>', $tr);
                 echo '</td></tr>' . PHP_EOL;
             }
