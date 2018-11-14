@@ -3,7 +3,6 @@
 vendor
 
 # cache folders
-.cache
 templates/cache
 templates/compiled
 tmp

@@ -196,7 +196,14 @@ class ModuleViewer extends Module
             if (file_exists($sFile = Config::Get('path.smarty.template') . '/settings/config/config.php')) {
                 Config::LoadFromFile($sFile, false);
             }
+
+            // Читаем дополнительные конфиги, переопределяющие настройки скина
+            $skin = Config::Get('view.skin');
+            if (file_exists($sFile = Config::Get('path.root.server') . "/config/skins/{$skin}.config.php")) {
+                Config::LoadFromFile($sFile, false);
+            }
         }
+
         /**
          * Заголовок HTML страницы
          */
