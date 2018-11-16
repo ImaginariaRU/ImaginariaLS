@@ -511,8 +511,10 @@ $config['block']['rule_blog_info'] = array(
 
 $config['head']['default']['js'] = array(
     "___path.root.engine_lib___/external/html5shiv.js" => array('browser' => 'lt IE 9'),
-    "___path.root.engine_lib___/external/jquery/jquery.js",
-    "___path.root.engine_lib___/external/jquery/jquery-ui.js",
+    "___path.root.engine_lib___/external/jquery/jquery-1.7.2.js",
+    "___path.root.engine_lib___/external/jquery/jquery-ui-1.8.18.js",
+// советуют подключать для совместисти свежего jQUI
+//    "___path.root.engine_lib___/external/jquery/jquery.easing.js",
     "___path.root.engine_lib___/external/jquery/jquery.notifier.js",
     "___path.root.engine_lib___/external/jquery/jquery.jqmodal.js",
     "___path.root.engine_lib___/external/jquery/jquery.scrollto.js",

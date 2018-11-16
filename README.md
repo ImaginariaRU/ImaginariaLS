@@ -25,6 +25,10 @@ cp /srv/Imaginaria.Config/config.local.php /path/to/config/config.local.php
 cp /srv/Imaginaria.Config/plugins.dat /path/to/plugins/plugins.dat
 ```
 
++ примонтировать `.cache` 
++ выставить права и владельца
++ 
+
 Update
 ======
 
