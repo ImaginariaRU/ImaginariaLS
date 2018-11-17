@@ -25,7 +25,7 @@ https://github.com/ur001/Jevix/network
 
  */
 
-require_once(Config::Get('path.root.engine') . '/lib/external/Jevix/jevix.class.php');
+// require_once(Config::Get('path.root.engine') . '/lib/external/Jevix/jevix.class.php');
 
 /**
  * Модуль обработки текста на основе типографа Jevix
@@ -289,9 +289,12 @@ class ModuleText extends Module
         $sResult = $this->VideoParser($sResult);
         $sResult = $this->CodeSourceParser($sResult);
 
-        if($actionType === $this::ACT_CREATE || $actionType === $this::ACT_UPDATE) {
-            // Don't parce dices for edited comments
-            $sResult=$this->DiceParser($sResult);
+        $parser_dice_enabled = Config::Get('plugin.dice.border');
+        if ($parser_dice_enabled) {
+            if($actionType === $this::ACT_CREATE || $actionType === $this::ACT_UPDATE) {
+                // Don't parce dices for edited comments
+                $sResult=$this->DiceParser($sResult);
+            }
         }
 
         return $sResult;

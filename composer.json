@@ -4,6 +4,7 @@
         "monolog/monolog": "^1.23",
         "mrclay/jsmin-php": "^2.3",
         "cerdic/css-tidy": "^1.6",
-        "xxtea/xxtea": "^1.0"
+        "xxtea/xxtea": "^1.0",
+        "agelxnash/jevix": "^1.2"
     }
 }
