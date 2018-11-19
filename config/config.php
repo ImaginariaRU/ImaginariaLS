@@ -265,8 +265,9 @@ $config['module']['stream']['count_default'] = 20; // Число топиков 
 $config['module']['stream']['disable_vote_events'] = false;
 
 // Модуль Ls
-$config['module']['ls']['send_general'] = true;    // Отправка на сервер LS общей информации о сайте (домен, версия LS и плагинов)
+$config['module']['ls']['send_general'] = false;    // Отправка на сервер LS общей информации о сайте (домен, версия LS и плагинов)
 $config['module']['ls']['use_counter'] = true;    // Использование счетчика GA
+
 // Модуль Wall - стена
 $config['module']['wall']['count_last_reply'] = 3;    // Число последних ответов на сообщени на стене для отображения в ленте
 $config['module']['wall']['per_page'] = 10;                // Число сообщений на стене на одну страницу
