@@ -30,7 +30,7 @@ class ActionRegistration extends Action
     public function Init()
     {
         /**
-         * Проверяем аторизован ли юзер
+         * Проверяем авторизован ли юзер
          */
         if ($this->User_IsAuthorization()) {
             $this->Message_AddErrorSingle($this->Lang_Get('registration_is_authorization'), $this->Lang_Get('attention'));
