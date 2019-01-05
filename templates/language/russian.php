@@ -1,21 +1,5 @@
 <?php
 
-/* -------------------------------------------------------
- *
- *   LiveStreet Engine Social Networking
- *   Copyright © 2008 Mzhelskiy Maxim
- *
- * --------------------------------------------------------
- *
- *   Official site: www.livestreet.ru
- *   Contact e-mail: rus.engine@gmail.com
- *
- *   GNU General Public License, version 2:
- *   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- *
-  ---------------------------------------------------------
- */
-
 /**
  * Русский языковой файл.
  * Содержит все текстовки движка.
@@ -45,7 +29,7 @@ return array(
 	 * Declensions
 	 */
 	'reader_declension' => 'читатель;читателя;читателей',
-	'topic_declension' => 'топик;топика;топиков',
+	'topic_declension' => 'публикация;публикации;публикаций',
 	'draft_declension' => 'черновик;черновика;черновиков',
 	/**
 	 * Популярные блоги
@@ -130,8 +114,8 @@ return array(
 	'blog_create_type' => 'Тип блога',
 	'blog_create_type_open' => 'Открытый',
 	'blog_create_type_close' => 'Закрытый',
-	'blog_create_type_open_notice' => 'Открытый — к этому блогу может присоединиться любой желающий, топики видны всем',
-	'blog_create_type_close_notice' => 'Закрытый — присоединиться можно только по приглашению администрации блога, топики видят только подписчики',
+	'blog_create_type_open_notice' => 'Открытый — к этому блогу может присоединиться любой желающий, публикации видны всем',
+	'blog_create_type_close_notice' => 'Закрытый — присоединиться можно только по приглашению администрации блога, публикации видят только подписчики',
 	'blog_create_type_error' => 'Неизвестный тип блога',
 	'blog_create_rating' => 'Ограничение по рейтингу',
 	'blog_create_rating_notice' => 'Рейтинг, который необходим пользователю, чтобы написать в этот блог',
@@ -160,12 +144,12 @@ return array(
 	'blog_admin_users_submit_error' => 'Что-то не так',
 	'blog_admin_delete_title' => 'Удаление блога',
 	'blog_admin_delete_confirm' => 'Вы уверены, что хотите удалить блог?',
-	'blog_admin_delete_move' => 'Переместить топики в блог',
-	'blog_delete_clear' => 'Удалить топики',
+	'blog_admin_delete_move' => 'Переместить публикации в блог',
+	'blog_delete_clear' => 'Удалить публикации',
 	'blog_admin_delete_success' => 'Блог успешно удален',
-	'blog_admin_delete_not_empty' => 'Вы не можете удалить блок с записями. Предварительно удалите из блога все записи.',
-	'blog_admin_delete_move_error' => 'Не удалось переместить топики из удаляемого блога',
-	'blog_admin_delete_move_personal' => 'Нельзя перемещать топики в персональный блог',
+	'blog_admin_delete_not_empty' => 'Вы не можете удалить блог с записями. Предварительно удалите из блога все записи.',
+	'blog_admin_delete_move_error' => 'Не удалось переместить публикации из удаляемого блога',
+	'blog_admin_delete_move_personal' => 'Нельзя перемещать публикации в персональный блог',
 	'blog_admin_user_add_label' => 'Добавить пользователей',
 	'blog_admin_user_invited' => 'Список приглашенных',
 	'blog_admin_user_add_header' => 'Пригласить пользователей',
@@ -185,44 +169,44 @@ return array(
 	'blog_user_invite_readd' => 'повторить',
 	'blog_user_invite_remove' => 'удалить',
 	/**
-	 * Топики
+	 * Публикации
 	 */
-	'topic_title' => 'Топики',
+	'topic_title' => 'Публикации',
 	'topic_read_more' => 'Читать дальше',
-	'topic_author' => 'Автор топика',
+	'topic_author' => 'Автор публикации',
 	'topic_date' => 'дата',
 	'topic_tags' => 'Теги',
 	'topic_tags_empty' => 'нет',
 	'topic_user' => 'авторский текст',
 	'topic_share' => 'Поделиться',
-	'topic_time_limit' => 'Вам нельзя создавать топики слишком часто',
+	'topic_time_limit' => 'Вам нельзя создавать публикации так часто',
 	'topic_comment_read' => 'читать комментарии',
 	'topic_comment_add' => 'Оставить комментарий',
 	'topic_comment_add_title' => 'написать комментарий',
 	'topic_comment_add_text_error' => 'Текст комментария должен быть от 2 до 3000 символов и не содержать разного рода каку',
 	'topic_comment_acl' => 'Ваш рейтинг слишком мал для написания комментариев',
 	'topic_comment_limit' => 'Вам нельзя писать комментарии слишком часто',
-	'topic_comment_notallow' => 'Автор топика запретил добавлять комментарии',
+	'topic_comment_notallow' => 'Автор публикации запретил добавлять комментарии',
 	'topic_comment_spam' => 'Стоп! Спам!',
-	'topic_unpublish' => 'топик находится в черновиках',
+	'topic_unpublish' => 'публикация находится в черновиках',
 	'topic_favourite_add' => 'добавить в избранное',
-	'topic_favourite_add_ok' => 'Топик добавлен в избранное',
-	'topic_favourite_add_no' => 'Этого топика нет в вашем избранном',
-	'topic_favourite_add_already' => 'Этот топик уже есть в вашем избранном',
+	'topic_favourite_add_ok' => 'Публикация добавлена в избранное',
+	'topic_favourite_add_no' => 'Этой публикации нет в вашем избранном',
+	'topic_favourite_add_already' => 'Эта публикация уже есть в вашем избранном',
 	'topic_favourite_del' => 'удалить из избранного',
-	'topic_favourite_del_ok' => 'Топик удален из избранного',
+	'topic_favourite_del_ok' => 'Публикация удалена из избранного',
 	'topic_favourite_tags_block' => 'Теги избранного',
 	'topic_favourite_tags_block_all' => 'Все теги',
 	'topic_favourite_tags_block_user' => 'Мои теги',
-	'error_favorite_topic_is_draft' => 'Топик из черновиков нельзя добавить в избранное',
+	'error_favorite_topic_is_draft' => 'Публикацию в черновиках нельзя добавить в избранное',
 	'block_stream_comments_all' => 'Весь эфир',
 	'block_stream_topics_all' => 'Весь эфир',
 	'comments_all' => 'Прямой эфир',
 	'add_favourite_tags' => 'Добавить свои теги',
 	/**
-	 * Меню топиков
+	 * Меню публикаций
 	 */
-	'topic_menu_add' => 'Топик',
+	'topic_menu_add' => 'Публикация',
 	'topic_menu_add_topic' => 'Текстовый',
 	'topic_menu_add_question' => 'Опрос',
 	'topic_menu_add_link' => 'Ссылка',
@@ -230,63 +214,63 @@ return array(
 	'topic_menu_saved' => 'Черновики',
 	'topic_menu_published' => 'Опубликованные',
 	/**
-	 * Создание топика
+	 * Создание публикации
 	 */
-	'topic_topic_create' => 'Создание топика',
-	'topic_topic_edit' => 'Редактирование топика',
+	'topic_topic_create' => 'Создание публикации',
+	'topic_topic_edit' => 'Редактирование публикации',
 	'topic_create' => 'Написать',
 	'topic_create_blog' => 'В какой блог публикуем?',
 	'topic_create_blog_personal' => 'мой персональный блог',
-	'topic_create_blog_error_unknown' => 'Пытаетесь запостить топик в неизвестный блог?',
+	'topic_create_blog_error_unknown' => 'Пытаетесь запостить публикацию в неизвестный блог?',
 	'topic_create_blog_error_nojoin' => 'Вы не состоите в этом блоге!',
 	'topic_create_blog_error_noacl' => 'Вы еще недостаточно окрепли, чтобы постить в этот блог',
 	'topic_create_blog_error_noallow' => 'Вы не можете писать в этот блог',
 	'topic_create_blog_notice' => 'Для того чтобы написать в определенный блог, вы должны, для начала, вступить в него.',
 	'topic_create_title' => 'Заголовок',
-	'topic_create_title_notice' => 'Заголовок должен быть наполнен смыслом, чтобы можно было понять, о чем будет топик.',
-	'topic_create_title_error' => 'Название топика должно быть от 2 до 200 символов',
+	'topic_create_title_notice' => 'Заголовок должен иметь смысл, чтобы можно было понять, о чем будет публикация.',
+	'topic_create_title_error' => 'Название публикации должно быть от 2 до 200 символов',   //@todo: limits from config
 	'topic_create_text' => 'Текст',
 	'topic_create_text_notice' => 'Доступны html-теги',
-	'topic_create_text_error' => 'Текст топика должен быть от 2 до 15000 символов',
-	'topic_create_text_error_unique' => 'Вы уже писали топик с таким содержанием',
-	'topic_create_type_error' => 'Неверный тип топика',
+	'topic_create_text_error' => 'Текст публикации должен быть от 2 до 15000 символов',
+	'topic_create_text_error_unique' => 'Вы уже писали публикацию с таким содержанием',
+	'topic_create_type_error' => 'Неверный тип публикации',
 	'topic_create_tags' => 'Теги',
 	'topic_create_tags_notice' => 'Теги нужно разделять запятой. Например: отчёты, размышления, игры',
 	'topic_create_tags_error_bad' => 'Проверьте правильность меток',
-	'topic_create_tags_error' => 'Метки топика должны быть от 2 до 50 символов с общей длиной не более 500 символов',
+	'topic_create_tags_error' => 'Метки публикации должны быть от 2 до 50 символов с общей длиной не более 500 символов', //@todo: limits from config
 	'topic_create_forbid_comment' => 'Запретить комментировать',
-	'topic_create_forbid_comment_notice' => 'Если отметить эту галку, то нельзя будет оставлять комментарии к топику',
+	'topic_create_forbid_comment_notice' => 'Если отметить эту галку, то нельзя будет оставлять комментарии к публикации',
 	'topic_create_publish_index' => 'Принудительно вывести на главную',
-	'topic_create_publish_index_notice' => 'Если отметить эту галку, то топик сразу попадёт на главную страницу (опция доступна только администраторам)',
+	'topic_create_publish_index_notice' => 'Если отметить эту галку, то публикация сразу попадёт на главную страницу (опция доступна только администраторам)',
 	'topic_create_submit_publish' => 'Опубликовать',
 	'topic_create_submit_save' => 'Сохранить в черновиках',
 	'topic_create_submit_preview' => 'Предпросмотр',
 	'topic_create_submit_preview_close' => 'свернуть',
-	'topic_create_submit_notice' => 'Если нажать кнопку «Сохранить в черновиках», текст топика будет виден только Вам, а рядом с его заголовком будет отображаться замочек. Чтобы топик был виден всем, нажмите «Опубликовать».',
-	'topic_create_notice' => 'Не забывайте: тег <cut> сокращает длинные записи, скрывая их целиком или частично под ссылкой («читать дальше»). Скрытая часть не видна в блоге, но доступна в полной записи на странице топика.',
-	'topic_create_error' => 'Возникли технические неполадки при добавлении топика. Пожалуйста, повторите позже.',
+	'topic_create_submit_notice' => 'Если нажать кнопку «Сохранить в черновиках», текст публикации будет виден только вам, а рядом с её заголовком будет отображаться замочек. Чтобы публикация была видна всем, нажмите «Опубликовать».',
+	'topic_create_notice' => 'Не забывайте: тег <cut> сокращает длинные записи, скрывая их целиком или частично под ссылкой («читать дальше»). Скрытая часть не видна в блоге, но доступна в полной записи на странице публикации.',
+	'topic_create_error' => 'Возникли технические неполадки при добавлении публикации. Пожалуйста, повторите позже.',
 	'topic_edit' => 'Редактировать',
 	'topic_preview' => 'Предпросмотр',
 	'topic_delete' => 'Удалить',
-	'topic_delete_confirm' => 'Вы действительно хотите удалить топик?',
+	'topic_delete_confirm' => 'Вы действительно хотите удалить публикацию?',
 	/**
-	 * Топик-ссылка
+	 * Публикация-ссылка
 	 */
-	'topic_link' => 'топик-ссылка',
+	'topic_link' => 'публикация-ссылка',
 	'topic_link_title' => 'Ссылки',
 	'topic_link_title_edit' => 'Редактирование ссылки',
 	'topic_link_title_create' => 'Добавление ссылки',
-	'topic_link_create' => 'Создание топика-ссылки',
-	'topic_link_edit' => 'Редактирование топика-ссылки',
+	'topic_link_create' => 'Создание публикации-ссылки',
+	'topic_link_edit' => 'Редактирование публикации-ссылки',
 	'topic_link_count_jump' => 'переходов по ссылке',
 	'topic_link_create_url' => 'Ссылка',
-	'topic_link_create_url_notice' => 'Например, http://livestreet.ru/blog/dev_livestreet/113.html',
-	'topic_link_create_url_error' => 'Ссылка должна быть от 2 до 200 символов',
-	'topic_link_create_text' => 'Краткое описание (максимум 500 символов)',
+	'topic_link_create_url_notice' => 'Например, https://rpg-world.org',
+	'topic_link_create_url_error' => 'Ссылка должна быть от 2 до 200 символов', //@todo: config limits
+	'topic_link_create_text' => 'Краткое описание (максимум 500 символов)', //@todo: config limits
 	'topic_link_create_text_notice' => 'HTML-теги запрещены',
-	'topic_link_create_text_error' => 'Описание ссылки должно быть от 10 до 500 символов',
+	'topic_link_create_text_error' => 'Описание ссылки должно быть от 10 до 500 символов', //@todo: config limits
 	/**
-	 * Топик-опрос
+	 * Публикация-опрос
 	 */
 	'topic_question_title' => 'Опросы',
 	'topic_question_title_edit' => 'Редактирование опроса',
@@ -298,33 +282,33 @@ return array(
 	'topic_question_vote_result_sort' => 'Включить\выключить сортировку',
 	'topic_question_abstain' => 'воздержаться',
 	'topic_question_abstain_result' => 'Воздержалось',
-	'topic_question_create' => 'Создание топика-опроса',
-	'topic_question_edit' => 'Редактирование топика-опроса',
+	'topic_question_create' => 'Создание публикации-опроса',
+	'topic_question_edit' => 'Редактирование публикации-опроса',
 	'topic_question_create_title' => 'Вопрос',
-	'topic_question_create_title_notice' => 'Вопрос должен быть наполнен смыслом, чтобы можно было понять, о чем будет опрос.',
-	'topic_question_create_title_error' => 'Вопрос должен быть от 2 до 200 символов',
+	'topic_question_create_title_notice' => 'Заголовок публикации должен иметь смысл чтобы можно было понять, о чем будет опрос.',
+	'topic_question_create_title_error' => 'Вопрос должен быть от 2 до 200 символов', //@todo: config limits
 	'topic_question_create_answers' => 'Варианты ответов',
 	'topic_question_create_answers_add' => 'Добавить вариант',
 	'topic_question_create_answers_delete' => 'Удалить',
-	'topic_question_create_answers_error' => 'Ответ должен быть от 1 до 100 символов',
-	'topic_question_create_answers_error_min' => 'Вариантов ответа должно быть как минимум два',
-	'topic_question_create_answers_error_max' => 'Максимально возможное число вариантов ответа 20',
-	'topic_question_create_text' => 'Краткое описание (максимум 500 символов)',
+	'topic_question_create_answers_error' => 'Ответ должен быть от 1 до 100 символов', //@todo: config limits
+	'topic_question_create_answers_error_min' => 'Вариантов ответа должно быть как минимум два', 
+	'topic_question_create_answers_error_max' => 'Максимально возможное число вариантов ответа 20', //@todo: config limits
+	'topic_question_create_text' => 'Краткое описание (максимум 500 символов)', //@todo: config limits
 	'topic_question_create_text_notice' => 'HTML-теги запрещены',
-	'topic_question_create_text_error' => 'Описание опроса должно быть не более 500 символов',
+	'topic_question_create_text_error' => 'Описание опроса должно быть не более 500 символов', //@todo: config limits
 	/**
-	 * Голосование за топик
+	 * Голосование за публикацию
 	 */
 	'topic_vote_up' => 'нравится',
 	'topic_vote_down' => 'не нравится',
-	'topic_vote_error_already' => 'Вы уже голосовали за этот топик!',
-	'topic_vote_error_self' => 'Вы не можете голосовать за свой топик!',
+	'topic_vote_error_already' => 'Вы уже голосовали за эту публикацию!',
+	'topic_vote_error_self' => 'Вы не можете голосовать за свою публикацию!',
 	'topic_vote_error_guest' => 'для голосования необходимо авторизоваться',
-	'topic_vote_error_time' => 'Срок голосования за топик истёк!',
-	'topic_vote_error_acl' => 'У вас не хватает рейтинга и силы для голосования!',
+	'topic_vote_error_time' => 'Срок голосования за публикацию истёк!',
+	'topic_vote_error_acl' => 'У вас не хватает рейтинга и/или силы для голосования!',
 	'topic_vote_no' => 'пока никто не голосовал',
 	'topic_vote_ok' => 'Ваш голос учтен',
-	'topic_vote_ok_abstain' => 'Вы воздержались для просмотра рейтинга топика',
+	'topic_vote_ok_abstain' => 'Вы воздержались для просмотра рейтинга публикации',
 	'topic_vote_count' => 'всего проголосовало',
 	/**
 	 * Фотосет
@@ -336,20 +320,20 @@ return array(
 	'topic_photoset_upload_close' => 'Закрыть',
 	'topic_photoset_upload_rules' => 'Доступна загрузка изображений в формат JPG, PNG, GIF<br />Размер изображений не должен превышать %%SIZE%% Kб<br />Максимальное число загружаемых изображений: %%COUNT%%',
 	'topic_photoset_choose_image' => 'Выберите изображение для загрузки',
-	'topic_photoset_is_preview' => 'Отмечено как превью к топику',
+	'topic_photoset_is_preview' => 'Отмечено как превью к публикации',
 	'topic_photoset_mark_as_preview' => 'Отметить как превью',
-	'topic_photoset_show_all' => 'Показать все %%COUNT%% фото',
+	'topic_photoset_show_all' => 'Показать все %%COUNT%% фото', //@todo: config limits
 	'topic_photoset_count_images' => 'изображение;изображения;изображений',
 	'topic_photoset_show_more' => 'Показать ещё фото',
-	'topic_photoset_error_count_photos' => 'В топике может быть от %%MIN%% до %%MAX%% фото',
+	'topic_photoset_error_count_photos' => 'В публикации может быть от %%MIN%% до %%MAX%% фото', //@todo: config limits
 	'topic_photoset_error_size' => 'У изображения слишком большое разрешение',
 	'topic_photoset_title' => 'Фотосет',
 	'topic_photoset_photo_deleted' => 'Фото удалено',
-	'topic_photoset_photo_deleted_error_last' => 'Нельзя удалить последню фотографию',
+	'topic_photoset_photo_deleted_error_last' => 'Нельзя удалить последнюю фотографию',
 	'topic_photoset_photo_delete' => 'Удалить',
 	'topic_photoset_photo_delete_confirm' => 'Удалить фото?',
 	'topic_photoset_photo_added' => 'Фото добавлено',
-	'topic_photoset_error_too_much_photos' => 'Топик может содержать не более %%MAX%% фото',
+	'topic_photoset_error_too_much_photos' => 'Публикация может содержать не более %%MAX%% фото', //@todo: config limits
 	'topic_photoset_title_edit' => 'Редактирование фотосета',
 	'topic_photoset_title_create' => 'Создание фотосета',
 	'topic_photoset_error_bad_filesize' => 'Размер фото должен быть не более %%MAX%% Кб',
@@ -533,7 +517,7 @@ return array(
 	'user_menu_profile_stream' => 'Активность',
 	'user_menu_profile_notes' => 'Заметки',
 	'user_menu_profile_favourites' => 'Избранное',
-	'user_menu_profile_favourites_topics' => 'Избранные топики',
+	'user_menu_profile_favourites_topics' => 'Избранные публикации',
 	'user_menu_profile_favourites_comments' => 'Избранные комментарии',
 	'user_menu_profile_tags' => 'Метки',
 	'user_menu_publication' => 'Публикации',
@@ -677,8 +661,8 @@ return array(
 	'settings_invite_submit_ok' => 'Приглашение отправлено',
 	'settings_tuning' => 'Настройки сайта',
 	'settings_tuning_notice' => 'Уведомления на e-mail',
-	'settings_tuning_notice_new_topic' => 'при новом топике в блоге',
-	'settings_tuning_notice_new_comment' => 'при новом комментарии в топике',
+	'settings_tuning_notice_new_topic' => 'при новой публикации в блоге',
+	'settings_tuning_notice_new_comment' => 'при новом комментарии к публикации',
 	'settings_tuning_notice_new_talk' => 'при новом личном сообщении',
 	'settings_tuning_notice_reply_comment' => 'при ответе на комментарий',
 	'settings_tuning_notice_new_friend' => 'при добавлении вас в друзья',
@@ -746,7 +730,7 @@ return array(
 	'block_country_tags' => 'Страны',
 	'block_blog_info' => 'Описание блога',
 	'block_blog_info_note' => 'Совет',
-	'block_blog_info_note_text' => '<strong>Тег &lt;cut&gt; сокращает длинные записи</strong>, скрывая их целиком или частично под ссылкой («читать дальше»). Скрытая часть не видна в блоге, но доступна в полной записи на странице топика.',
+	'block_blog_info_note_text' => '<strong>Тег &lt;cut&gt; сокращает длинные записи</strong>, скрывая их целиком или частично под ссылкой («читать дальше»). Скрытая часть не видна в блоге, но доступна в полной записи на странице публикации.',
 	'block_blogs' => 'Блоги',
 	'block_blogs_top' => 'Топ',
 	'block_blogs_join' => 'Подключенные',
@@ -756,7 +740,7 @@ return array(
 	'block_blogs_all' => 'Все блоги',
 	'block_stream' => 'Прямой эфир',
 	'block_stream_topics' => 'Публикации',
-	'block_stream_topics_no' => 'Нет топиков.',
+	'block_stream_topics_no' => 'Нет публикаций.',
 	'block_stream_comments' => 'Комментарии',
 	'block_stream_comments_no' => 'Нет комментариев.',
 	'block_stream_comments_all' => 'Весь эфир',
@@ -773,7 +757,7 @@ return array(
 	'search_submit' => 'Найти',
 	'search_results' => 'Результаты поиска',
 	'search_results_empty' => 'Удивительно, но поиск не дал результатов',
-	'search_results_count_topics' => 'топиков',
+	'search_results_count_topics' => 'публикаций',
 	'search_results_count_comments' => 'комментариев',
 	/**
 	 * Почта
@@ -823,7 +807,7 @@ return array(
 	'talk_filter_label_date' => 'Ограничения по дате',
 	'talk_filter_notice_sender' => 'Укажите логин отправителя',
 	'talk_filter_notice_keyword' => 'Введите одно или несколько слов',
-	'talk_filter_notice_date' => 'Дата вводится в формате 25.12.2008',
+	'talk_filter_notice_date' => 'Дата вводится в формате 30.02.2019',
 	'talk_filter_submit' => 'Отфильтровать',
 	'talk_filter_submit_clear' => 'Очистить',
 	'talk_filter_error' => 'Ошибка фильтрации',
@@ -858,14 +842,14 @@ return array(
 	'userfeed_block_users_title' => 'Люди',
 	'userfeed_block_users_append' => 'Добавить',
 	'userfeed_block_users_friends' => 'Друзья',
-	'userfeed_subscribes_already_subscribed' => 'Вы уже подписаны на топики этого пользователя',
+	'userfeed_subscribes_already_subscribed' => 'Вы уже подписаны на публикации этого пользователя',
 	'userfeed_subscribes_updated' => 'Настройки ленты сохранены',
-	'userfeed_get_more' => 'Получить ещё топики',
+	'userfeed_get_more' => 'Получить ещё публикации',
 	'userfeed_title' => 'Лента',
 	'userfeed_settings_note_follow_blogs' => 'Выберите блоги которые вы хотели бы читать',
-	'userfeed_settings_note_follow_user' => 'Добавьте людей, топики которых вы хотели бы читать',
-	'userfeed_settings_note_follow_friend' => 'Выберите друзей, топики которых вы хотели бы читать',
-	'userfeed_no_subscribed_users' => 'Вы ещё не подписались на пользователей, чьи топики хотите видеть',
+	'userfeed_settings_note_follow_user' => 'Добавьте людей, публикации которых вы хотели бы читать',
+	'userfeed_settings_note_follow_friend' => 'Выберите друзей, публикации которых вы хотели бы читать',
+	'userfeed_no_subscribed_users' => 'Вы ещё не подписались на пользователей, чьи публикации хотите видеть',
 	'userfeed_no_blogs' => 'Вы не вступили ни в один блог',
 	'userfeed_error_subscribe_to_yourself' => 'Вы не можете подписаться на себя',
 	/**
@@ -879,10 +863,10 @@ return array(
 	'stream_subscribes_updated' => 'Настройки ленты сохранены',
 	'stream_get_more' => 'Получить ещё события',
 	'stream_event_type_add_wall' => 'Добавление записи на стену',
-	'stream_event_type_add_topic' => 'Добавление топика',
+	'stream_event_type_add_topic' => 'Добавление публикации',
 	'stream_event_type_add_comment' => 'Добавление комментария',
 	'stream_event_type_add_blog' => 'Добавление блога',
-	'stream_event_type_vote_topic' => 'Голосование за топик',
+	'stream_event_type_vote_topic' => 'Голосование за публикацию',
 	'stream_event_type_vote_comment' => 'Голосование за комментарий',
 	'stream_event_type_vote_blog' => 'Голосование за блог',
 	'stream_event_type_vote_user' => 'Голосование за пользователя',
@@ -893,24 +877,24 @@ return array(
 	'stream_error_subscribe_to_yourself' => 'Вы не можете подписаться на себя',
 	'stream_list_user' => 'Пользователь',
 	'stream_list_event_add_wall' => 'добавил запись на стену',
-	'stream_list_event_add_topic' => 'добавил новый топик',
+	'stream_list_event_add_topic' => 'добавил новую публикацию',
 	'stream_list_event_add_blog' => 'добавил новый блог',
-	'stream_list_event_add_comment' => 'прокомментировал топик',
-	'stream_list_event_vote_topic' => 'оценил топик',
+	'stream_list_event_add_comment' => 'прокомментировал публикацию',
+	'stream_list_event_vote_topic' => 'оценил публикацию',
 	'stream_list_event_vote_blog' => 'оценил блог',
 	'stream_list_event_vote_user' => 'оценил пользователя',
-	'stream_list_event_vote_comment' => 'оценил комментарий к топику',
+	'stream_list_event_vote_comment' => 'оценил комментарий к публикации',
 	'stream_list_event_join_blog' => 'вступил в блог',
 	'stream_list_event_add_friend' => 'добавил в друзья пользователя',
 
 	'stream_list_event_add_wall_female' => 'добавила запись на стену',
-	'stream_list_event_add_topic_female' => 'добавила новый топик',
+	'stream_list_event_add_topic_female' => 'добавила новую публикацию',
 	'stream_list_event_add_blog_female' => 'добавила новый блог',
-	'stream_list_event_add_comment_female' => 'прокомментировала топик',
-	'stream_list_event_vote_topic_female' => 'оценила топик',
+	'stream_list_event_add_comment_female' => 'прокомментировала публикацию',
+	'stream_list_event_vote_topic_female' => 'оценила публикацию',
 	'stream_list_event_vote_blog_female' => 'оценила блог',
 	'stream_list_event_vote_user_female' => 'оценила пользователя',
-	'stream_list_event_vote_comment_female' => 'оценила комментарий к топику',
+	'stream_list_event_vote_comment_female' => 'оценила комментарий к публикации',
 	'stream_list_event_join_blog_female' => 'вступила в блог',
 	'stream_list_event_add_friend_female' => 'добавила в друзья пользователя',
 
@@ -929,13 +913,13 @@ return array(
 	'admin_list_restorecomment' => 'Перестроение дерева комментариев',
 	'admin_list_recalcfavourite' => 'Пересчитать счетчики избранных',
 	'admin_list_recalcvote' => 'Пересчитать счетчики голосований',
-	'admin_list_recalctopic' => 'Пересчитать количество топиков в блогах',
+	'admin_list_recalctopic' => 'Пересчитать количество публикаций в блогах',
 	/**
 	 * Рейтинг TOP
 	 */
 	'top' => 'Рейтинг',
-	'top_blogs' => 'TOP Блогов',
-	'top_topics' => 'TOP топиков',
+	'top_blogs' => 'TOP блогов',
+	'top_topics' => 'TOP публикаций',
 	'top_comments' => 'TOP комментариев',
 	/**
 	 * Поиск по тегам
@@ -975,9 +959,9 @@ return array(
 	/**
 	 * Уведомления
 	 */
-	'notify_subject_comment_new' => 'Новый комментарий к топику',
+	'notify_subject_comment_new' => 'Новый комментарий к публикации',
 	'notify_subject_comment_reply' => 'Вам ответили на ваш комментарий',
-	'notify_subject_topic_new' => 'Новый топик в блоге',
+	'notify_subject_topic_new' => 'Новая публикация в блоге',
 	'notify_subject_registration_activate' => 'Регистрация',
 	'notify_subject_registration' => 'Регистрация',
 	'notify_subject_invite' => 'Приглашение на регистрацию',
@@ -998,7 +982,7 @@ return array(
 	'admin_comment_restore_tree' => 'Дерево комментариев перестроенно',
 	'admin_favourites_recalculated' => 'Счетчики избранных пересчитаны',
 	'admin_votes_recalculated' => 'Счетчики голосований пересчитаны',
-	'admin_topics_recalculated' => 'Количество топиков пересчитанно',
+	'admin_topics_recalculated' => 'Количество публикаций пересчитанно',
 	/**
 	 * Страница администрирования плагинов
 	 */
@@ -1057,8 +1041,8 @@ return array(
 	 * Toolbar
 	 */
 	'toolbar_scrollup_go' => 'Вверх',
-	'toolbar_topic_next' => 'Следующий топик',
-	'toolbar_topic_prev' => 'Предыдущий топик',
+	'toolbar_topic_next' => 'Следующая публикация',
+	'toolbar_topic_prev' => 'Предыдущая публикация',
 	/**
 	 * География
 	 */
@@ -1075,18 +1059,18 @@ return array(
 	 * Инфо-блоки
 	 */
 	'infobox_blog_create' => 'Создан',
-	'infobox_blog_topics' => 'Топиков',
+	'infobox_blog_topics' => 'Публикаций',
 	'infobox_blog_users' => 'Подписчиков',
 	'infobox_blog_rating' => 'Рейтинг',
 	'infobox_blog_limit_rating' => 'Ограничение на постинг',
-	'infobox_blog_topic_last' => 'Последний топик',
+	'infobox_blog_topic_last' => 'Последняя публикация',
 	'infobox_blog_url' => 'Читать блог',
 	'infobox_blog_rss' => 'Подписаться на RSS',
 	/**
 	 * Создание
 	 */
 	'block_create' => 'Создать',
-	'block_create_topic_topic' => 'Топик',
+	'block_create_topic_topic' => 'Публикация',
 	'block_create_topic_question' => 'Опрос',
 	'block_create_topic_link' => 'Ссылка',
 	'block_create_topic_photoset' => 'Фотосет',
