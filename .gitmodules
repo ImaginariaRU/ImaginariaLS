@@ -103,3 +103,12 @@
 [submodule "templates/skin/synio"]
 	path = templates/skin/synio
 	url = https://github.com/ImaginariaLS/theme_synio.git
+[submodule "plugins/castuser"]
+	path = plugins/castuser
+	url = https://github.com/ImaginariaLS/ls_castuser.git
+[submodule "pluguns/up"]
+	path = pluguns/up
+	url = https://github.com/ImaginariaLS/ls_up.git
+[submodule "plugins/up"]
+	path = plugins/up
+	url = https://github.com/ImaginariaLS/ls_up.git
