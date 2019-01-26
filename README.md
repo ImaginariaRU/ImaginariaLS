@@ -37,6 +37,8 @@ git pull
 git submodule init
 git submodule update --remote
 composer install
+rm -rf ./.cache/compiled/*
+rm -rf ./.cache/assets/*
 ```
 
 See: https://stackoverflow.com/questions/47470271/what-does-remote-actually-do-in-git-submodule-update-remote
