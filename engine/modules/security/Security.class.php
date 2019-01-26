@@ -46,7 +46,7 @@ class ModuleSecurity extends Module
     public function ValidateSendForm()
     {
         if (!($this->ValidateSessionKey())) {
-            die("Hacking attemp!");
+            die(__METHOD__ . " : Hacking attemp!");
         }
     }
 

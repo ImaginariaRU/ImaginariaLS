@@ -509,7 +509,7 @@ class Router extends LsObject
     private function showSystemHooks()
     {
         if (!$this->User_IsAuthorization() or !$oUserCurrent = $this->User_GetUserCurrent() or !$oUserCurrent->isAdministrator()) {
-            die('Hacking attempt!');
+            die(__METHOD__ . " : Hacking attemp!");
         }
 
         //Call: /engine/modules/hook/Hook.class.php
