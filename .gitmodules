@@ -112,3 +112,6 @@
 [submodule "plugins/up"]
 	path = plugins/up
 	url = https://github.com/ImaginariaLS/ls_up.git
+[submodule "plugins/complaint"]
+	path = plugins/complaint
+	url = https://github.com/ImaginariaLS/ls_complaint.git
