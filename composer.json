@@ -1,5 +1,7 @@
 {
     "require": {
+        "ext-mbstring": "*",
+        "ext-pdo": "*",
         "google/recaptcha": "^1.2",
         "monolog/monolog": "^1.23",
         "mrclay/jsmin-php": "^2.3",
