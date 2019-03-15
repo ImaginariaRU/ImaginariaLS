@@ -149,7 +149,8 @@ class ModuleCache extends Module {
 				)
 			);
 			$this->oBackendCache = new Dklab_Cache_Backend_Profiler($oCahe,array($this,'CalcStats'));
-		/**
+		
+        /**
 		 * Кеш на основе Memcached
 		 */
 		} elseif ($this->sCacheType==SYS_CACHE_TYPE_MEMORY) {
@@ -160,6 +161,8 @@ class ModuleCache extends Module {
 			$this->oBackendCache = new Dklab_Cache_Backend_TagEmuWrapper(new Dklab_Cache_Backend_Profiler($oCahe,array($this,'CalcStats')));
 		/**
 		 * Кеш на основе Libmemcached
+         * @todo: https://github.com/kajidai/php-libmemcached
+         * 
 		 */
 		} elseif ($this->sCacheType==SYS_CACHE_TYPE_LIBMEMCACHED) {
 			require_once(LS_DKCACHE_PATH.'Zend/Cache/Backend/Libmemcached.php');

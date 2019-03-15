@@ -72,6 +72,8 @@ $votes_down = [];
 $votes_abstain = [];
 
 array_walk($votes, function($data) use(&$votes_up, &$votes_down, &$votes_abstain){
+    $data['user_profile_name'] = $data['user_profile_name'] ?? $data['user_login'];
+    
     if ($data['vote_direction'] == 1) {
        $votes_up[] = $data;
     } elseif ($data['vote_direction'] == -1) {

@@ -115,3 +115,6 @@
 [submodule "plugins/complaint"]
 	path = plugins/complaint
 	url = https://github.com/ImaginariaLS/ls_complaint.git
+[submodule "templates/skin/street-spirit"]
+	path = templates/skin/street-spirit
+	url = https://github.com/ImaginariaLS/theme_street-spirit.git

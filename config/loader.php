@@ -18,7 +18,7 @@
 /**
  * Основные константы
  */
-define('LS_VERSION', '1.0.5');
+define('LS_VERSION', '1.0.6');
 
 /**
  * Operations with Config object
@@ -31,41 +31,6 @@ $fGetConfig = function ($sPath) {
     return include_once $sPath;
 };
 
-/**
- * Загружает конфиги модулей вида /config/modules/[module_name]/config.php
- *
- * Отключено, так как модуль всё равно ровно один в этом каталоге, да и сам файл конфига удалён
- * Настройки сфинкса вообще нужно задавать в уточняющем конфиге
- */
-// $sDirConfig = Config::get('path.root.server') . '/config/modules/';
-
-/*
-if ($hDirConfig = opendir($sDirConfig)) {
-    while (false !== ($sDirModule = readdir($hDirConfig))) {
-        if ($sDirModule != '.' and $sDirModule != '..' and is_dir($sDirConfig . $sDirModule)) {
-            $sFileConfig = $sDirConfig . $sDirModule . '/config.php';
-            if (file_exists($sFileConfig)) {
-                $aConfig = $fGetConfig($sFileConfig);
-                if (!empty($aConfig) && is_array($aConfig)) {
-                    // Если конфиг этого модуля пуст, то загружаем массив целиком
-                    $sKey = "module.$sDirModule";
-                    if (!Config::isExist($sKey)) {
-                        Config::Set($sKey, $aConfig);
-                    } else {
-                        // Если уже существуют привязанные к модулю ключи,
-                        // то сливаем старые и новое значения ассоциативно
-                        Config::Set(
-                            $sKey,
-                            func_array_merge_assoc(Config::Get($sKey), $aConfig)
-                        );
-                    }
-                }
-            }
-        }
-    }
-    closedir($hDirConfig);
-}*/
-
 Config::Set("module.search", [
     'entity_prefix' =>  '',
     'sphinx'    =>  [
@@ -74,76 +39,13 @@ Config::Set("module.search", [
     ]
 ]);
 
-
 /**
- * Инклудим все *.php файлы из каталога {path.root.engine}/include/ - это файлы ядра
+ * ___path.root.server___/engine/include - файлы ядра
+ * он там один такой
+ * 
  */
-$sDirInclude = Config::get('path.root.engine') . '/include/';
-if ($hDirInclude = opendir($sDirInclude)) {
-    while (false !== ($sFileInclude = readdir($hDirInclude))) {
-        $sFileIncludePathFull = $sDirInclude . $sFileInclude;
-        if ($sFileInclude != '.' and $sFileInclude != '..' and is_file($sFileIncludePathFull)) {
-            $aPathInfo = pathinfo($sFileIncludePathFull);
-            if (isset($aPathInfo['extension']) and strtolower($aPathInfo['extension']) == 'php') {
-                require_once($sDirInclude . $sFileInclude);
-            }
-        }
-    }
-    closedir($hDirInclude);
-}
-
-/**
- * Инклудим все *.php файлы из каталога {path.root.server}/include/ - пользовательские файлы
- *
- * @todo: перенести все эти файлы в /engine/include/
- */
-$sDirInclude = Config::get('path.root.server') . '/include/';
-if ($hDirInclude = opendir($sDirInclude)) {
-    while (false !== ($sFileInclude = readdir($hDirInclude))) {
-        $sFileIncludePathFull = $sDirInclude . $sFileInclude;
-        if ($sFileInclude != '.' and $sFileInclude != '..' and is_file($sFileIncludePathFull)) {
-            $aPathInfo = pathinfo($sFileIncludePathFull);
-            if (isset($aPathInfo['extension']) and strtolower($aPathInfo['extension']) == 'php') {
-                require_once($sDirInclude . $sFileInclude);
-            }
-        }
-    }
-    closedir($hDirInclude);
-}
-
-/**
- * Ищет routes-конфиги модулей и объединяет их с текущим
- * @see Router.class.php
- *
- * Отключено, потому что не используется (единственный модуль "search" не имеет роутов)
- */
-/*
-$sDirConfig = Config::get('path.root.server') . '/config/modules/';
-if ($hDirConfig = opendir($sDirConfig)) {
-    while (false !== ($sDirModule = readdir($hDirConfig))) {
-        if ($sDirModule != '.' and $sDirModule != '..' and is_dir($sDirConfig . $sDirModule)) {
-            $sFileConfig = $sDirConfig . $sDirModule . '/config.route.php';
-            if (file_exists($sFileConfig)) {
-                $aConfig = $fGetConfig($sFileConfig);
-                if (!empty($aConfig) && is_array($aConfig)) {
-                    // Если конфиг этого модуля пуст, то загружаем массив целиком
-                    $sKey = "router";
-                    if (!Config::isExist($sKey)) {
-                        Config::Set($sKey, $aConfig);
-                    } else {
-                        // Если уже существую привязанные к модулю ключи,
-                        // то сливаем старые и новое значения ассоциативно
-                        Config::Set(
-                            $sKey,
-                            func_array_merge_assoc(Config::Get($sKey), $aConfig)
-                        );
-                    }
-                }
-            }
-        }
-    }
-    closedir($hDirConfig);
-}*/
+$sDirInclude = Config::get('path.root.engine');
+require_once $sDirInclude . '/include/function.php';
 
 /**
  * Подгружаем файлы локального конфига

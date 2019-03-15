@@ -1,6 +1,6 @@
 <?php
 
-//@todo: include via Sphinx
+//@todo: include via composer?
 
 require_once(Config::Get('path.root.engine') . '/lib/external/Sphinx/sphinxapi.php');
 
@@ -41,11 +41,11 @@ class ModuleSphinx extends Module
         /**
          * Устанавливаем тип сортировки
          */
-        $this->oSphinx->SetSortMode(SPH_SORT_EXTENDED, "@weight DESC, @id DESc");
+        $this->oSphinx->SetSortMode(SPH_SORT_EXTENDED, "@weight DESC, @id DESC");
     }
 
     /**
-     * Возвращает число найденых элементов в зависимоти от их типа
+     * Возвращает число найденых элементов в зависимости от их типа
      *
      * @param string $sTerms Поисковый запрос
      * @param string $sObjType Тип поиска

@@ -16,33 +16,6 @@
 */
 
 /**
- * Если не стоит расширения mb
- *
- * @param string $s
- * @return string
- */
-if (!function_exists('mb_strlen')) {
-    function mb_strlen($s, $sEncode = "UTF-8")
-    {
-        $length = strlen(iconv($sEncode, 'Windows-1251', $s));
-        return (int)$length;
-    }
-}
-
-/**
- * Если не стоит расширения mb
- */
-if (!function_exists('mb_strtolower')) {
-    function mb_strtolower($s, $sEncode = "UTF-8")
-    {
-        $s = iconv($sEncode, "Windows-1251", $s);
-        $s = strtolower($s);
-        $s = iconv("Windows-1251", $sEncode, $s);
-        return $s;
-    }
-}
-
-/**
  * Проверяет запрос послан как ajax или нет
  * Пришлось продублировать здесь, чтобы получить к ней доступ до подключения роутера
  *
@@ -52,24 +25,6 @@ function isAjaxRequest()
 {
     return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';
 }
-
-/**
- * функция вывода отладочных сообщений через "хакерскую" консоль Дмитрия Котерова
- */
-function dump($msg)
-{
-    if (Config::Get('sys.logs.hacker_console') && !isAjaxRequest()) {
-        if (!class_exists('Debug_HackerConsole_Main')) {
-            require_once Config::Get('path.root.server') . "/engine/lib/external/HackerConsole/Main.php";
-            new Debug_HackerConsole_Main(true);
-        }
-        call_user_func(array('Debug_HackerConsole_Main', 'out'), $msg);
-    } else {
-        //@todo: monolog
-        //var_dump($msg);
-    }
-}
-
 
 /**
  * функция доступа к GET POST параметрам
@@ -140,9 +95,7 @@ function isPost($sName)
  */
 function func_generator($iLength = 10)
 {
-    if ($iLength > 32) {
-        $iLength = 32;
-    }
+    $iLength = min($iLength, 32);
     return substr(md5(uniqid(mt_rand(), true)), 0, $iLength);
 }
 
@@ -425,20 +378,6 @@ function func_array_merge_assoc($aArr1, $aArr2)
     return $aRes;
 }
 
-if (!function_exists('array_fill_keys')) {
-    function array_fill_keys($aArr, $values)
-    {
-        if (!is_array($aArr)) {
-            $aArr = array($aArr);
-        }
-        $aArrOut = array();
-        foreach ($aArr as $key => $value) {
-            $aArrOut[$value] = $values;
-        }
-        return $aArrOut;
-    }
-}
-
 if (!function_exists('array_intersect_key')) {
     function array_intersect_key($isec, $keys)
     {
@@ -462,17 +401,6 @@ if (!function_exists('array_intersect_key')) {
             }
             return $res;
         }
-    }
-}
-
-if (!function_exists('class_alias')) {
-    function class_alias($original, $alias)
-    {
-        if (!class_exists($original)) {
-            return false;
-        }
-        eval('abstract class ' . $alias . ' extends ' . $original . ' {}');
-        return true;
     }
 }
 
