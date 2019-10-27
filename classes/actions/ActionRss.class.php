@@ -45,6 +45,46 @@ class ActionRss extends Action
         $this->AddEvent('tag', 'RssTag');
         $this->AddEvent('blog', 'RssColectiveBlog');
         $this->AddEvent('personal_blog', 'RssPersonalBlog');
+        
+        $this->AddEvent('full', 'RssFull');
+    }
+    
+    protected function RssFull()
+    {
+        $aResult = $this->Topic_getTopicsForRSS(1, Config::Get('module.topic.per_page') * 2);
+
+        $aTopics = $aResult['collection'];
+        /**
+         * Формируем данные канала RSS
+         */
+        $aChannel['title'] = Config::Get('view.name');
+        $aChannel['link'] = Config::Get('path.root.web');
+        $aChannel['description']=Config::Get('view.name').' / RSS channel';
+        $aChannel['language'] = 'ru';
+        $aChannel['managingEditor'] = Config::Get('general.rss_editor_mail');
+        $aChannel['generator'] = Config::Get('view.name');
+        /**
+         * Формируем записи RSS
+         */
+        $topics = array();
+        foreach ($aTopics as $oTopic) {
+            $item['title'] = $oTopic->getTitle();
+            $item['guid'] = $oTopic->getUrl();
+            $item['link'] = $oTopic->getUrl();
+            $item['description']=$this->getTopicTextFull($oTopic);
+            $item['pubDate'] = $oTopic->getDateAdd();
+            $item['author'] = $oTopic->getUser()->getLogin();
+            $item['category'] = htmlspecialchars($oTopic->getTags());
+            $topics[] = $item;
+        }
+        /**
+         * Формируем ответ
+         */
+        $this->InitRss();
+        $this->Viewer_Assign('aChannel', $aChannel);
+        $this->Viewer_Assign('aItems', $topics);
+        $this->SetTemplateAction('index');
+        
     }
 
     /**
@@ -146,8 +186,13 @@ class ActionRss extends Action
      * Формирует текст топика для RSS
      *
      */
+    /**
+     * @param ModuleTopic_EntityTopic $oTopic
+     * @return mixed
+     */
     protected function getTopicText($oTopic)
     {
+        
         $sText = $oTopic->getTextShort();
         if ($oTopic->getTextShort() != $oTopic->getText()) {
             $sText .= "<br><a href=\"{$oTopic->getUrl()}#cut\" title=\"{$this->Lang_Get('topic_read_more')}\">";
@@ -159,6 +204,15 @@ class ActionRss extends Action
             $sText .= "</a>";
         }
         return $sText;
+    }
+
+    /**
+     * @param ModuleTopic_EntityTopic $oTopic
+     * @return mixed
+     */
+    protected function getTopicTextFull($oTopic)
+    {
+        return $oTopic->getText();
     }
 
     /**
