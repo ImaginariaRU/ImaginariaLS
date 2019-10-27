@@ -411,7 +411,7 @@ class Engine extends LsObject
             $sInheritClass = $aInfo[Engine::CI_INHERIT];
             $sParentClass = Engine::getInstance()->Plugin_GetParentInherit($sInheritClass);
             if (!class_alias($sParentClass, $sClassName)) {
-                dump("(autoload $sParentClass) Can not load CLASS-file");
+                dump("autoload: can't create alias {$sClassName} for parent class {$sParentClass}");
             } else {
                 return true;
             }
@@ -419,9 +419,7 @@ class Engine extends LsObject
             require_once $aInfo[Engine::CI_CLASSPATH];
             return true;
         } elseif (!class_exists($sClassName)) {
-            dump("(autoload $sClassName) Can not load CLASS-file");
-            dump($aInfo);
-            //throw new Exception("(autoload '$sClassName') Can not load CLASS-file");
+            dump("autoload': can't load {$sClassName} class file", $aInfo);
         }
         return false;
     }
@@ -581,7 +579,7 @@ class Engine extends LsObject
         }
         $tm2 = microtime(true);
         $this->iTimeLoadModule += $tm2 - $tm1;
-        dump("load $sModuleClass - \t\t" . ($tm2 - $tm1) . "");
+        /*dump("load {$sModuleClass}", $tm2 - $tm1 );*/
         return $oModule;
     }
 
@@ -1233,7 +1231,7 @@ class LS extends LsObject
      * Например <pre>LS::Module_Method()</pre>
      *
      * @static
-     * @param $sName    Полное название метода, например <pre>Module_Method</pre>
+     * @param $sName   -- Полное название метода, например <pre>Module_Method</pre>
      * @param array $aArgs Список аргуметов метода
      * @return mixed
      */
@@ -1246,7 +1244,7 @@ class LS extends LsObject
      * Вызов метода модуля
      * Например <pre>$LS->Module_Method()</pre>
      *
-     * @param $sName    Полное название метода, например <pre>Module_Method</pre>
+     * @param $sName   -- Полное название метода, например <pre>Module_Method</pre>
      * @param array $aArgs Список аргуметов метода
      * @return mixed
      */

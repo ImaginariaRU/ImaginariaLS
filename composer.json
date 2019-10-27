@@ -2,8 +2,9 @@
     "require": {
         "ext-mbstring": "*",
         "ext-pdo": "*",
+        "ext-gd": "*",
         "google/recaptcha": "^1.2",
-        "monolog/monolog": "^1.23",
+        "monolog/monolog": "^1.24",
         "mrclay/jsmin-php": "^2.3",
         "cerdic/css-tidy": "^1.6",
         "xxtea/xxtea": "^1.0",

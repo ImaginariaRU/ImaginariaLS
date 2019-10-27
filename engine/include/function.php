@@ -497,3 +497,20 @@ if (!function_exists('dd')) {
         die;
     }
 }
+
+if (!function_exists('dump')) 
+{
+    function dump($msg, ...$args)
+    {
+        global $LOGGER;
+        $LOGGER->error($msg, [$args]);
+    }
+}
+
+/** Polyfills */
+if (version_compare(PHP_VERSION, "7.3") < 0 && !function_exists("is_countable")) {
+    function is_countable($var): bool
+    {
+        return (is_array($var) || is_object($var) || is_iterable($var) || $var instanceof Countable);
+    }
+}

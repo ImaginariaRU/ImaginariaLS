@@ -95,7 +95,10 @@ class ModuleSphinx extends Module
             }
             /**
              * Ищем
+             * @todo: index name to config
              */
+            
+            
             if (!is_array($data = $this->oSphinx->Query($sTerms, Config::Get('module.search.entity_prefix') . $sObjType . 'Index'))) {
                 return FALSE; // Скорее всего недоступен демон searchd
             }
