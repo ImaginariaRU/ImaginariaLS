@@ -41,6 +41,19 @@ setup_env:	##@localhost Setup environment at localhost
 	@mkdir -p $(PATH_ROOT)/logs
 	@sudo mkdir -p /var/cache/nginx/fastcgi/$(PROJECT)
 
+dchr:		##@development Publish release
+	@dch --controlmaint --release --distribution unstable
+
+dchv:		##@development Append release
+	@export DEBEMAIL="karel.wintersky@gmail.com" && \
+	export DEBFULLNAME="Karel Wintersky" && \
+	echo "$(YELLOW)------------------ Previous version header: ------------------$(GREEN)" && \
+	head -n 3 debian/changelog && \
+	echo "$(YELLOW)--------------------------------------------------------------$(RESET)" && \
+	read -p "Next version: " VERSION && \
+	dch --controlmaint -v $$VERSION
+
+
 # ------------------------------------------------
 # Add the following 'help' target to your makefile, add help text after each target name starting with '\#\#'
 # A category can be added with @category

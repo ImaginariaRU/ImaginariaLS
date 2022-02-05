@@ -1,0 +1,5 @@
+imaginaria (2.1.0) stable; urgency=medium
+
+  * Initial debianized release. (Closes: #XXXXXX)
+
+ -- Karel Wintersky <karel.wintersky@yandex.ru>  Sun, 06 Feb 2022 02:32:44 +0300

@@ -81,12 +81,13 @@ class Cron extends LsObject
             $this->oEngine->Logger_Notice($sMsg);
         }
     }
-
+    
     /**
      * Основной метод крон-процесса.
      * Реализует логику работы крон процесса с последующей передачей управления на пользовательскую функцию
      *
      * @return string
+     * @throws Exception
      */
     public function Exec()
     {
@@ -101,13 +102,13 @@ class Cron extends LsObject
          * логирование вызова, обработка ошибок,
          * буферизация вывода.
          */
-        ob_start();
+        \ob_start();
         $this->Client();
         /**
          * Получаем весь вывод функции.
          */
-        $sContent = ob_get_contents();
-        ob_end_clean();
+        $sContent = \ob_get_contents();
+        \ob_end_clean();
 
         return $sContent;
     }
