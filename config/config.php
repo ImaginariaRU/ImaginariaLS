@@ -48,26 +48,33 @@ if (isset($_SERVER['HTTP_HOST'])) {
 } else {
     $config['path']['root']['web'] = null;
 }
-$config['path']['root']['server'] = dirname(dirname(__FILE__));           // полный путь до сайта в файловой системе
+
+$config['path']['root']['project'] = dirname( __FILE__, 2 );
+$config['path']['root']['config'] = '___path.root.project___/config';
+$config['path']['root']['server'] = '___path.root.project___/www';
 
 /**
  * Для CLI режима использовать
  * $config['path']['root']['server']     = dirname(dirname(__FILE__));           // полный путь до сайта в файловой системе
  */
+
 $config['path']['root']['engine'] = '___path.root.server___/engine';  // полный путь до сайта в файловой системе;
 $config['path']['root']['engine_lib'] = '___path.root.web___/engine/lib'; // полный путь до сайта в файловой системе
+
 $config['path']['static']['root'] = '___path.root.web___';            // чтоб можно было статику засунуть на отдельный сервер
 $config['path']['static']['skin'] = '___path.static.root___/templates/skin/___view.skin___';
+
 $config['path']['uploads']['root'] = '/uploads';                          // директория для загрузки файлов
 $config['path']['uploads']['images'] = '___path.uploads.root___/images';
+
 $config['path']['offset_request_url'] = 0;                                   // иногда помогает если сервер использует внутренние реврайты
 
 /**
  * Настройки шаблонизатора Smarty
  */
 $config['path']['smarty']['template'] = '___path.root.server___/templates/skin/___view.skin___';
-$config['path']['smarty']['compiled'] = '___path.root.server___/templates/compiled';
-$config['path']['smarty']['cache'] = '___path.root.server___/templates/cache';
+$config['path']['smarty']['compiled'] = '___path.root.project___/www/cache/templates/compiled';
+$config['path']['smarty']['cache'] = '___path.root.project___/www/cache/templates/cache';
 $config['path']['smarty']['plug'] = '___path.root.engine___/modules/viewer/plugs';
 $config['smarty']['compile_check'] = true; // Проверять или нет файлы шаблона на изменения перед компиляцией, false может значительно увеличить быстродействие, но потребует ручного удаления кеша при изменения шаблона
 
@@ -113,7 +120,7 @@ $config['sys']['mail']['include_talk'] = true;                   // Включа
  */
 $config['sys']['cache']['use'] = true;               // использовать кеширование или нет
 $config['sys']['cache']['type'] = 'file';             // тип кеширования: file, xcache и memory. memory использует мемкеш, xcache - использует XCache
-$config['sys']['cache']['dir'] = '___path.root.server___/tmp/';       // каталог для файлового кеша, также используется для временных картинок. По умолчанию подставляем каталог для хранения сессий
+$config['sys']['cache']['dir'] = '___path.root.project___/tmp/';       // каталог для файлового кеша, также используется для временных картинок. По умолчанию подставляем каталог для хранения сессий
 $config['sys']['cache']['prefix'] = 'livestreet_cache'; // префикс кеширования, чтоб можно было на одной машине держать несколько сайтов с общим кешевым хранилищем
 $config['sys']['cache']['directory_level'] = 1;         // уровень вложенности директорий файлового кеша
 $config['sys']['cache']['solid'] = true;               // Настройка использования раздельного и монолитного кеша для отдельных операций
@@ -145,7 +152,7 @@ $config['general']['reg']['activation'] = false; // использовать а�
  */
 $config['lang']['current'] = 'russian';                                                // текущий язык текстовок
 $config['lang']['default'] = 'russian';                                                // язык, который будет использовать на сайте по умолчанию
-$config['lang']['path'] = '___path.root.server___/templates/language';                // полный путь до языковых файлов
+$config['lang']['path'] = LIVESTREET_PATH_WWW . '/templates/language';                // полный путь до языковых файлов
 $config['lang']['load_to_js'] = array();                                                // Массив текстовок, которые необходимо прогружать на страницу в виде JS хеша, позволяет использовать текстовки внутри js
 
 /**
@@ -246,8 +253,8 @@ $config['module']['image']['default']['watermark_min_height'] = 130;
 $config['module']['image']['default']['round_corner'] = false;
 $config['module']['image']['default']['round_corner_radius'] = '18';
 $config['module']['image']['default']['round_corner_rate'] = '40';
-$config['module']['image']['default']['path']['watermarks'] = '___path.root.server___/engine/lib/external/LiveImage/watermarks/';
-$config['module']['image']['default']['path']['fonts'] = '___path.root.server___/engine/lib/external/LiveImage/fonts/';
+$config['module']['image']['default']['path']['watermarks'] = '___path.root.engine___/lib/external/LiveImage/watermarks/';
+$config['module']['image']['default']['path']['fonts'] = '___path.root.engine___/lib/external/LiveImage/fonts/';
 $config['module']['image']['default']['jpg_quality'] = 95;  // Число от 0 до 100
 
 $config['module']['image']['foto']['watermark_use'] = false;
@@ -511,7 +518,7 @@ $config['block']['rule_blog_info'] = array(
 /* ================================================================== */
 
 $config['head']['default']['js'] = array(
-    "___path.root.engine_lib___/external/html5shiv.js" => array('browser' => 'lt IE 9'),
+//    "___path.root.engine_lib___/external/html5shiv.js" => array('browser' => 'lt IE 9'),
     "___path.root.engine_lib___/external/jquery/jquery-1.7.2.js",
     "___path.root.engine_lib___/external/jquery/jquery-ui-1.8.18.js",
 // советуют подключать для совместисти свежего jQUI
@@ -601,6 +608,41 @@ date_default_timezone_set('Europe/Moscow');
 /**
  * Настройки типографа текста Jevix
  */
-$config['jevix'] = require(dirname(__FILE__) . '/jevix.php');
+$config['jevix'] = require(__DIR__ . '/jevix.php');
+
+/**
+ * Настройки профайлера
+ */
+$config['engine']['profiler']['enabled'] = true;
+
+// Validate cache paths
+if (
+    array_key_exists('tmpfs_cache', $config['sys']['cache'])
+    &&
+    $config['sys']['cache']['tmpfs_cache']
+) {
+    
+    $sys_cache_dir = str_replace('___path.root.server___', $config['path']['root']['server'], $config['sys']['cache']['dir']);
+    
+    if (!is_dir($sys_cache_dir)) {
+        if (!mkdir( $sys_cache_dir, 0777, true ) && !is_dir( $sys_cache_dir )) {
+            throw new \RuntimeException( sprintf( 'Directory "%s" was not created', $sys_cache_dir ) );
+        }
+    }
+    
+    $path_smarty_compiled = str_replace('___path.root.server___', $config['path']['root']['server'], $config['path']['smarty']['compiled']);
+    if (!is_dir($path_smarty_compiled)) {
+        if (!mkdir( $path_smarty_compiled, 0777, true ) && !is_dir( $path_smarty_compiled )) {
+            throw new \RuntimeException( sprintf( 'Directory "%s" was not created', $path_smarty_compiled ) );
+        }
+    }
+    
+    $path_smarty_cache = str_replace('___path.root.server___', $config['path']['root']['server'], $config['path']['smarty']['cache']);
+    if (!is_dir($path_smarty_cache)) {
+        if (!mkdir( $path_smarty_cache, 0777, true ) && !is_dir( $path_smarty_cache )) {
+            throw new \RuntimeException( sprintf( 'Directory "%s" was not created', $path_smarty_cache ) );
+        }
+    }
+}
 
 return $config;

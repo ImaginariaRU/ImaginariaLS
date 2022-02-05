@@ -1,0 +1,59 @@
+#!/bin/sh
+# postinst script for 47news
+# todo: get weather and currency at configure stage
+
+set -e
+ANSI_RED='\033[0;31m'
+ANSI_GREEN='\033[0;32m'
+ANSI_YELLOW='\033[1;33m'
+ANSI_RESET='\033[0m'
+
+PATH_PROJECT=/var/www/imaginaria
+PATH_STORAGE=/var/www/imaginaria.storage
+PATH_WWW=${PATH_PROJECT}/www
+PATH_BIN=${PATH_PROJECT}/bin
+
+PATH_CONFIG=${PATH_PROJECT}/config
+
+PATH_CACHE_SMARTY=${PATH_PROJECT}/cache
+
+#PATH_CACHE_NGINX=/var/cache/nginx/fastcgi/47news
+
+case "$1" in
+    configure)
+        echo "\n ${ANSI_YELLOW} Running post-install... ${ANSI_RESET} \n"
+
+        touch $PATH_WWW/sitemap.xml
+
+        echo "Cleaning SMARTY Cache..."
+        if [ -d "${PATH_CACHE_SMARTY}" ]; then
+            rm -f ${PATH_CACHE_SMARTY}/*
+            echo "${ANSI_GREEN} Cleared. ${ANSI_RESET}"
+        fi
+
+        echo "Building /robots.txt file..."
+        php ${PATH_PROJECT}/admin.tools/postinst.php --make:robots
+        echo "Ok"
+
+        echo "Fixing access rights..."
+        chown -R www-data:www-data ${PATH_PROJECT}/*
+        echo "${ANSI_GREEN} Ok. ${ANSI_RESET}"
+
+        echo
+        echo "${ANSI_YELLOW} ... post-install finished. ${ANSI_RESET}"
+        echo
+
+    ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0

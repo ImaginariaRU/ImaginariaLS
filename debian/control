@@ -1,0 +1,12 @@
+Source: imaginaria
+Section: unknown
+Priority: optional
+Maintainer: Karel Wintersky <karel.wintersky@yandex.ru>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.8
+
+Package: 47news
+Architecture: all
+Depends: nginx-full
+Description: Imaginaria.ru
+

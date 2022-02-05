@@ -1,120 +1,117 @@
 [submodule "plugins/aceadminpanel"]
-	path = plugins/aceadminpanel
+	path = www/plugins/aceadminpanel
 	url = https://github.com/ImaginariaLS/ls_aceAdminPanel.git
 [submodule "plugins/attachments"]
-	path = plugins/attachments
+	path = www/plugins/attachments
 	url = https://github.com/ImaginariaLS/ls_attachments.git
 [submodule "plugins/atuser"]
-	path = plugins/atuser
+	path = www/plugins/atuser
 	url = https://github.com/ImaginariaLS/ls_atuser.git
 [submodule "plugins/autocut"]
-	path = plugins/autocut
+	path = www/plugins/autocut
 	url = https://github.com/ImaginariaLS/ls_autocut.git
 [submodule "plugins/blacklist"]
-	path = plugins/blacklist
+	path = www/plugins/blacklist
 	url = https://github.com/ImaginariaLS/ls_blacklist.git
 [submodule "plugins/bspoiler"]
-	path = plugins/bspoiler
+	path = www/plugins/bspoiler
 	url = https://github.com/ImaginariaLS/ls_bspoiler.git
 [submodule "plugins/changemail"]
-	path = plugins/changemail
+	path = www/plugins/changemail
 	url = https://github.com/ImaginariaLS/ls_change_email.git
 [submodule "plugins/configengine"]
-	path = plugins/configengine
+	path = www/plugins/configengine
 	url = https://github.com/ImaginariaLS/ls_configengine.git
 [submodule "plugins/delayedpost"]
-	path = plugins/delayedpost
+	path = www/plugins/delayedpost
 	url = https://github.com/ImaginariaLS/ls_delayedpost.git
 [submodule "plugins/editcomment"]
-	path = plugins/editcomment
+	path = www/plugins/editcomment
 	url = https://github.com/ImaginariaLS/ls_editcomment.git
 [submodule "plugins/expwall"]
-	path = plugins/expwall
+	path = www/plugins/expwall
 	url = https://github.com/ImaginariaLS/ls_expwall.git
 [submodule "plugins/extendedimage"]
-	path = plugins/extendedimage
+	path = www/plugins/extendedimage
 	url = https://github.com/ImaginariaLS/ls_extendedimage.git
 [submodule "plugins/fontsize"]
-	path = plugins/fontsize
+	path = www/plugins/fontsize
 	url = https://github.com/ImaginariaLS/ls_fontsize.git
 [submodule "plugins/greeting"]
-	path = plugins/greeting
+	path = www/plugins/greeting
 	url = https://github.com/ImaginariaLS/ls_greeting.git
 [submodule "plugins/httpsdetect"]
-	path = plugins/httpsdetect
+	path = www/plugins/httpsdetect
 	url = https://github.com/ImaginariaLS/ls_httpsdetect.git
-[submodule "plugins/mobiletpl"]
-	path = plugins/mobiletpl
-	url = https://github.com/ImaginariaLS/ls_mobiletpl.git
 [submodule "plugins/newwebcode"]
-	path = plugins/newwebcode
+	path = www/plugins/newwebcode
 	url = https://github.com/ImaginariaLS/ls_newwebcode.git
 [submodule "plugins/niceurl"]
-	path = plugins/niceurl
+	path = www/plugins/niceurl
 	url = https://github.com/ImaginariaLS/ls_niceurl.git
 [submodule "plugins/onlyupvote"]
-	path = plugins/onlyupvote
+	path = www/plugins/onlyupvote
 	url = https://github.com/ImaginariaLS/ls_onlyupvote.git
 [submodule "plugins/page"]
-	path = plugins/page
+	path = www/plugins/page
 	url = https://github.com/ImaginariaLS/ls_page.git
 [submodule "plugins/recaptcha"]
-	path = plugins/recaptcha
+	path = www/plugins/recaptcha
 	url = https://github.com/ImaginariaLS/ls_reCaptchaV2.git
 [submodule "plugins/rememberme"]
-	path = plugins/rememberme
+	path = www/plugins/rememberme
 	url = https://github.com/ImaginariaLS/ls_rememberme.git
 [submodule "plugins/shistory"]
-	path = plugins/shistory
+	path = www/plugins/shistory
 	url = https://github.com/ImaginariaLS/ls_shistory.git
 [submodule "plugins/showhidesidebar"]
-	path = plugins/showhidesidebar
+	path = www/plugins/showhidesidebar
 	url = https://github.com/ImaginariaLS/ls_showhidesidebar.git
 [submodule "plugins/simplerating"]
-	path = plugins/simplerating
+	path = www/plugins/simplerating
 	url = https://github.com/ImaginariaLS/ls_simplerating.git
 [submodule "plugins/simplesearch"]
-	path = plugins/simplesearch
+	path = www/plugins/simplesearch
 	url = https://github.com/ImaginariaLS/ls_simplesearch.git
 [submodule "plugins/showvotes"]
-	path = plugins/showvotes
+	path = www/plugins/showvotes
 	url = https://github.com/ImaginariaLS/ls_showvotes.git
 [submodule "plugins/sktc"]
-	path = plugins/sktc
+	path = www/plugins/sktc
 	url = https://github.com/ImaginariaLS/ls_sktc.git
 [submodule "plugins/skubs"]
-	path = plugins/skubs
+	path = www/plugins/skubs
 	url = https://github.com/ImaginariaLS/ls_skubs.git
 [submodule "plugins/tagslikefull"]
-	path = plugins/tagslikefull
+	path = www/plugins/tagslikefull
 	url = https://github.com/ImaginariaLS/ls_tagslikefull.git
 [submodule "plugins/urlredirect"]
-	path = plugins/urlredirect
+	path = www/plugins/urlredirect
 	url = https://github.com/ImaginariaLS/ls_urlredirect.git
 [submodule "plugins/username"]
-	path = plugins/username
+	path = www/plugins/username
 	url = https://github.com/ImaginariaLS/ls_username.git
 [submodule "plugins/userstatus"]
-	path = plugins/userstatus
+	path = www/plugins/userstatus
 	url = https://github.com/ImaginariaLS/ls_userstatus.git
 [submodule "templates/skin/developer"]
-	path = templates/skin/developer
+	path = www/templates/skin/developer/developer
 	url = https://github.com/ImaginariaLS/theme_developer.git
 [submodule "templates/skin/synio"]
-	path = templates/skin/synio
+	path = www/templates/skin/synio/synio
 	url = https://github.com/ImaginariaLS/theme_synio.git
 [submodule "plugins/castuser"]
-	path = plugins/castuser
+	path = www/plugins/castuser
 	url = https://github.com/ImaginariaLS/ls_castuser.git
 [submodule "pluguns/up"]
 	path = pluguns/up
 	url = https://github.com/ImaginariaLS/ls_up.git
 [submodule "plugins/up"]
-	path = plugins/up
+	path = www/plugins/up
 	url = https://github.com/ImaginariaLS/ls_up.git
 [submodule "plugins/complaint"]
-	path = plugins/complaint
+	path = www/plugins/complaint
 	url = https://github.com/ImaginariaLS/ls_complaint.git
 [submodule "templates/skin/street-spirit"]
-	path = templates/skin/street-spirit
+	path = www/templates/skin/street-spirit/street-spirit
 	url = https://github.com/ImaginariaLS/theme_street-spirit.git

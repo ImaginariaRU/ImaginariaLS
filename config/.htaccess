@@ -1,4 +1,0 @@
-Order Deny,Allow
-Deny from all
-
-php_value memory_limit 500M
