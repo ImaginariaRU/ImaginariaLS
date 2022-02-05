@@ -1,6 +1,5 @@
 #!/bin/sh
-# postinst script for 47news
-# todo: get weather and currency at configure stage
+# postinst script for imaginaria
 
 set -e
 ANSI_RED='\033[0;31m'
@@ -11,13 +10,9 @@ ANSI_RESET='\033[0m'
 PATH_PROJECT=/var/www/imaginaria
 PATH_STORAGE=/var/www/imaginaria.storage
 PATH_WWW=${PATH_PROJECT}/www
-PATH_BIN=${PATH_PROJECT}/bin
 
 PATH_CONFIG=${PATH_PROJECT}/config
-
-PATH_CACHE_SMARTY=${PATH_PROJECT}/cache
-
-#PATH_CACHE_NGINX=/var/cache/nginx/fastcgi/47news
+PATH_CACHE_SMARTY=${PATH_PROJECT}/www/cache
 
 case "$1" in
     configure)
@@ -53,7 +48,5 @@ case "$1" in
         exit 1
     ;;
 esac
-
-#DEBHELPER#
 
 exit 0

@@ -4,7 +4,7 @@
     "type": "project",
     "config": {
         "optimize-autoloader": true,
-        "vendor-dir": "www/vendor",
+        "vendor-dir": "vendor",
         "platform-check": false
     },
     "require": {

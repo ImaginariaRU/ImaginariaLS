@@ -1,8 +1,6 @@
 #!/usr/bin/make
-# SHELL	 = /bin/bash
-PROJECT  = 47news
-PATH_PROJECT = $(DESTDIR)/var/www/$(PROJECT)
-PATH_WWW = $(PATH_PROJECT)/www
+PATH_ROOT = $(DESTDIR)/var/www/imaginaria
+PATH_PUBLIC = $(PATH_ROOT)/www
 SEARCH_ENGINE_DIR = manticoresearch
 
 help:
@@ -10,28 +8,24 @@ help:
 
 install: 	##@system Install package. Don't run it manually!!!
 	@echo Installing...
-	install -d $(PATH_PROJECT)
-	cp -r www $(PATH_PROJECT)
-	cp -r admin.cron $(PATH_PROJECT)
-	cp -r admin.tools $(PATH_PROJECT)
-	cp -r config.site $(PATH_PROJECT)
-	cp composer.json $(PATH_PROJECT)
-	cp $(PATH_WWW)/frontend/favicon/favicon.ico $(PATH_WWW)/
-	git rev-parse --short HEAD > $(PATH_WWW)/_version
-	git log --oneline --format=%B -n 1 HEAD | head -n 1 >> $(PATH_WWW)/_version
-	git log --oneline --format="%at" -n 1 HEAD | xargs -I{} date -d @{} +%Y-%m-%d >> $(PATH_WWW)/_version
-	cd $(PATH_PROJECT)/ && composer install && rm composer.lock
-# cd $(PATH_WWW)/ && composer install && rm composer.json && rm composer.lock
-	cp makefile.production-toolkit $(PATH_PROJECT)/makefile
-	install -d $(PATH_PROJECT)/bin
-	install -d $(PATH_PROJECT)/cache
-	install -d $(PATH_PROJECT)/config
-	install -d $(PATH_PROJECT)/config.site
-	install -d $(PATH_PROJECT)/logs
-	install -d $(PATH_PROJECT)/rss
-	install -d $(PATH_WWW)/sitemaps
+	install -d $(PATH_ROOT)
+	cp -r www $(PATH_ROOT)
+	cp -r admin.cron $(PATH_ROOT)
+	cp -r admin.tools $(PATH_ROOT)
+	cp -r config $(PATH_ROOT)
+	cp composer.json $(PATH_ROOT)
+	cp $(PATH_PUBLIC)/templates/favicon/favicon.ico $(PATH_PUBLIC)/
+	git rev-parse --short HEAD > $(PATH_PUBLIC)/_version
+	git log --oneline --format=%B -n 1 HEAD | head -n 1 >> $(PATH_PUBLIC)/_version
+	git log --oneline --format="%at" -n 1 HEAD | xargs -I{} date -d @{} +%Y-%m-%d >> $(PATH_PUBLIC)/_version
+	cd $(PATH_ROOT)/ && composer install && rm composer.lock
+#	cp makefile.production-toolkit $(PATH_ROOT)/makefile
+	install -d $(PATH_PUBLIC)/cache
+	install -d $(PATH_ROOT)/config
+	install -d $(PATH_ROOT)/logs
+	install -d $(PATH_PUBLIC)/sitemaps
 	mkdir -p $(DESTDIR)/etc/$(SEARCH_ENGINE_DIR)/conf.d/$(PROJECT)
-	cp -r config.sphinx/* $(DESTDIR)/etc/$(SEARCH_ENGINE_DIR)/conf.d/$(PROJECT)/
+	cp -r config.searchd/* $(DESTDIR)/etc/$(SEARCH_ENGINE_DIR)/conf.d/$(PROJECT)/
 
 update:		##@build Update project from GIT
 	@echo Updating project from GIT
@@ -43,21 +37,9 @@ build:		##@build Build project to DEB Package
 
 setup_env:	##@localhost Setup environment at localhost
 	@echo Setting up local environment
-	@mkdir -p $(PATH_PROJECT)/cache
-	@mkdir -p $(PATH_PROJECT)/logs
-	@mkdir -p $(PATH_PROJECT)/rss
+	@mkdir -p $(PATH_PUBLIC)/cache
+	@mkdir -p $(PATH_ROOT)/logs
 	@sudo mkdir -p /var/cache/nginx/fastcgi/$(PROJECT)
-
-sync_db:	##@localhost Sync remote DB backup to local database
-	@echo Downloading database
-	@scp wombat@source.fontanka.ru:/var/spool/acmsbackup/mysql/47news.mysql.gz /tmp
-	@echo Archive contains:
-	@gunzip --list /tmp/47news.mysql.gz
-	@echo Replacing local database
-	@gunzip < /tmp/47news.mysql.gz | pv | mysql 47news
-
-rebuild_rt:	##@localhost Rebuild RT indexes only
-	@php $(PATH_PROJECT)/admin.tools/tool.rebuild_rt_indexes.php
 
 # ------------------------------------------------
 # Add the following 'help' target to your makefile, add help text after each target name starting with '\#\#'

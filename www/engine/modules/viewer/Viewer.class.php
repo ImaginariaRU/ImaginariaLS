@@ -221,9 +221,12 @@ class ModuleViewer extends Module
         /**
          * Создаём объект Smarty и устанавливаем необходимые параметры
          */
-        $this->oSmarty = $this->CreateSmartyObject();
-        $this->oSmarty->error_reporting = error_reporting() & ~E_NOTICE; // подавляем NOTICE ошибки - в этом вся прелесть смарти )
-        $this->oSmarty->setTemplateDir(array_merge((array)Config::Get('path.smarty.template'), array(LIVESTREET_PATH_WWW . '/plugins/')));
+        $this->oSmarty = new Smarty();
+        $this->oSmarty->error_reporting = error_reporting() & ~E_NOTICE;
+        $this->oSmarty->setTemplateDir( array_merge(
+            (array)Config::Get('path.smarty.template'),
+            array(LIVESTREET_PATH_WWW . '/plugins/'))
+        );
         $this->oSmarty->compile_check = Config::Get('smarty.compile_check');
         /**
          * Для каждого скина устанавливаем свою директорию компиляции шаблонов
@@ -239,21 +242,12 @@ class ModuleViewer extends Module
         $this->oSmarty->setCacheDir(Config::Get('path.smarty.cache'));
         $this->oSmarty->addPluginsDir(array(Config::Get('path.smarty.plug'), 'plugins'));
         $this->oSmarty->default_template_handler_func = array($this, 'SmartyDefaultTemplateHandler');
+        $this->oSmarty->setForceCompile( Config::Get('path.smarty.force_compile'));
         /**
          * Получаем настройки JS, CSS файлов
          */
         $this->InitFileParams();
         $this->sCacheDir = Config::Get('path.smarty.cache');
-    }
-
-    /**
-     * Создает и возвращает объект Smarty
-     *
-     * @return Smarty
-     */
-    public function CreateSmartyObject()
-    {
-        return new Smarty();
     }
 
     /**

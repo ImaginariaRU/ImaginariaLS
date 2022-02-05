@@ -1,6 +1,6 @@
 <?php
 
-define( 'LS_VERSION', '1.1.0' );
+define( 'LS_VERSION', '4.0' );
 
 error_reporting( E_ALL );
 ini_set( 'display_errors', 1 );
@@ -18,25 +18,27 @@ define( 'LIVESTREET_PATH_ENGINE', LIVESTREET_PATH_INSTALL . '/www/engine');
 require_once __DIR__ . '/loader.php';
 
 // Заводим двигатель
-require_once(LIVESTREET_PATH_WWW . "/engine/classes/Engine.class.php");
-
-require_once LIVESTREET_PATH_WWW . '/vendor/autoload.php';
+require_once LIVESTREET_PATH_WWW . "/engine/classes/Engine.class.php" ;
+require_once LIVESTREET_PATH_INSTALL . '/vendor/autoload.php';
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
 $app_instance = bin2hex( random_bytes( 8 ) );
 $DATETIME_YMD = (new \DateTime())->format( 'Y-m-d' );
-$MONOLOG_STATS_FILE = Config::Get( "path.root.server" )."/logs/{$DATETIME_YMD}__stat.log";
-$MONOLOG_ERROR_FILE = Config::Get( "path.root.server" )."/logs/{$DATETIME_YMD}__error.log";
-$MONOLOG_ERROR_MYSQL = Config::Get( "path.root.server" )."/logs/{$DATETIME_YMD}__mysql.log";
+
+$_PATH_ROOT = \Arris\Path::create( Config::Get( "path.root.project" ) );
+$MONOLOG_STATS_FILE = $_PATH_ROOT->join('logs')->joinName("{$DATETIME_YMD}__stat.log")->toString();
+$MONOLOG_ERROR_FILE = $_PATH_ROOT->join('logs')->joinName("{$DATETIME_YMD}__error.log")->toString();
+$MONOLOG_ERROR_MYSQL = $_PATH_ROOT->join('logs')->joinName("{$DATETIME_YMD}__mysql.log")->toString();
 
 $LOGGER = new Logger( "imaginaria.{$app_instance}" );
 $LOGGER->pushHandler( new StreamHandler( $MONOLOG_STATS_FILE, Logger::DEBUG ) );
 $LOGGER->pushHandler( new StreamHandler( $MONOLOG_ERROR_FILE, Logger::ERROR, false ) );
 
+$PROFILER_FILE = $_PATH_ROOT->join('logs')->joinName( Config::Get( 'sys.logs.profiler_file' ) )->toString();
 
-$oProfiler = ProfilerSimple::getInstance( Config::Get( 'path.root.project' ).'/logs/'.Config::Get( 'sys.logs.profiler_file' ), Config::Get( 'sys.logs.profiler' ) );
+$oProfiler = ProfilerSimple::getInstance( $PROFILER_FILE, Config::Get( 'sys.logs.profiler' ) );
 $iTimeId = $oProfiler->Start( 'full_time' );
 
 $oRouter = Router::getInstance();
