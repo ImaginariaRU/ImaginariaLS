@@ -1,7 +1,6 @@
 <?php
 
-set_include_path( get_include_path().PATH_SEPARATOR.LIVESTREET_PATH_WWW );
-
+set_include_path( get_include_path() . DIRECTORY_SEPARATOR . LIVESTREET_PATH_WWW );
 
 // Получаем объект конфигурации
 require_once LIVESTREET_PATH_WWW . "/engine/lib/internal/ConfigSimple/Config.class.php";

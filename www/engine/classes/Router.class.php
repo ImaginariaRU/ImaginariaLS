@@ -131,7 +131,7 @@ class Router extends LsObject
      * @param array $aParams Список параметров
      * @return 'next'
      */
-    static public function Action($sAction, $sEvent = null, $aParams = null)
+    public static function Action($sAction, $sEvent = null, $aParams = null)
     {
         self::$sAction = self::getInstance()->Rewrite($sAction);
         self::$sActionEvent = $sEvent;
@@ -150,9 +150,7 @@ class Router extends LsObject
      */
     public function Rewrite($sPage)
     {
-        return (isset($this->aConfigRoute['rewrite'][$sPage]))
-            ? $this->aConfigRoute['rewrite'][$sPage]
-            : $sPage;
+        return $this->aConfigRoute[ 'rewrite' ][ $sPage ] ?? $sPage;
     }
 
     /**
@@ -160,7 +158,7 @@ class Router extends LsObject
      *
      * @return Router
      */
-    static public function getInstance()
+    public static function getInstance()
     {
         if (isset(self::$oInstance) and (self::$oInstance instanceof self)) {
             return self::$oInstance;
